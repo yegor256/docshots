@@ -23,7 +23,7 @@ uploadconfig = {
   summary = "Real PDF Snapshot Examples",
   repository = "https://github.com/yegor256/docshots",
   support = "",
-  topic = {"graph"}
+  topic = {"doc-supp"}
 }
 
 function update_tag(file, content, tagname, tagdate)
