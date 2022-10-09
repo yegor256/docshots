@@ -101,6 +101,7 @@
 \RequirePackage{iexec}
 \RequirePackage{fancyvrb}
 \RequirePackage{tabularx}
+\RequirePackage{xcolor}
 %    \end{macrocode}
 
 % \begin{macro}{docshot}
@@ -112,7 +113,9 @@
     \begin{tabularx}{\textwidth}{p{10em}X}
     tbd...
     &
-    \fvset{frame=leftline,numbers=left,numbersep=3pt}
+    \fvset{frame=leftline,numbers=left,numbersep=3pt,
+      framerule=1pt,rulecolor=\color{gray},gobble=2,
+      samepage=true}
     \VerbatimInput{\jobname.docshot.tmp}
     \\
     \end{tabularx}}
