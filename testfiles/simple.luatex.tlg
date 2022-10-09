@@ -1,0 +1,194 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Overfull \hbox (15.0pt too wide) in paragraph at lines 12--13
+[][] 
+\hbox(41.69998+36.69998)x345.0, direction TLT
+.\localpar
+..\localinterlinepenalty=0
+..\localbrokenpenalty=0
+..\localleftbox=null
+..\localrightbox=null
+.\hbox(0.0+0.0)x15.0, direction TLT
+.\hbox(41.69998+36.69998)x345.0, direction TLT
+..\mathon
+..\vbox(41.69998+36.69998)x345.0, direction TLT
+...\hbox(8.39996+70.0)x345.0, direction TLT
+....\glue(\tabskip) 0.0
+....\hbox(8.39996+70.0)x112.0, direction TLT
+.....\rule(8.39996+3.60004)x0.0
+.....\glue 6.0
+.....\vbox(8.39996+3.60004)x100.0, direction TLT
+......\hbox(8.39996+3.60004)x100.0, glue set 76.37001fil, direction TLT
+.......\localpar
+........\localinterlinepenalty=0
+........\localbrokenpenalty=0
+........\localleftbox=null
+........\localrightbox=null
+.......\hbox(0.0+0.0)x0.0, direction TLT
+.......\rule(8.39996+*)x0.0
+.......\TU/lmr/m/n/10 t
+.......\TU/lmr/m/n/10 b
+.......\kern0.28 (font)
+.......\TU/lmr/m/n/10 d
+.......\TU/lmr/m/n/10 .
+.......\TU/lmr/m/n/10 .
+.......\TU/lmr/m/n/10 .
+.......\penalty 10000
+.......\rule(0.0+3.60004)x0.0
+.......\penalty 10000
+.......\glue(\parfillskip) 0.0 plus 1.0fil
+.......\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil
+.....\glue 6.0
+....\glue(\tabskip) 0.0
+....\hbox(8.39996+70.0)x233.0, direction TLT
+.....\glue 6.0
+.....\vbox(0.0+70.0)x221.0, direction TLT
+......\penalty -51
+......\glue 10.0 plus 3.0 minus 5.0
+......\hbox(8.39996+3.60004)x221.0, direction TLT
+.......\hbox(8.39996+3.60004)x221.0, direction TLT
+........\kern0.0
+........\hbox(8.39996+3.60004)x221.0, glue set 96.85fil, direction TLT
+.........\hbox(3.33+0.0)x0.0, glue set - 6.405fil, direction TLT
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/5 1
+..........\kern3.0
+.........\rule(8.39996+3.60004)x0.0
+.........\rule(*+*)x0.4
+.........\kern3.0
+.........\TU/lmtt/m/n/10 \
+.........\TU/lmtt/m/n/10 d
+.........\TU/lmtt/m/n/10 o
+.........\TU/lmtt/m/n/10 c
+.........\TU/lmtt/m/n/10 u
+.........\TU/lmtt/m/n/10 m
+.........\TU/lmtt/m/n/10 e
+.........\TU/lmtt/m/n/10 n
+.........\TU/lmtt/m/n/10 t
+.........\TU/lmtt/m/n/10 c
+.........\TU/lmtt/m/n/10 l
+.........\TU/lmtt/m/n/10 a
+.........\TU/lmtt/m/n/10 s
+.........\TU/lmtt/m/n/10 s
+.........\TU/lmtt/m/n/10 {
+.........\TU/lmtt/m/n/10 a
+.........\TU/lmtt/m/n/10 r
+.........\TU/lmtt/m/n/10 t
+.........\TU/lmtt/m/n/10 i
+.........\TU/lmtt/m/n/10 c
+.........\TU/lmtt/m/n/10 l
+.........\TU/lmtt/m/n/10 e
+.........\TU/lmtt/m/n/10 }
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fil minus 1.0fil
+......\penalty 150
+......\glue(\baselineskip) 0.0
+......\hbox(8.39996+3.60004)x221.0, direction TLT
+.......\kern0.0
+.......\hbox(8.39996+3.60004)x221.0, glue set 133.6fil, direction TLT
+........\hbox(3.33+0.0)x0.0, glue set - 6.405fil, direction TLT
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\TU/lmr/m/n/5 2
+.........\kern3.0
+........\rule(8.39996+3.60004)x0.0
+........\rule(*+*)x0.4
+........\kern3.0
+........\TU/lmtt/m/n/10 \
+........\TU/lmtt/m/n/10 b
+........\TU/lmtt/m/n/10 e
+........\TU/lmtt/m/n/10 g
+........\TU/lmtt/m/n/10 i
+........\TU/lmtt/m/n/10 n
+........\TU/lmtt/m/n/10 {
+........\TU/lmtt/m/n/10 d
+........\TU/lmtt/m/n/10 o
+........\TU/lmtt/m/n/10 c
+........\TU/lmtt/m/n/10 u
+........\TU/lmtt/m/n/10 m
+........\TU/lmtt/m/n/10 e
+........\TU/lmtt/m/n/10 n
+........\TU/lmtt/m/n/10 t
+........\TU/lmtt/m/n/10 }
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\penalty 0
+......\glue(\baselineskip) 0.0
+......\hbox(8.39996+3.60004)x221.0, direction TLT
+.......\kern0.0
+.......\hbox(8.39996+3.60004)x221.0, glue set 133.6fil, direction TLT
+........\hbox(3.33+0.11)x0.0, glue set - 6.405fil, direction TLT
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\TU/lmr/m/n/5 3
+.........\kern3.0
+........\rule(8.39996+3.60004)x0.0
+........\rule(*+*)x0.4
+........\kern3.0
+........\glue(\spaceskip) 5.25
+........\glue(\spaceskip) 5.25
+........\TU/lmtt/m/n/10 H
+........\TU/lmtt/m/n/10 e
+........\TU/lmtt/m/n/10 l
+........\TU/lmtt/m/n/10 l
+........\TU/lmtt/m/n/10 o
+........\kern0.0
+........\TU/lmtt/m/n/10 ,
+........\glue(\spaceskip) 5.25
+........\TU/lmtt/m/n/10 \
+........\TU/lmtt/m/n/10 L
+........\TU/lmtt/m/n/10 a
+........\TU/lmtt/m/n/10 T
+........\TU/lmtt/m/n/10 e
+........\TU/lmtt/m/n/10 X
+........\TU/lmtt/m/n/10 !
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\penalty 150
+......\glue(\baselineskip) 0.0
+......\hbox(8.39996+3.60004)x221.0, direction TLT
+.......\kern0.0
+.......\hbox(8.39996+3.60004)x221.0, glue set 144.1fil, direction TLT
+........\hbox(3.385+0.0)x0.0, glue set - 6.405fil, direction TLT
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\TU/lmr/m/n/5 4
+.........\kern3.0
+........\rule(8.39996+3.60004)x0.0
+........\rule(*+*)x0.4
+........\kern3.0
+........\TU/lmtt/m/n/10 \
+........\TU/lmtt/m/n/10 e
+........\TU/lmtt/m/n/10 n
+........\TU/lmtt/m/n/10 d
+........\TU/lmtt/m/n/10 {
+........\TU/lmtt/m/n/10 d
+........\TU/lmtt/m/n/10 o
+........\TU/lmtt/m/n/10 c
+........\TU/lmtt/m/n/10 u
+........\TU/lmtt/m/n/10 m
+........\TU/lmtt/m/n/10 e
+........\TU/lmtt/m/n/10 n
+........\TU/lmtt/m/n/10 t
+........\TU/lmtt/m/n/10 }
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\penalty -51
+......\glue(\parskip) 0.0
+......\glue(\parskip) 0.0
+......\glue(\baselineskip) 8.39996
+......\hbox(0.0+3.60004)x221.0, glue set 221.0fil, direction TLT
+.......\localpar
+........\localinterlinepenalty=0
+........\localbrokenpenalty=0
+........\localleftbox=null
+........\localrightbox=null
+.......\rule(0.0+3.60004)x0.0
+.......\penalty 10000
+.......\glue(\parfillskip) 0.0 plus 1.0fil
+.......\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil
+.....\glue 6.0
+....\glue(\tabskip) 0.0
+..\mathoff
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0

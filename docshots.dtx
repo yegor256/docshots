@@ -1,0 +1,128 @@
+% \iffalse meta-comment
+% (The MIT License)
+%
+% Copyright (c) 2021-2022 Yegor Bugayenko
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the 'Software'), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+% \fi
+
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+
+% \GetFileInfo{docshots.dtx}
+% \DoNotIndex{\endgroup,\begingroup,\let,\else,\s,\n,\r,\\,\1,\fi}
+
+% \iffalse
+%<*driver>
+\ProvidesFile{docshots.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\ProvidesPackage{docshots}
+%<*package>
+[0000-00-000 0.0.0 Real PDF Snapshot Examples]
+%</package>
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[tt=false, type1=true]{libertine}
+\usepackage{microtype}
+\usepackage{docshots}
+\usepackage{href-ul}
+\PageIndex
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+	\DocInput{docshots.dtx}
+	\PrintChanges
+	\PrintIndex
+\end{document}
+%</driver>
+% \fi
+
+% \title{|docshots|: \LaTeX{} Package \\ Real PDF Snapshot Examples\thanks{The sources are in GitHub at \href{https://github.com/yegor256/docshots}{yegor256/docshots}}}
+% \author{Yegor Bugayenko \\ \texttt{yegor256@gmail.com}}
+% \date{\filedate, \fileversion}
+%
+% \maketitle
+%
+% \section{Introduction}
+%
+% This package helps you render this:
+
+% \begin{docshot}
+% \documentclass{article}
+% \begin{document}
+%   Hello, \LaTeX!
+% \end{document}
+% \end{docshot}
+
+% \textbf{NB!}
+% You must run \TeX{} processor with |--shell-escape| option.
+
+% \StopEventually{}
+
+% \section{Implementation}
+
+% \changes{v0.0.1}{2022/10/09}{Initial version}
+
+% First, we include a few packages:
+%    \begin{macrocode}
+\RequirePackage{iexec}
+\RequirePackage{fancyvrb}
+\RequirePackage{tabularx}
+%    \end{macrocode}
+
+% \begin{macro}{docshot}
+% Then, we define |docshot| environment:
+%    \begin{macrocode}
+\newenvironment{docshot}
+  {\VerbatimEnvironment\begin{VerbatimOut}{\jobname.docshot.tmp}}
+  {\end{VerbatimOut}
+    \begin{tabularx}{\textwidth}{p{10em}X}
+    tbd...
+    &
+    \fvset{frame=leftline,numbers=left,numbersep=3pt}
+    \VerbatimInput{\jobname.docshot.tmp}
+    \\
+    \end{tabularx}}
+%    \end{macrocode}
+% \end{macro}
+
+% \Finale
+
+%\clearpage
+
+%\PrintChanges
+%\clearpage
+%\PrintIndex

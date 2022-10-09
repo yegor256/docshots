@@ -1,0 +1,14 @@
+\input{regression-test.tex}
+\documentclass{article}
+\usepackage{docshots}
+\begin{document}
+\START
+
+\begin{docshot}
+\documentclass{article}
+\begin{document}
+  Hello, \LaTeX!
+\end{document}
+\end{docshot}
+
+\END
