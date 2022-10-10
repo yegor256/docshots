@@ -79,22 +79,19 @@
 % \section{Introduction}
 %
 % You put this into your |.dtx| file:
-%\iffalse
-%<*verb>
-%\fi
-\begin{verbatim}
-% \begin{docshot}
-% \documentclass{article}
-% \begin{document}
-% \pagestyle{empty}
-%   Hello, \LaTeX!
-% \end{document}
-% \end{docshot}
-\end{verbatim}
-%\iffalse
-%</verb>
-%\fi
+%
+% \begingroup\ttfamily\noindent
+% \% \char`\\begin\char`\{docshot\char`\} \\
+% \% \char`\\documentclass\char`\{article\char`\} \\
+% \% \char`\\begin\char`\{document\char`\} \\
+% \% \char`\\pagestyle\char`\{empty\char`\} \\
+% \% ~~Hello, \char`\\LaTeX! \\
+% \% \char`\\end\char`\{document\char`\} \\
+% \% \char`\\end\char`\{docshot\char`\}
+% \endgroup
+%
 % It will be rendered as such:
+%
 % \begin{docshot}
 % \documentclass{article}
 % \begin{document}
@@ -131,13 +128,13 @@
 {\end{VerbatimOut}%
   \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g" \jobname.ds.tex}%
   \iexec[null]{pdflatex --interaction=batchmode --shell-escape \jobname.ds.tex}%
-  \iexec[null]{pdfcrop --margins 10 \jobname.ds.pdf \jobname.ds.crop.pdf}%
+  \iexec[null]{pdfcrop --margins 8 \jobname.ds.pdf \jobname.ds.crop.pdf}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
       framerule=1pt,rulecolor=\color{gray},
       samepage=true}
   \par
-  \tikz \node[draw=gray,fill=white,
-    blur shadow={shadow blur steps=8,shadow xshift=.2ex, shadow yshift=-.2ex}]
+  \tikz \node[draw=gray,fill=white,blur shadow={
+    shadow blur steps=8,shadow xshift=.2ex, shadow yshift=-.2ex}]
     {\includegraphics[width=1.5in]{\jobname.ds.crop.pdf}};
   \hspace{1em}
   \begin{minipage}[t]{.5\linewidth}
