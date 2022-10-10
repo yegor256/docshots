@@ -50,7 +50,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{docshots}
 %<*package>
-[0000-00-000 0.0.0 TeX Samples Next to Their PDF Snapshots in DTX]
+[0000-00-00 0.0.0 TeX Samples Next to Their PDF Snapshots in DTX]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -108,17 +108,22 @@
 %
 % \begin{docshot}
 % \documentclass{article}
-% \usepackage{/code/ctan/phi/phi}
+% \usepackage{tikz}
 % \begin{document}\pagestyle{empty}
-% \begin{phigure}
-% v0
-% v1 xy:v0,+1,+1 data:42
-% v0->v1 a:$x$
-% v2 xy:v0,-1,+2 atom:$\xi.a+1$
-% v0->v2 a:$y$ rho
-% \end{phigure}
+% \begin{tikzpicture}
+% \node [circle,draw] (v0) {$v_0$};
+% \node [circle,draw,
+%   below right of=v0] (v1) {$v_1$};
+% \draw [->] (v0) -- (v1);
+% \end{tikzpicture}
 % \end{document}
 % \end{docshot}
+
+% The pictures you see on the left sides are rendered by a subprocess
+% executing |pdflatex| with the |.tex| content taken from |dtx| file.
+% After a successful processing of \TeX{} sources, we use
+% \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to trim the document. Then,
+% the trimmed PDF is embedded into the final document.
 
 % \StopEventually{}
 
@@ -162,7 +167,7 @@
       samepage=true}
   \par
   \tikz[baseline=(a.north)] \node[draw=gray,fill=white,blur shadow={
-    shadow blur steps=8,shadow xshift=.2ex, shadow yshift=-.2ex}] (a)
+    shadow blur steps=8,shadow xshift=.1ex, shadow yshift=-.1ex}] (a)
     {\includegraphics[width=1.5in]{_docshots/\jobname/\hash.crop.pdf}};
   \hspace{1em}
   \begin{minipage}[t]{.5\linewidth}
