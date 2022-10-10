@@ -50,7 +50,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{docshots}
 %<*package>
-[0000-00-000 0.0.0 Real PDF Snapshot Examples]
+[0000-00-000 0.0.0 TeX Samples Next to Their PDF Snapshots in DTX]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -70,7 +70,7 @@
 %</driver>
 % \fi
 
-% \title{|docshots|: \LaTeX{} Package \\ for Real PDF Snapshot Examples\thanks{The sources are in GitHub at \href{https://github.com/yegor256/docshots}{yegor256/docshots}}}
+% \title{|docshots|: \TeX{} Samples Next to Their \\ PDF Snapshots in DTX\thanks{The sources are in GitHub at \href{https://github.com/yegor256/docshots}{yegor256/docshots}}}
 % \author{Yegor Bugayenko \\ \texttt{yegor256@gmail.com}}
 % \date{\filedate, \fileversion}
 %
@@ -78,8 +78,23 @@
 %
 % \section{Introduction}
 %
-% This package helps you render this:
-
+% You put this into your |.dtx| file:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+% \begin{docshot}
+% \documentclass{article}
+% \begin{document}
+% \pagestyle{empty}
+%   Hello, \LaTeX!
+% \end{document}
+% \end{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+% It will be rendered as such:
 % \begin{docshot}
 % \documentclass{article}
 % \begin{document}
@@ -89,7 +104,8 @@
 % \end{docshot}
 
 % \textbf{NB!}
-% You must run \TeX{} processor with |--shell-escape| option.
+% You must run \TeX{} processor with |--shell-escape| option
+% and you must have \href{https://www.perl.org}{Perl} installed.
 
 % \StopEventually{}
 
