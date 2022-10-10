@@ -83,6 +83,7 @@
 % \begin{docshot}
 % \documentclass{article}
 % \begin{document}
+% \pagestyle{empty}
 %   Hello, \LaTeX!
 % \end{document}
 % \end{docshot}
@@ -98,27 +99,34 @@
 
 % First, we include a few packages:
 %    \begin{macrocode}
-\RequirePackage{iexec}
+\RequirePackage{/code/ctan/iexec/iexec}
 \RequirePackage{fancyvrb}
-\RequirePackage{tabularx}
 \RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+  \usetikzlibrary{shadows}
 %    \end{macrocode}
 
 % \begin{macro}{docshot}
 % Then, we define |docshot| environment:
 %    \begin{macrocode}
 \newenvironment{docshot}
-  {\VerbatimEnvironment\begin{VerbatimOut}{\jobname.docshot.tmp}}
-  {\end{VerbatimOut}
-    \begin{tabularx}{\textwidth}{p{10em}X}
-    tbd...
-    &
-    \fvset{frame=leftline,numbers=left,numbersep=3pt,
-      framerule=1pt,rulecolor=\color{gray},gobble=2,
+{\VerbatimEnvironment\begin{VerbatimOut}{\jobname.ds.tex}}
+{\end{VerbatimOut}%
+  \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g" \jobname.ds.tex}%
+  \iexec[null]{pdflatex --interaction=batchmode --shell-escape \jobname.ds.tex}%
+  \iexec[null]{pdfcrop --margins 10 \jobname.ds.pdf \jobname.ds.crop.pdf}%
+  \fvset{frame=leftline,numbers=left,numbersep=3pt,
+      framerule=1pt,rulecolor=\color{gray},
       samepage=true}
-    \VerbatimInput{\jobname.docshot.tmp}
-    \\
-    \end{tabularx}}
+  \tikz \node[draw=gray,fill=white,
+    blur shadow={shadow blur steps=8,shadow xshift=.2ex, shadow yshift=-.2ex}]
+    {\includegraphics[width=1.5in]{\jobname.ds.crop.pdf}};
+  \hspace{1em}
+  \begin{minipage}[t]{.5\linewidth}
+    \VerbatimInput{\jobname.ds.tex}
+  \end{minipage}
+}
 %    \end{macrocode}
 % \end{macro}
 
