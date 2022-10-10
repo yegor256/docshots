@@ -5,6 +5,8 @@ _docshots/
 docshots.ds.*
 docshots.tex
 *.docshots
+*.diff
+*.tcx
 *.zip
 *.toc
 docshots.pdf

@@ -2,6 +2,7 @@ module = "docshots"
 ctanupload = true
 typesetopts = "--interaction=batchmode --shell-escape"
 checkopts = "--interaction=batchmode --shell-escape"
+checkengines = {"pdftex"}
 tagfiles = {"build.lua", "docshots.dtx"}
 cleanfiles = {"docshots.ds.*", "*.log", "*.glo", "*.fls", "*.idx", "*.out", "*.fdb_latexmk", "*.aux", "*.sty", "*.zip", "docshots.pdf"}
 typesetruns = 2
