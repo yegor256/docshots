@@ -173,6 +173,7 @@
   \iexec[log,quiet]{ls -la _docshots/\jobname}%
   \iexec[log,quiet]{pdfcrop --margins 5 _docshots/\jobname/\hash.pdf
     _docshots/\jobname/\hash.crop.pdf}%
+  \iexec[log,quiet]{ls -la _docshots/\jobname}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
       framerule=.4pt,rulecolor=\color{gray},
       samepage=true}%
