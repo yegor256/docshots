@@ -141,11 +141,6 @@
 \usetikzlibrary{shadows.blur}
 %    \end{macrocode}
 
-% Then, we make a directory where all temporary files will be kept:
-%    \begin{macrocode}
-\iexec[null]{mkdir -p _docshots/\jobname}%
-%    \end{macrocode}
-
 % Then, we show the version of |pdflatex|:
 %    \begin{macrocode}
 \iexec[log,quiet]{pdflatex --version}%
@@ -154,6 +149,11 @@
 % Then, we show the version of |pdfcrop|:
 %    \begin{macrocode}
 \iexec[log,quiet]{pdfcrop --version}%
+%    \end{macrocode}
+
+% Then, we make a directory where all temporary files will be kept:
+%    \begin{macrocode}
+\iexec[null]{mkdir -p _docshots/\jobname}%
 %    \end{macrocode}
 
 % \begin{macro}{docshot}
@@ -170,6 +170,7 @@
     _docshots/\jobname/\hash.tex}%
   \iexec[log,quiet]{(cd _docshots/\jobname;
     pdflatex -interaction=batchmode -shell-escape \hash.tex)}%
+  \iexec[log,quiet]{ls -la _docshots/\jobname}%
   \iexec[log,quiet]{pdfcrop --margins 5 _docshots/\jobname/\hash.pdf
     _docshots/\jobname/\hash.crop.pdf}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
