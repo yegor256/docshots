@@ -151,6 +151,11 @@
 \iexec[log,quiet]{pdfcrop --version}%
 %    \end{macrocode}
 
+% Then, we show the version of |ghostscript|:
+%    \begin{macrocode}
+\iexec[log,quiet]{gs --version}%
+%    \end{macrocode}
+
 % Then, we make a directory where all temporary files will be kept:
 %    \begin{macrocode}
 \iexec[null]{mkdir -p _docshots/\jobname}%
