@@ -146,6 +146,16 @@
 \iexec[null]{mkdir -p _docshots/\jobname}%
 %    \end{macrocode}
 
+% Then, we show the version of |pdflatex|:
+%    \begin{macrocode}
+\iexec[log,quiet]{pdflatex --version}%
+%    \end{macrocode}
+
+% Then, we show the version of |pdfcrop|:
+%    \begin{macrocode}
+\iexec[log,quiet]{pdfcrop --version}%
+%    \end{macrocode}
+
 % \begin{macro}{docshot}
 % Then, we define |docshot| environment:
 %    \begin{macrocode}
