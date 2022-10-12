@@ -133,7 +133,7 @@
 
 % First, we include a few packages:
 %    \begin{macrocode}
-\RequirePackage{/code/ctan/iexec/iexec}
+\RequirePackage{iexec}
 \RequirePackage{fancyvrb}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
@@ -166,7 +166,7 @@
       framerule=.4pt,rulecolor=\color{gray},
       samepage=true}%
   \par%
-  \tikz[baseline=(a.north)] \node[draw=gray,line width=.4pt] (a)
+  \tikz[baseline=(a.north)] \node[draw=gray] (a)
     {\includegraphics[width=.3\linewidth]{_docshots/\jobname/\hash.crop.pdf}};%
   \hspace{1.8em}%
   \begin{minipage}[t]{.65\linewidth}%
