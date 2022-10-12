@@ -3,12 +3,32 @@ Don't change this file in any respect.
 runsystem(perl -i -0777pe "s/(\n|^)\x{25} /\1/g" _docshots/simple/verbatim.tex >/dev/null)...executed.
 iexec: [perl -i -0777pe "s/(\n|^)\x{25} /\1/g" _docshots/simple/verbatim.tex >/dev/null]
 docshots: name set to "9EAE071264B2F4AFDB372B735FC59EA6"
-runsystem(cp _docshots/simple/verbatim.tex _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.tex >/dev/null)...executed.
-iexec: [cp _docshots/simple/verbatim.tex _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.tex >/dev/null]
-runsystem(cd _docshots/simple; pdflatex -interaction=batchmode -shell-escape 9EAE071264B2F4AFDB372B735FC59EA6.tex >/dev/null)...executed.
-iexec: [cd _docshots/simple; pdflatex -interaction=batchmode -shell-escape 9EAE071264B2F4AFDB372B735FC59EA6.tex >/dev/null]
-runsystem(pdfcrop --margins 5 _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.pdf _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf >/dev/null)...executed.
-iexec: [pdfcrop --margins 5 _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.pdf _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf >/dev/null]
+runsystem(cp _docshots/simple/verbatim.tex _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.tex >iexec.tmp)...executed.
+iexec: [cp _docshots/simple/verbatim.tex _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.tex >iexec.tmp]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem((cd _docshots/simple; pdflatex -interaction=batchmode -shell-escape 9EAE071264B2F4AFDB372B735FC59EA6.tex) >iexec.tmp)...executed.
+iexec: [(cd _docshots/simple; pdflatex -interaction=batchmode -shell-escape 9EAE071264B2F4AFDB372B735FC59EA6.tex) >iexec.tmp]
+iexec: this is the content of iexec.tmp:
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem(pdfcrop --margins 5 _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.pdf _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf >iexec.tmp)...executed.
+iexec: [pdfcrop --margins 5 _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.pdf _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf >iexec.tmp]
+iexec: this is the content of iexec.tmp:
+PDFCROP 1.40, ....-..-.. - Copyright (c) 2002-2020 by Heiko Oberdiek, Oberdiek Package Support Group.
+==> 1 page written on `_docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf'.
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
 <_docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf, id=28, 169.63374pt x 588.1975pt>
 File: _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf Graphic file (type pdf)
 <use _docshots/simple/9EAE071264B2F4AFDB372B735FC59EA6.crop.pdf>
