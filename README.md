@@ -12,6 +12,7 @@ and then use in DTX:
 ```tex
 % \begin{docshot}
 % \documentclass{article}
+% \pagestyle{empty}
 % \begin{document}
 %   Hello, \LaTeX!
 % \end{document}
