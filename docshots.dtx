@@ -307,15 +307,19 @@ Hello, world!
   \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
     _docshots/\jobname/verbatim.tex}%
   \def\hash{\pdfmdfivesum file {_docshots/\jobname/verbatim.tex}}%
-  \iexec[log,quiet]{cp _docshots/\jobname/verbatim.tex
-    _docshots/\jobname/\hash.tex}%
-  \iexec[log,quiet]{(cd _docshots/\jobname;
-    \docshots@pdflatex\space -interaction=batchmode
-    -shell-escape \hash.tex)}%
-  \iexec[log,quiet]{\docshots@pdfcrop\space
-    --margins \docshots@margin\space
-    _docshots/\jobname/\hash.pdf
-    _docshots/\jobname/\hash.crop.pdf}%
+  \IfFileExists{_docshots/\jobname/\hash.pdf}
+    {} % do nothing, the PDF is already here
+    {\iexec[log,quiet]{cp _docshots/\jobname/verbatim.tex
+      _docshots/\jobname/\hash.tex}%
+    \iexec[log,quiet]{(cd _docshots/\jobname;
+      \docshots@pdflatex\space -interaction=batchmode
+      -shell-escape \hash.tex)}}%
+  \IfFileExists{_docshots/\jobname/\hash.crop.pdf}
+    {} % do nothing, the cropped PDF is already here
+    {\iexec[log,quiet]{\docshots@pdfcrop\space
+      --margins \docshots@margin\space
+      _docshots/\jobname/\hash.pdf
+      _docshots/\jobname/\hash.crop.pdf}}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
       framerule=.4pt,rulecolor=\color{gray},
       samepage=true}%
