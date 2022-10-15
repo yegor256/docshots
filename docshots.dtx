@@ -142,10 +142,6 @@
 % After a successful processing of \TeX{} sources, we use
 % \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to trim the document.
 
-% Then, the trimmed PDF is embedded into the final document, with the default width of
-% |.3\linewidth|. The default width of the verbatim text is |.65\linewidth|.
-% The default horizontal space between them is |1.8em|.
-
 % We execute |pdflatex| with |-interaction=batchmode| option. This means that
 % \TeX{} processing errors will be ignored as much as possible and the PDF
 % rendered may look not like you expect it to look. Check your \TeX{} log
@@ -181,9 +177,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\documentclass{article}
 \usepackage[gs=/usr/bin/ghostscript]{docshot}
-...
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -197,9 +191,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\documentclass{article}
 \usepackage[pdfcrop=/bin/pdfcrop]{docshot}
-...
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -212,9 +204,20 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\documentclass{article}
 \usepackage[margin=10]{docshot}
-...
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{hspace}
+% The horizontal distance betwen the image and its verbatim \TeX{} source
+% may be configured via |hspace| package option:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[hspace=1em]{docshot}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -249,7 +252,9 @@ Hello, world!
   pdfcrop/.default=pdfcrop,
   margin/.store in=\docshots@margin,
   margin/.default=5,
-  pdflatex,gs,pdfcrop,margin
+  hspace/.store in=\docshots@hspace,
+  hspace/.default=1.8em,
+  pdflatex,gs,pdfcrop,margin,hspace
 }
 \ProcessPgfOptions
 %    \end{macrocode}
@@ -300,7 +305,7 @@ Hello, world!
   \tikz[baseline=(a.north)] \node[draw=gray] (a)
     {\includegraphics[width=.3\linewidth]
       {_docshots/\jobname/\hash.crop.pdf}};%
-  \hspace{1.8em}%
+  \hspace{\docshots@hspace}%
   \begin{minipage}[t]{.65\linewidth}%
     \vspace{0pt}%
     \VerbatimInput{_docshots/\jobname/\hash.tex}%
