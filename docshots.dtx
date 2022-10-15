@@ -254,7 +254,11 @@ Hello, world!
   margin/.default=5,
   hspace/.store in=\docshots@hspace,
   hspace/.default=1.8em,
-  pdflatex,gs,pdfcrop,margin,hspace
+  left/.store in=\docshots@left,
+  left/.default=.3\linewidth,
+  right/.store in=\docshots@right,
+  right/.default=.65\linewidth,
+  pdflatex,gs,pdfcrop,margin,hspace,left,right
 }
 \ProcessPgfOptions
 %    \end{macrocode}
@@ -303,10 +307,10 @@ Hello, world!
       samepage=true}%
   \par%
   \tikz[baseline=(a.north)] \node[draw=gray] (a)
-    {\includegraphics[width=.3\linewidth]
+    {\includegraphics[width=\docshots@left]
       {_docshots/\jobname/\hash.crop.pdf}};%
   \hspace{\docshots@hspace}%
-  \begin{minipage}[t]{.65\linewidth}%
+  \begin{minipage}[t]{\docshots@right}%
     \vspace{0pt}%
     \VerbatimInput{_docshots/\jobname/\hash.tex}%
     \vspace{0pt}%
