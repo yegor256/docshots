@@ -205,6 +205,21 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{margin}
+% When we crop the PDF rendered, we leave a margin around the content. The
+% default value may be changed by the package option |margin|:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{article}
+\usepackage[margin=10]{docshot}
+...
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \StopEventually{}
 
 % \section{Implementation}
@@ -232,7 +247,9 @@ Hello, world!
   gs/.default=gs,
   pdfcrop/.store in=\docshots@pdfcrop,
   pdfcrop/.default=pdfcrop,
-  pdflatex,gs,pdfcrop
+  margin/.store in=\docshots@margin,
+  margin/.default=5,
+  pdflatex,gs,pdfcrop,margin
 }
 \ProcessPgfOptions
 %    \end{macrocode}
@@ -272,7 +289,8 @@ Hello, world!
   \iexec[log,quiet]{(cd _docshots/\jobname;
     \docshots@pdflatex\space -interaction=batchmode
     -shell-escape \hash.tex)}%
-  \iexec[log,quiet]{\docshots@pdfcrop\space --margins 5
+  \iexec[log,quiet]{\docshots@pdfcrop\space
+    --margins \docshots@margin\space
     _docshots/\jobname/\hash.pdf
     _docshots/\jobname/\hash.crop.pdf}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
