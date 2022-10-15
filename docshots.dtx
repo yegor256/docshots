@@ -318,20 +318,20 @@ Hello, world!
 {\VerbatimEnvironment\begin{VerbatimOut}
   {_docshots/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
-  \ifdefined\docshots@dtx
+  \ifdefined\docshots@dtx%
     \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
       _docshots/\jobname/verbatim.tex}%
   \fi%
   \def\hash{\pdfmdfivesum file {_docshots/\jobname/verbatim.tex}}%
   \IfFileExists{_docshots/\jobname/\hash.pdf}
-    {} % do nothing, the PDF is already here
+    {\message{won't render, the PDF already exists: _docshots/\jobname/\hash.pdf^^J}}
     {\iexec[log,quiet]{cp _docshots/\jobname/verbatim.tex
       _docshots/\jobname/\hash.tex}%
     \iexec[log,quiet]{(cd _docshots/\jobname;
       \docshots@pdflatex\space -interaction=batchmode
       -shell-escape \hash.tex)}}%
   \IfFileExists{_docshots/\jobname/\hash.crop.pdf}
-    {} % do nothing, the cropped PDF is already here
+    {\message{won't pdfcrop, the PDF already exists: _docshots/\jobname/\hash.crop.pdf^^J}}
     {\iexec[log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
       _docshots/\jobname/\hash.pdf
