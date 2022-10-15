@@ -261,7 +261,8 @@ Hello, world!
 % Then, we define |docshot| environment:
 %    \begin{macrocode}
 \newenvironment{docshot}
-{\VerbatimEnvironment\begin{VerbatimOut}{_docshots/\jobname/verbatim.tex}}
+{\VerbatimEnvironment\begin{VerbatimOut}
+  {_docshots/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
   \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
     _docshots/\jobname/verbatim.tex}%
