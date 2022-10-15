@@ -146,9 +146,15 @@
 % |.3\linewidth|. The default width of the verbatim text is |.65\linewidth|.
 % The default horizontal space between them is |1.8em|.
 
+% We execute |pdflatex| with |-interaction=batchmode| option. This means that
+% \TeX{} processing errors will be ignored as much as possible and the PDF
+% rendered may look not like you expect it to look. Check your \TeX{} log
+% to understand what may go wrong.
+
 % \section{Package Options}
 
-% \DescribeMacro{pdflatex} The default command line tool for turning `.tex` into
+% \DescribeMacro{pdflatex}
+% The default command line tool for turning |.tex| into
 % |.pdf| is |pdflatex|. However, you can change that by using |pdflatex| package option,
 % for example:
 %\iffalse
@@ -162,6 +168,38 @@
 Hello, world!
 \end{docshot}
 \end{document}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{gs}
+% The default location of Ghostscript is just |gs|.
+% You can change that by using |gs| package option,
+% for example:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{article}
+\usepackage[gs=/usr/bin/ghostscript]{docshot}
+...
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{pdfcrop}
+% The default location of |pdfcrop| is just |pdfcrop|.
+% You can change that by using |pdfcrop| package option,
+% for example:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{article}
+\usepackage[pdfcrop=/bin/pdfcrop]{docshot}
+...
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -190,24 +228,28 @@ Hello, world!
   /docshots/.cd,
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
-  pdflatex
+  gs/.store in=\docshots@gs,
+  gs/.default=gs,
+  pdfcrop/.store in=\docshots@pdfcrop,
+  pdfcrop/.default=pdfcrop,
+  pdflatex,gs,pdfcrop
 }
 \ProcessPgfOptions
 %    \end{macrocode}
 
 % Then, we print the version of |pdflatex| to \TeX{} log:
 %    \begin{macrocode}
-\iexec[log,quiet]{pdflatex --version}%
+\iexec[log,quiet]{\docshots@pdflatex\space --version}%
 %    \end{macrocode}
 
 % Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to \TeX{} log:
 %    \begin{macrocode}
-\iexec[log,quiet]{pdfcrop --version}%
+\iexec[log,quiet]{\docshots@pdfcrop\space --version}%
 %    \end{macrocode}
 
 % Then, we print the version of |ghostscript| to \TeX{} log:
 %    \begin{macrocode}
-\iexec[log,quiet]{gs --version}%
+\iexec[log,quiet]{\docshots@gs\space --version}%
 %    \end{macrocode}
 
 % Then, we make a directory where all temporary files will be kept:
@@ -228,7 +270,7 @@ Hello, world!
     _docshots/\jobname/\hash.tex}%
   \iexec[log,quiet]{(cd _docshots/\jobname;
     \docshots@pdflatex\space -interaction=batchmode -shell-escape \hash.tex)}%
-  \iexec[log,quiet]{pdfcrop --margins 5 _docshots/\jobname/\hash.pdf
+  \iexec[log,quiet]{\docshots@pdfcrop\space --margins 5 _docshots/\jobname/\hash.pdf
     _docshots/\jobname/\hash.crop.pdf}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
       framerule=.4pt,rulecolor=\color{gray},
