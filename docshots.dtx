@@ -211,13 +211,27 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{hspace}
-% The horizontal distance betwen the image and its verbatim \TeX{} source
+% The horizontal distance between the image and its verbatim \TeX{} source
 % may be configured via |hspace| package option:
 %\iffalse
 %<*verb>
 %\fi
 \begin{verbatim}
 \usepackage[hspace=1em]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{left}
+% \DescribeMacro{right}
+% The default width of the image may be changed by |left| option, while
+% the width of the verbatim \TeX{} source may be modified by |right| option:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[left=2in,right=.5\linewidth]{docshot}
 \end{verbatim}
 %\iffalse
 %</verb>
