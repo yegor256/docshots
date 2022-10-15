@@ -269,15 +269,18 @@ Hello, world!
   \iexec[log,quiet]{cp _docshots/\jobname/verbatim.tex
     _docshots/\jobname/\hash.tex}%
   \iexec[log,quiet]{(cd _docshots/\jobname;
-    \docshots@pdflatex\space -interaction=batchmode -shell-escape \hash.tex)}%
-  \iexec[log,quiet]{\docshots@pdfcrop\space --margins 5 _docshots/\jobname/\hash.pdf
+    \docshots@pdflatex\space -interaction=batchmode
+    -shell-escape \hash.tex)}%
+  \iexec[log,quiet]{\docshots@pdfcrop\space --margins 5
+    _docshots/\jobname/\hash.pdf
     _docshots/\jobname/\hash.crop.pdf}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
       framerule=.4pt,rulecolor=\color{gray},
       samepage=true}%
   \par%
   \tikz[baseline=(a.north)] \node[draw=gray] (a)
-    {\includegraphics[width=.3\linewidth]{_docshots/\jobname/\hash.crop.pdf}};%
+    {\includegraphics[width=.3\linewidth]
+      {_docshots/\jobname/\hash.crop.pdf}};%
   \hspace{1.8em}%
   \begin{minipage}[t]{.65\linewidth}%
     \vspace{0pt}%
