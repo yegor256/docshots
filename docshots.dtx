@@ -58,6 +58,7 @@
 \usepackage{microtype}
 \usepackage{docshots}
 \usepackage{href-ul}
+\usepackage{xcolor}
 \PageIndex
 \EnableCrossrefs
 \CodelineIndex
@@ -70,46 +71,63 @@
 %</driver>
 % \fi
 
-% \title{|docshots|: \TeX{} Samples Next to Their \\ PDF Snapshots in DTX\thanks{The sources are in GitHub at \href{https://github.com/yegor256/docshots}{yegor256/docshots}}}
+% \title{|docshots|: \TeX{} Samples Next to Their \\ PDF Snapshots\thanks{The sources are in GitHub at \href{https://github.com/yegor256/docshots}{yegor256/docshots}}}
 % \author{Yegor Bugayenko \\ \texttt{yegor256@gmail.com}}
 % \date{\filedate, \fileversion}
 %
 % \maketitle
 %
-% \textbf{NB!}
+% \textbf{\color{red}NB!}
 % You must run \TeX{} processor with |--shell-escape| option
-% and you must have \href{https://www.perl.org}{Perl} installed.
+% and you must have
+% \href{...}{pdflatex},
+% \href{https://www.perl.org}{Perl},
+% \href{...}{Ghostscript},
+% and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}
+% installed.
 
 % \section{Introduction}
 %
-% You put this into your |.dtx| file:
+% When you want to demonstrate to the readers of your documentation
+% how to use certain \TeX{} commands, the best way would be
+% to show exactly how the entire document will be rendered in PDF,
+% using a subprocess that would render it (via |pdflatex|, for example).
+% To my best knowledge, there were no packages that would allow
+% you do exactly this. That's why I created this simple package.
+% For example, this code:
 %
-% \vspace{0pt}\begingroup\ttfamily\noindent
-% \% \char`\\begin\char`\{docshot\char`\} \\
-% \% \char`\\documentclass\char`\{article\char`\} \\
-% \% \char`\\begin\char`\{document\char`\} \\
-% \% \char`\\pagestyle\char`\{empty\char`\} \\
-% \% ~~Hello, \char`\\LaTeX! \\
-% \% \char`\\end\char`\{document\char`\} \\
-% \% \char`\\end\char`\{docshot\char`\}
-% \endgroup\vspace{0pt}
-%
-% It will be rendered as such:
-%
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\begin{docshot}
+\documentclass{article}
+\usepackage{xcolor}
+\begin{document}
+\pagestyle{empty}
+  Hello, {\color{orange}\LaTeX}!
+\end{document}
+\end{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+% is rendered as such:
 % \begin{docshot}
 % \documentclass{article}
+% \usepackage{xcolor}
 % \begin{document}
 % \pagestyle{empty}
-%   Hello, \LaTeX!
+%   Hello, {\color{orange}\LaTeX}!
 % \end{document}
 % \end{docshot}
 
 % Here is a more complex example:
-%
 % \begin{docshot}
 % \documentclass{article}
 % \usepackage{tikz}
-% \begin{document}\pagestyle{empty}
+% \begin{document}
+% \pagestyle{empty}
 % \begin{tikzpicture}
 % \node [circle,draw] (v0) {$v_0$};
 % \node [circle,draw,
@@ -119,11 +137,35 @@
 % \end{document}
 % \end{docshot}
 
-% The pictures you see on the left sides are rendered by a subprocess
-% executing |pdflatex| with the |.tex| content taken from |dtx| file.
+% The picture you see on the left side is rendered by a subprocess
+% executing |pdflatex| with the |.tex| content taken from the source file.
 % After a successful processing of \TeX{} sources, we use
-% \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to trim the document. Then,
-% the trimmed PDF is embedded into the final document.
+% \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to trim the document.
+
+% Then, the trimmed PDF is embedded into the final document, with the default width of
+% |.3\linewidth|. The default width of the verbatim text is |.65\linewidth|.
+% The default horizontal space between them is |1.8em|.
+
+% \section{Package Options}
+
+% \DescribeMacro{pdflatex} The default command line tool for turning `.tex` into
+% |.pdf| is |pdflatex|. However, you can change that by using |pdflatex| package option,
+% for example:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{article}
+\usepackage[pdflatex=/usr/local/bin/pdflatex]{docshot}
+\begin{document}
+\begin{docshot}
+Hello, world!
+\end{docshot}
+\end{document}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
 
 % \StopEventually{}
 
@@ -141,17 +183,29 @@
 \usetikzlibrary{shadows.blur}
 %    \end{macrocode}
 
-% Then, we show the version of |pdflatex|:
+% Then, we process package options:
+%    \begin{macrocode}
+\RequirePackage{pgfopts}
+\pgfkeys{
+  /docshots/.cd,
+  pdflatex/.store in=\docshots@pdflatex,
+  pdflatex/.default=pdflatex,
+  pdflatex
+}
+\ProcessPgfOptions
+%    \end{macrocode}
+
+% Then, we print the version of |pdflatex| to \TeX{} log:
 %    \begin{macrocode}
 \iexec[log,quiet]{pdflatex --version}%
 %    \end{macrocode}
 
-% Then, we show the version of |pdfcrop|:
+% Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to \TeX{} log:
 %    \begin{macrocode}
 \iexec[log,quiet]{pdfcrop --version}%
 %    \end{macrocode}
 
-% Then, we show the version of |ghostscript|:
+% Then, we print the version of |ghostscript| to \TeX{} log:
 %    \begin{macrocode}
 \iexec[log,quiet]{gs --version}%
 %    \end{macrocode}
@@ -170,11 +224,10 @@
   \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
     _docshots/\jobname/verbatim.tex}%
   \def\hash{\pdfmdfivesum file {_docshots/\jobname/verbatim.tex}}%
-  \message{^^Jdocshots: name set to "\hash"^^J}%
   \iexec[log,quiet]{cp _docshots/\jobname/verbatim.tex
     _docshots/\jobname/\hash.tex}%
   \iexec[log,quiet]{(cd _docshots/\jobname;
-    pdflatex -interaction=batchmode -shell-escape \hash.tex)}%
+    \docshots@pdflatex\space -interaction=batchmode -shell-escape \hash.tex)}%
   \iexec[log,quiet]{pdfcrop --margins 5 _docshots/\jobname/\hash.pdf
     _docshots/\jobname/\hash.crop.pdf}%
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
