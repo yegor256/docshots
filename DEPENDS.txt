@@ -3,3 +3,4 @@ hard fancyvrb
 hard pdfcrop
 hard pgf
 hard pgf-blur
+hard pgfopts
