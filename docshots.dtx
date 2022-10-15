@@ -56,7 +56,7 @@
 \documentclass{ltxdoc}
 \usepackage[tt=false, type1=true]{libertine}
 \usepackage{microtype}
-\usepackage{docshots}
+\usepackage[dtx]{docshots}
 \usepackage{href-ul}
 \usepackage{xcolor}
 \PageIndex
@@ -237,6 +237,19 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{dtx}
+% If you use this package inside |.dtx| documentation, add |dtx| package option. Thanks
+% to this option all comment symbols will be removed from line starts:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[dtx]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \StopEventually{}
 
 % \section{Implementation}
@@ -258,6 +271,7 @@ Hello, world!
 \RequirePackage{pgfopts}
 \pgfkeys{
   /docshots/.cd,
+  dtx/.store in=\docshots@dtx,
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
   gs/.store in=\docshots@gs,
@@ -274,7 +288,7 @@ Hello, world!
   right/.default=.65\linewidth,
   pdflatex,gs,pdfcrop,margin,hspace,left,right
 }
-\ProcessPgfOptions
+\ProcessPgfOptions{/docshots}
 %    \end{macrocode}
 
 % Then, we print the version of |pdflatex| to \TeX{} log:
@@ -304,8 +318,10 @@ Hello, world!
 {\VerbatimEnvironment\begin{VerbatimOut}
   {_docshots/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
-  \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
-    _docshots/\jobname/verbatim.tex}%
+  \ifdefined\docshots@dtx
+    \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
+      _docshots/\jobname/verbatim.tex}%
+  \fi%
   \def\hash{\pdfmdfivesum file {_docshots/\jobname/verbatim.tex}}%
   \IfFileExists{_docshots/\jobname/\hash.pdf}
     {} % do nothing, the PDF is already here
