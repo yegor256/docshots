@@ -8,7 +8,7 @@
 \docshotPrerequisite{main.bib}
 \docshotAfter{biber --quiet $2}
 \begin{docshot}
-  \documentclass[natbib=false]{acmart}
+  \documentclass[natbib=false]{article}
   \usepackage[natbib=true]{biblatex}
   \addbibresource{main.bib}
   \pagestyle{empty}
