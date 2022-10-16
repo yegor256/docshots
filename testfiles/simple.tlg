@@ -37,6 +37,13 @@ iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 byt
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
 docshots: pdflatex run no.1
+runsystem((rm -f _docshots/simple/after.sh) > iexec.tmp 2>&1)...executed.
+iexec: [(rm -f _docshots/simple/after.sh) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
 runsystem((pdfcrop --margins 5 _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.pdf _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf) > iexec.tmp 2>&1)...executed.
 iexec: [(pdfcrop --margins 5 _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.pdf _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:

@@ -480,10 +480,13 @@ Hello, world!
         {\iexec[log,quiet]{chmod a+x
           \docshots@tmpdir/\jobname/after.sh}
         \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
-          ./after.sh \hash\space \hash.tex}
-        \iexec[log,quiet]{rm -f
-          \docshots@tmpdir/\jobname/after.sh}}
+          ./after.sh \hash\space \hash.tex}}
         {}}}%
+%    \end{macrocode}
+% Here we delete |after.sh| which may exist here after the last
+% compilation of |pdflatex|:
+%    \begin{macrocode}
+  \iexec[log,quiet]{rm -f \docshots@tmpdir/\jobname/after.sh}
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:

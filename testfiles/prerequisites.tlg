@@ -224,13 +224,6 @@ INFO - Output to 3EEB32E5D839D5A03C9283FCF345C8EE.bbl
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
-runsystem((rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
-iexec: [(rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
-iexec: this is the content of iexec.tmp:
-<EOF>
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
-runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
 runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
 iexec: [(cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:
@@ -399,6 +392,41 @@ iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 byt
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
 docshots: pdflatex run no.2
+runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
+iexec: [(chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem((cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
+iexec: [(cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+INFO - This is Biber 2.17
+INFO - Logfile is '3EEB32E5D839D5A03C9283FCF345C8EE.blg'
+INFO - Reading '3EEB32E5D839D5A03C9283FCF345C8EE.bcf'
+INFO - Found 1 citekeys in bib section 0
+INFO - Processing section 0
+INFO - Looking for bibtex file 'main.bib' for section 0
+INFO - LaTeX decoding ...
+INFO - Found BibTeX data source 'main.bib'
+INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+INFO - No sort tailoring available for locale 'en-US'
+INFO - Writing '3EEB32E5D839D5A03C9283FCF345C8EE.bbl' with encoding 'UTF-8'
+INFO - Output to 3EEB32E5D839D5A03C9283FCF345C8EE.bbl
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem((rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
+iexec: [(rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
 runsystem((pdfcrop --margins 5 _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.pdf _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf) > iexec.tmp 2>&1)...executed.
 iexec: [(pdfcrop --margins 5 _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.pdf _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:
