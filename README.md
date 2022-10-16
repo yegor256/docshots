@@ -11,13 +11,20 @@ from [CTAN](https://ctan.org/pkg/docshots)
 and then use like this:
 
 ```tex
+\documentclass{article}
+\usepackage{docshots}
+\begin{document}
+Here is how you can use \LaTeX:
+
 \begin{docshot}
 \documentclass{article}
-\pagestyle{empty}
 \begin{document}
-  Hello, \LaTeX!
+Hello, \LaTeX!
 \end{document}
 \end{docshot}
+
+For more informaiton, read \TeX{} Book by Donald Knuth.
+\end{document}
 ```
 
 If you want to contribute yourself, make a fork, then create a branch, 
