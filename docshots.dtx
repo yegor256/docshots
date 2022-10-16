@@ -332,6 +332,9 @@ Hello, world!
 {\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
+%    \end{macrocode}
+% If we are in |dtx| mode, leading percent characters must be removed:
+%    \begin{macrocode}
   \ifdefined\docshots@dtx%
     \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
       \docshots@tmpdir/\jobname/verbatim.tex}%
