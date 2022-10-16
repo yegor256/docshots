@@ -278,8 +278,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{runs}
-% By default, we run |pdflatex| twice for each docshot. You can change this number using the package
-% option |runs|:
+% By default, we run |pdflatex| just once for each docshot. You can change this number using the package
+% option |runs|. This may be helpful if you need Bib\TeX{} processing, for example:
 %\iffalse
 %<*verb>
 %\fi
@@ -401,7 +401,7 @@ Hello, world!
   small/.store in=\docshots@small,
   tiny/.store in=\docshots@tiny,
   runs/.store in=\docshots@runs,
-  runs/.default=2,
+  runs/.default=1,
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
   gs/.store in=\docshots@gs,

@@ -37,36 +37,6 @@ iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 byt
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
 docshots: pdflatex run no.1
-runsystem((cd _docshots/simple; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/simple; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1]
-iexec: this is the content of iexec.tmp:
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
- \write18 enabled.
-entering extended mode
-(F63314680C3E56DE0807DB5FB5BD5519.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24>
-(../article.cls
-Document Class: article ....-..-.. v... Standard LaTeX document class
-(../size10.clo))
-(../xcolor.sty
-(../color.cfg)
-(../pdftex.def))
-(../l3backend-pdftex.def)
-(F63314680C3E56DE0807DB5FB5BD5519.aux)
-(../supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) [1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(F63314680C3E56DE0807DB5FB5BD5519.aux) )</usr/local/texlive/2022/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb>
-Output written on F63314680C3E56DE0807DB5FB5BD5519.pdf (1 page, 21062 bytes).
-Transcript written on F63314680C3E56DE0807DB5FB5BD5519.log.
-<EOF>
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
-runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-docshots: pdflatex run no.2
 runsystem((pdfcrop --margins 5 _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.pdf _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf) > iexec.tmp 2>&1)...executed.
 iexec: [(pdfcrop --margins 5 _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.pdf _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:

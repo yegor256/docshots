@@ -1,6 +1,6 @@
 \input{regression-test.tex}
 \documentclass{article}
-\usepackage{docshots}
+\usepackage[runs=2]{docshots}
 \begin{document}
 
 \START
