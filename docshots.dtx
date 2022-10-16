@@ -281,11 +281,11 @@ Hello, world!
   margin/.store in=\docshots@margin,
   margin/.default=5,
   hspace/.store in=\docshots@hspace,
-  hspace/.default=1.8em,
+  hspace/.default=.05\linewidth,
   left/.store in=\docshots@left,
   left/.default=.3\linewidth,
   right/.store in=\docshots@right,
-  right/.default=.65\linewidth,
+  right/.default=.55\linewidth,
   pdflatex,gs,pdfcrop,margin,hspace,left,right
 }
 \ProcessPgfOptions{/docshots}
@@ -322,23 +322,42 @@ Hello, world!
     \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
       _docshots/\jobname/verbatim.tex}%
   \fi%
+%    \end{macrocode}
+% We calculate MD5 hashsum of the file content:
+%    \begin{macrocode}
   \def\hash{\pdfmdfivesum file {_docshots/\jobname/verbatim.tex}}%
+%    \end{macrocode}
+% If the PDF with the required name already exists, we ignore this step.
+% Otherwise, we copy |verbatim.tex| into new file and run |pdflatex|:
+%    \begin{macrocode}
   \IfFileExists{_docshots/\jobname/\hash.pdf}
-    {\message{won't render, the PDF already exists: _docshots/\jobname/\hash.pdf^^J}}
+    {\message{docshots: won't render, the PDF already exists
+      (_docshots/\jobname/\hash.pdf)^^J}}
     {\iexec[log,quiet]{cp _docshots/\jobname/verbatim.tex
       _docshots/\jobname/\hash.tex}%
     \iexec[log,quiet]{cd _docshots/\jobname;
       \docshots@pdflatex\space -interaction=batchmode
       -shell-escape \hash.tex}}%
+%    \end{macrocode}
+% If a cropped version of the PDF with the required name already exists, we ignore this step.
+% Otherwise, we ask |pdfcrop| to crop the PDF:
+%    \begin{macrocode}
   \IfFileExists{_docshots/\jobname/\hash.crop.pdf}
-    {\message{won't pdfcrop, the PDF already exists: _docshots/\jobname/\hash.crop.pdf^^J}}
+    {\message{wdocshots: on't pdfcrop, the PDF already exists
+      (_docshots/\jobname/\hash.crop.pdf)^^J}}
     {\iexec[log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
       _docshots/\jobname/\hash.pdf
       _docshots/\jobname/\hash.crop.pdf}}%
+%    \end{macrocode}
+% We configure |fancyvrb|:
+%    \begin{macrocode}
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
       framerule=.4pt,rulecolor=\color{gray},
       samepage=true}%
+%    \end{macrocode}
+% We render the two column content:
+%    \begin{macrocode}
   \par%
   \tikz[baseline=(a.north)] \node[draw=gray] (a)
     {\includegraphics[width=\docshots@left]
