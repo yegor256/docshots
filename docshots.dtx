@@ -351,7 +351,7 @@ Hello, world!
 \usepackage{docshot}
 \docshotPrerequisite{main.bib}
 \begin{document}
-\docshotAfter{biber $1}
+\docshotAfter{biber $2}
 \begin{docshot}
   \documentclass{acmart}
   \usepackage[natbib=true]{biblatex}
@@ -368,8 +368,13 @@ Hello, world!
 %</verb>
 %\fi
 % The script you specify in the first argument of |\docshotAfter| will get
-% two arguments when it runs: the hash of the snippet and the name of the
-% |.tex| file, where the latter is basically the former with an
+% three arguments when it runs:
+% \begin{description}\setlength\itemsep{0em}
+% \item[|\$1|] the cycle of |pdflatex| processing (1, 2, ...),
+% \item[|\$2|] the hash of the snippet,
+% \item[|\$3|] the name of the |.tex| file.
+% \end{description}
+% |$2| is basically equals to |$1| with an
 % attached |.tex| suffix. |\docshotAfter| applies only to the first |docshot|
 % environment that goes after it! You must specify |\docshotAfter| before
 % each |docshot| where you want such post-processing to happen.
@@ -480,7 +485,7 @@ Hello, world!
         {\iexec[log,quiet]{chmod a+x
           \docshots@tmpdir/\jobname/after.sh}
         \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
-          ./after.sh \hash\space \hash.tex}}
+          ./after.sh \n\space \hash\space \hash.tex}}
         {}}}%
 %    \end{macrocode}
 % Here we delete |after.sh| which may exist here after the last

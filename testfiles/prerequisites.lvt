@@ -6,7 +6,7 @@
 \START
 
 \docshotPrerequisite{main.bib}
-\docshotAfter{biber $1}
+\docshotAfter{biber --quiet $2}
 \begin{docshot}
   \documentclass[natbib=false]{acmart}
   \usepackage[natbib=true]{biblatex}

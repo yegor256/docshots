@@ -8,8 +8,8 @@ iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 byt
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
 docshots: file main.bib copied to _docshots/prerequisites/main.bib
-runsystem((/bin/echo -n 'biber $1' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
-iexec: [(/bin/echo -n 'biber $1' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
+runsystem((/bin/echo -n 'biber --quiet $2' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
+iexec: [(/bin/echo -n 'biber --quiet $2' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:
 <EOF>
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
@@ -203,23 +203,9 @@ iexec: this is the content of iexec.tmp:
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+runsystem((cd _docshots/prerequisites; ./after.sh 1 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
+iexec: [(cd _docshots/prerequisites; ./after.sh 1 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:
-INFO - This is Biber 2.17
-INFO - Logfile is '3EEB32E5D839D5A03C9283FCF345C8EE.blg'
-INFO - Reading '3EEB32E5D839D5A03C9283FCF345C8EE.bcf'
-INFO - Found 1 citekeys in bib section 0
-INFO - Processing section 0
-INFO - Looking for bibtex file 'main.bib' for section 0
-INFO - LaTeX decoding ...
-INFO - Found BibTeX data source 'main.bib'
-INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-INFO - No sort tailoring available for locale 'en-US'
-INFO - Writing '3EEB32E5D839D5A03C9283FCF345C8EE.bbl' with encoding 'UTF-8'
-INFO - Output to 3EEB32E5D839D5A03C9283FCF345C8EE.bbl
 <EOF>
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
@@ -399,23 +385,9 @@ iexec: this is the content of iexec.tmp:
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+runsystem((cd _docshots/prerequisites; ./after.sh 2 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
+iexec: [(cd _docshots/prerequisites; ./after.sh 2 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:
-INFO - This is Biber 2.17
-INFO - Logfile is '3EEB32E5D839D5A03C9283FCF345C8EE.blg'
-INFO - Reading '3EEB32E5D839D5A03C9283FCF345C8EE.bcf'
-INFO - Found 1 citekeys in bib section 0
-INFO - Processing section 0
-INFO - Looking for bibtex file 'main.bib' for section 0
-INFO - LaTeX decoding ...
-INFO - Found BibTeX data source 'main.bib'
-INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-INFO - No sort tailoring available for locale 'en-US'
-INFO - Writing '3EEB32E5D839D5A03C9283FCF345C8EE.bbl' with encoding 'UTF-8'
-INFO - Output to 3EEB32E5D839D5A03C9283FCF345C8EE.bbl
 <EOF>
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
