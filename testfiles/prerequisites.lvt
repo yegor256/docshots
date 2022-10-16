@@ -1,0 +1,21 @@
+\input{regression-test.tex}
+\documentclass{article}
+\usepackage{docshots}
+\begin{document}
+
+\START
+
+\docshotPrerequisite{main.bib}
+\docshotAfter{biber $1}
+\begin{docshot}
+  \documentclass[natbib=false]{acmart}
+  \usepackage[natbib=true]{biblatex}
+  \addbibresource{main.bib}
+  \pagestyle{empty}
+  \begin{document}
+    You must read the book of \citet{knuth1984}.
+    \printbibliography
+  \end{document}
+\end{docshot}
+
+\END

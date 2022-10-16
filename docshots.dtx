@@ -78,8 +78,9 @@
 % \maketitle
 %
 % \textbf{\color{red}NB!}
-% You must run \TeX{} processor with |--shell-escape| option
-% and you must have
+% This package doesn't work on Windows!
+% Also, you must run \TeX{} processor with |--shell-escape| option.
+% Also, you must have
 % \href{...}{pdflatex},
 % \href{https://www.perl.org}{Perl},
 % \href{...}{Ghostscript},
@@ -142,10 +143,10 @@
 % After a successful processing of \TeX{} sources, we use
 % \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to trim the document.
 
-% We execute |pdflatex| with |-interaction=batchmode| option. This means that
-% \TeX{} processing errors will be ignored as much as possible and the PDF
-% rendered may look not like you expect it to look. Check your \TeX{} log
-% to understand what may go wrong.
+% We execute |pdflatex| with |-interaction=batchmode| and |-halt-on-error| options.
+% This means that
+% \TeX{} processing will stop at the first error. Check your \TeX{} log
+% to understand what went wrong.
 
 % \section{Package Options}
 
@@ -262,6 +263,86 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{runs}
+% By default, we run |pdflatex| twice for each docshot. You can change this number using the package
+% option |runs|:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[runs=3]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{\docshotPrerequisite}
+% If you need some files to be present next to the |.tex| snippet while
+% it's rendered by |pdflatex|, you can use |\docshotPrerequisite| with
+% a single mandatory argument. The argument is the name of a file you need
+% to be copied from current directory to the temporary directory, where
+% all snippets are rendered. The command can be used either in the body
+% of the document or in the preamble --- it doesn't matter, as long as
+% it shows up before the docshot that needs the prerequisite. For example:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{article}
+\usepackage{docshot}
+\docshotPrerequisite{duck.jpg}
+\begin{document}
+\begin{docshot}
+  \documentclass{article}
+  \usepackage{graphicx}
+  \pagestyle{empty}
+  \begin{document}
+    This is my favorite picture of a duck:
+    \includegraphics[width=2in]{duck.jpg}
+  \end{document}
+\end{docshot}
+\end{document}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{\docshotAfter}
+% If you need something to happen after each |pdflatex| run of a docshot, you may use
+% |\docshotAfter| command right before |docshot| environment. For example, you have a bibliography file that
+% you want to be visible for all snippets and you want all of them to
+% run \href{https://ctan.org/pkg/biber}{biber} in order to process citations:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass{article}
+\usepackage{docshot}
+\docshotPrerequisite{main.bib}
+\begin{document}
+\docshotAfter{biber $1}
+\begin{docshot}
+  \documentclass{acmart}
+  \usepackage[natbib=true]{biblatex}
+  \addbibresource{main.bib}
+  \pagestyle{empty}
+  \begin{document}
+    You must read the book of \citet{knuth1984}.
+    \printbibliography
+  \end{document}
+\end{docshot}
+\end{document}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+% The script you specify in the first argument of |\docshotAfter| will get
+% two arguments when it runs: the hash of the snippet and the name of the
+% |.tex| file, where the latter is basically the former with an
+% attached |.tex| suffix. |\docshotAfter| applies only to the first |docshot|
+% environment that goes after it! You must specify |\docshotAfter| before
+% each |docshot| where you want such post-processing to happen.
+
 % \StopEventually{}
 
 % \section{Implementation}
@@ -286,6 +367,8 @@ Hello, world!
   dtx/.store in=\docshots@dtx,
   tmpdir/.store in=\docshots@tmpdir,
   tmpdir/.default=_docshots,
+  runs/.store in=\docshots@runs,
+  runs/.default=2,
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
   gs/.store in=\docshots@gs,
@@ -300,7 +383,7 @@ Hello, world!
   left/.default=.3\linewidth,
   right/.store in=\docshots@right,
   right/.default=.55\linewidth,
-  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right
+  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,runs
 }
 \ProcessPgfOptions{/docshots}
 %    \end{macrocode}
@@ -352,15 +435,28 @@ Hello, world!
       (\docshots@tmpdir/\jobname/\hash.pdf)^^J}}
     {\iexec[log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
       \docshots@tmpdir/\jobname/\hash.tex}%
-    \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
-      \docshots@pdflatex\space -interaction=batchmode
-      -shell-escape \hash.tex}}%
+    \foreach \n in {1,...,\docshots@runs}{
+      \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
+        \docshots@pdflatex\space
+        -interaction=batchmode
+        -halt-on-error
+        -shell-escape
+        \hash.tex}
+      \message{docshots: pdflatex run no.\n^^J}
+      \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
+        {\iexec[log,quiet]{chmod a+x
+          \docshots@tmpdir/\jobname/after.sh}
+        \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
+          ./after.sh \hash\space \hash.tex}
+        \iexec[log,quiet]{rm -f
+          \docshots@tmpdir/\jobname/after.sh}}
+        {}}}%
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
-    {\message{wdocshots: on't pdfcrop, the PDF already exists
+    {\message{docshots: on't pdfcrop, the PDF already exists
       (\docshots@tmpdir/\jobname/\hash.crop.pdf)^^J}}
     {\iexec[log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
@@ -386,6 +482,28 @@ Hello, world!
     \vspace{0pt}%
   \end{minipage}%
   \par%
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\docshotPrerequisite}
+% Then, we define |\docshotPrerequisite| command:
+%    \begin{macrocode}
+\newcommand\docshotPrerequisite[1]{
+  \iexec[log,quiet]{cp #1 \docshots@tmpdir/\jobname}%
+  \message{docshots: file #1 copied to
+    \docshots@tmpdir/\jobname/#1^^J}%
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\docshotAfter}
+% Finally, we define |\docshotAfter| command:
+%    \begin{macrocode}
+\newcommand\docshotAfter[1]{
+  \iexec[log,quiet]{/bin/echo -n '\detokenize{#1}'
+    > \docshots@tmpdir/\jobname/after.sh}%
+  \message{docshots: file \docshots@tmpdir/\jobname/after.sh created^^J}%
 }
 %    \end{macrocode}
 % \end{macro}

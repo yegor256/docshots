@@ -1,0 +1,98 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+runsystem((cp main.bib _docshots/prerequisites) > iexec.tmp 2>&1)...executed.
+iexec: [(cp main.bib _docshots/prerequisites) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+docshots: file main.bib copied to _docshots/prerequisites/main.bib
+runsystem((/bin/echo -n 'biber $1' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
+iexec: [(/bin/echo -n 'biber $1' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+docshots: file _docshots/prerequisites/after.sh created
+runsystem((cp _docshots/prerequisites/verbatim.tex _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
+iexec: [(cp _docshots/prerequisites/verbatim.tex _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...
+executed.
+iexec: [(cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+docshots: pdflatex run no.1
+runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
+iexec: [(chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem((cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
+iexec: [(cd _docshots/prerequisites; ./after.sh 3EEB32E5D839D5A03C9283FCF345C8EE 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+INFO - This is Biber 2.17
+INFO - Logfile is '3EEB32E5D839D5A03C9283FCF345C8EE.blg'
+INFO - Reading '3EEB32E5D839D5A03C9283FCF345C8EE.bcf'
+INFO - Found 1 citekeys in bib section 0
+INFO - Processing section 0
+INFO - Looking for bibtex file 'main.bib' for section 0
+INFO - LaTeX decoding ...
+INFO - Found BibTeX data source 'main.bib'
+INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+INFO - No sort tailoring available for locale 'en-US'
+INFO - Writing '3EEB32E5D839D5A03C9283FCF345C8EE.bbl' with encoding 'UTF-8'
+INFO - Output to 3EEB32E5D839D5A03C9283FCF345C8EE.bbl
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem((rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
+iexec: [(rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...
+executed.
+iexec: [(cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
+ \write18 enabled.
+entering extended mode
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+docshots: pdflatex run no.2
+runsystem((pdfcrop --margins 5 _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.pdf _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf) > iexec.tmp 2>&1)...executed.
+iexec: [(pdfcrop --margins 5 _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.pdf _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf) > iexec.tmp 2>&1]
+iexec: this is the content of iexec.tmp:
+PDFCROP 1.40, ....-..-.. - Copyright (c) 2002-2020 by Heiko Oberdiek, Oberdiek Package Support Group.
+==> 1 page written on `_docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf'.
+<EOF>
+iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.tmp)...executed.
+iexec: The file 'iexec.tmp' was deleted
+<_docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf, id=28, 338.26375pt x 579.16376pt>
+File: _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf Graphic file (type pdf)
+<use _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf>
+Package pdftex.def Info: _docshots/prerequisites/3EEB32E5D839D5A03C9283FCF345C8EE.crop.pdf  used on input line ....
+(pdftex.def)             Requested size: 103.50105pt x 177.20586pt.

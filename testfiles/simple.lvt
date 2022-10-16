@@ -7,8 +7,9 @@
 
 \begin{docshot}
 \documentclass{article}
+\usepackage{xcolor}
 \begin{document}
-  Hello, \LaTeX!
+  Hello, {\color{orange}\LaTeX}!
 \end{document}
 \end{docshot}
 
