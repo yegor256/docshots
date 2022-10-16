@@ -501,9 +501,10 @@ Hello, world!
 %    \end{macrocode}
 % We configure |fancyvrb|:
 %    \begin{macrocode}
-  \fvset{frame=leftline,numbers=left,numbersep=3pt,
-      framerule=.4pt,rulecolor=\color{gray},
-      samepage=true,baselinestretch=1}%
+  \fvset{numbers=left,numbersep=3pt}%
+  \fvset{frame=leftline,framerule=.4pt,rulecolor=\color{gray}}%
+  \fvset{samepage=true,baselinestretch=1}%
+  \fvset{baselinestretch=1}%
   \ifdefined\docshots@small%
     \fvset{fontsize=\small}%
   \fi%
