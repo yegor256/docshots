@@ -23,13 +23,174 @@ iexec: this is the content of iexec.tmp:
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...
-executed.
-iexec: [(cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
+iexec: [(cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
  \write18 enabled.
 entering extended mode
+(3EEB32E5D839D5A03C9283FCF345C8EE.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24>
+(../acmart.cls
+Document Class: acmart ....-..-.. v... Typesetting articles for the Associatio
+n for Computing Machinery
+(../xkeyval.sty
+(../xkeyval.tex
+(../xkvutils.tex
+(../keyval.tex))))
+(../xstring.sty
+(../xstring.tex))
+(../iftex.sty)
+(../amsart.cls
+Document Class: amsart ....-..-.. v....6
+(../amsmath.sty
+For additional information on amsmath, use the `?' option.
+(../amstext.sty
+(../amsgen.sty))
+(../amsbsy.sty)
+(../amsopn.sty))
+(../umsa.fd)
+(../amsfonts.sty))
+(../microtype.sty
+(../etoolbox.sty)
+(../microtype-pdftex.def)
+(../microtype.cfg))
+(../booktabs.sty)
+(../refcount.sty
+(../ltxcmds.sty)
+(../infwarerr.sty))
+(../totpages.sty
+(../everyshi.sty))
+(../environ.sty
+(../trimspaces.sty))
+(../setspace.sty)
+(../textcase.sty)
+(../hyperxmp.sty
+(../kvoptions.sty
+(../kvsetkeys.sty))
+(../pdfescape.sty
+(../pdftexcmds.sty))
+(../stringenc.sty)
+(../intcalc.sty)
+(../ifmtarg.sty)
+(../ifthen.sty)
+(../ifdraft.sty)
+(../ifluatex.sty))
+(../hyperref.sty
+(../kvdefinekeys.sty)
+(../hycolor.sty)
+(../letltxmacro.sty)
+(../auxhook.sty)
+(../pd1enc.def)
+(../etexcmds.sty)
+(../puenc.def)
+(../url.sty)
+(../bitset.sty
+(../bigintcalc.sty))
+(../atbegshi-ltx.sty))
+(../hpdftex.def
+(../atveryend-ltx.sty)
+(../rerunfilecheck.sty
+(../uniquecounter.sty
+))) (../graphicx.sty
+(../graphics.sty
+(../trig.sty)
+(../graphics.cfg)
+(../pdftex.def)))
+(../xcolor.sty
+(../color.cfg))
+(../geometry.sty
+(../ifvtex.sty))
+(../manyfoot.sty
+(../nccfoots.sty))
+(../glyphtounicode.tex)
+(../cmap.sty)
+(../fontenc.sty<<t1.cmap>>)
+(../libertine.sty
+(../ifxetex.sty)
+(../textcomp.sty)
+(../fontenc.sty)
+(../fontaxes.sty)
+(../LinLibertine_I.tex))
+(../zi4.sty
+`inconsolata-zi4' v..., ....-..-.. Text macros for Inconsolata (msharpe))
+(../newtxmath.sty
+`newtxmath' v..., ....-..-.. Math macros based originally on txfonts (msharpe)
+(../centernot.sty)
+(../binhex.tex)
+amsthm NOT loaded
+) (../caption.sty
+(../caption3.sty
+(../caption-ams-smf.sto)))
+(../float.sty)
+(../comment.sty
+Excluding comment 'comment') Excluding comment 'CCSXML'
+(../fancyhdr.sty)
+Special comment 'acks'
+(../T1LinuxLibertineT-TLF.f
+d)) (../biblatex.sty
+(../logreq.sty
+(../logreq.def))
+(../blx-dm.def)
+(../blx-compat.def)
+(../biblatex.def)
+(../blx-natbib.def)
+(../numeric.bbx
+(../standard.bbx))
+(../numeric.cbx)
+(../biblatex.cfg)
+(../expl3.sty
+(../l3backend-pdftex.def))
+(../blx-case-expl3.sty
+(../xparse.sty)))
+Excluding comment 'screenonly' Include comment 'printonly'
+Include comment 'anonsuppress'
+No file 3EEB32E5D839D5A03C9283FCF345C8EE.aux.
+(../omlnxlmi.fd)
+(../untxexa.fd)
+(../lmsntxsy.fd)
+(../lmxntxexx.fd)
+(../OT1LinuxLibertineT-TLF.
+fd)<<ot1.cmap>><<oml.cmap>>
+(../umsa.fd)
+(../umsb.fd)
+(../untxmia.fd)
+(../untxsym.fd)
+(../untxsyc.fd)
+(../nameref.sty
+(../gettitlestring.s
+ty)) (../supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (../epstopdf-base.sty
+(../epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(../upquote.sty)
+(../english.lbx)
+No file 3EEB32E5D839D5A03C9283FCF345C8EE.bbl.
+LaTeX Warning: Citation 'knuth1984' on page 1 undefined on input line ....
+LaTeX Warning: Empty bibliography on input line ....
+(../se-pdfdoc.def)
+(../se-utf8.def) [1.1{/us
+r/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(3EEB32E5D839D5A03C9283FCF345C8EE.aux)
+LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Package rerunfilecheck Warning: File `3EEB32E5D839D5A03C9283FCF345C8EE.out' has
+ changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                3EEB32E5D839D5A03C9283FCF345C8EE
+(biblatex)                and rerun LaTeX afterwards.
+ ){/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc
+}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/libertine/LinLibertineT.
+pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/libertine/LinLiberti
+neTB.pfb>
+Output written on 3EEB32E5D839D5A03C9283FCF345C8EE.pdf (1 page, 177517 bytes).
+Transcript written on 3EEB32E5D839D5A03C9283FCF345C8EE.log.
 <EOF>
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
@@ -53,8 +214,8 @@ INFO - Processing section 0
 INFO - Looking for bibtex file 'main.bib' for section 0
 INFO - LaTeX decoding ...
 INFO - Found BibTeX data source 'main.bib'
-INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
 INFO - No sort tailoring available for locale 'en-US'
 INFO - Writing '3EEB32E5D839D5A03C9283FCF345C8EE.bbl' with encoding 'UTF-8'
@@ -70,13 +231,169 @@ iexec: this is the content of iexec.tmp:
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
 iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...
-executed.
-iexec: [(cd _docshots/prerequisites; pdflatex -interaction=batchmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1)...executed.
+iexec: [(cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape 3EEB32E5D839D5A03C9283FCF345C8EE.tex) > iexec.tmp 2>&1]
 iexec: this is the content of iexec.tmp:
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex)
  \write18 enabled.
 entering extended mode
+(3EEB32E5D839D5A03C9283FCF345C8EE.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24>
+(../acmart.cls
+Document Class: acmart ....-..-.. v... Typesetting articles for the Associatio
+n for Computing Machinery
+(../xkeyval.sty
+(../xkeyval.tex
+(../xkvutils.tex
+(../keyval.tex))))
+(../xstring.sty
+(../xstring.tex))
+(../iftex.sty)
+(../amsart.cls
+Document Class: amsart ....-..-.. v....6
+(../amsmath.sty
+For additional information on amsmath, use the `?' option.
+(../amstext.sty
+(../amsgen.sty))
+(../amsbsy.sty)
+(../amsopn.sty))
+(../umsa.fd)
+(../amsfonts.sty))
+(../microtype.sty
+(../etoolbox.sty)
+(../microtype-pdftex.def)
+(../microtype.cfg))
+(../booktabs.sty)
+(../refcount.sty
+(../ltxcmds.sty)
+(../infwarerr.sty))
+(../totpages.sty
+(../everyshi.sty))
+(../environ.sty
+(../trimspaces.sty))
+(../setspace.sty)
+(../textcase.sty)
+(../hyperxmp.sty
+(../kvoptions.sty
+(../kvsetkeys.sty))
+(../pdfescape.sty
+(../pdftexcmds.sty))
+(../stringenc.sty)
+(../intcalc.sty)
+(../ifmtarg.sty)
+(../ifthen.sty)
+(../ifdraft.sty)
+(../ifluatex.sty))
+(../hyperref.sty
+(../kvdefinekeys.sty)
+(../hycolor.sty)
+(../letltxmacro.sty)
+(../auxhook.sty)
+(../pd1enc.def)
+(../etexcmds.sty)
+(../puenc.def)
+(../url.sty)
+(../bitset.sty
+(../bigintcalc.sty))
+(../atbegshi-ltx.sty))
+(../hpdftex.def
+(../atveryend-ltx.sty)
+(../rerunfilecheck.sty
+(../uniquecounter.sty
+))) (../graphicx.sty
+(../graphics.sty
+(../trig.sty)
+(../graphics.cfg)
+(../pdftex.def)))
+(../xcolor.sty
+(../color.cfg))
+(../geometry.sty
+(../ifvtex.sty))
+(../manyfoot.sty
+(../nccfoots.sty))
+(../glyphtounicode.tex)
+(../cmap.sty)
+(../fontenc.sty<<t1.cmap>>)
+(../libertine.sty
+(../ifxetex.sty)
+(../textcomp.sty)
+(../fontenc.sty)
+(../fontaxes.sty)
+(../LinLibertine_I.tex))
+(../zi4.sty
+`inconsolata-zi4' v..., ....-..-.. Text macros for Inconsolata (msharpe))
+(../newtxmath.sty
+`newtxmath' v..., ....-..-.. Math macros based originally on txfonts (msharpe)
+(../centernot.sty)
+(../binhex.tex)
+amsthm NOT loaded
+) (../caption.sty
+(../caption3.sty
+(../caption-ams-smf.sto)))
+(../float.sty)
+(../comment.sty
+Excluding comment 'comment') Excluding comment 'CCSXML'
+(../fancyhdr.sty)
+Special comment 'acks'
+(../T1LinuxLibertineT-TLF.f
+d)) (../biblatex.sty
+(../logreq.sty
+(../logreq.def))
+(../blx-dm.def)
+(../blx-compat.def)
+(../biblatex.def)
+(../blx-natbib.def)
+(../numeric.bbx
+(../standard.bbx))
+(../numeric.cbx)
+(../biblatex.cfg)
+(../expl3.sty
+(../l3backend-pdftex.def))
+(../blx-case-expl3.sty
+(../xparse.sty)))
+Excluding comment 'screenonly' Include comment 'printonly'
+Include comment 'anonsuppress' (3EEB32E5D839D5A03C9283FCF345C8EE.aux)
+(../omlnxlmi.fd)
+(../untxexa.fd)
+(../lmsntxsy.fd)
+(../lmxntxexx.fd)
+(../OT1LinuxLibertineT-TLF.
+fd)<<ot1.cmap>><<oml.cmap>>
+(../umsa.fd)
+(../umsb.fd)
+(../untxmia.fd)
+(../untxsym.fd)
+(../untxsyc.fd)
+(../nameref.sty
+(../gettitlestring.s
+ty)) (3EEB32E5D839D5A03C9283FCF345C8EE.out)
+(3EEB32E5D839D5A03C9283FCF345C8EE.out)
+(../supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (../epstopdf-base.sty
+(../epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(../upquote.sty)
+(../english.lbx)
+(3EEB32E5D839D5A03C9283FCF345C8EE.bbl)
+(../T1LinuxBiolinumT-TLF.fd
+) (../se-pdfdoc.def)
+(../se-utf8.def) [1.1{/us
+r/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(3EEB32E5D839D5A03C9283FCF345C8EE.aux)
+LaTeX Warning: There were undefined references.
+Package biblatex Warning: Please rerun LaTeX.
+ ){/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc
+}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}<
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/libertine/LinLibertin
+eT.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/libertine/LinLibe
+rtineTI.pfb>
+Output written on 3EEB32E5D839D5A03C9283FCF345C8EE.pdf (1 page, 186815 bytes).
+Transcript written on 3EEB32E5D839D5A03C9283FCF345C8EE.log.
 <EOF>
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
 runsystem(rm iexec.tmp)...executed.
