@@ -18,8 +18,9 @@ Here is how you can use \LaTeX:
 
 \begin{docshot}
 \documentclass{article}
+\pagestyle{empty}
 \begin{document}
-Hello, \LaTeX!
+  Hello, \LaTeX!
 \end{document}
 \end{docshot}
 
