@@ -81,9 +81,9 @@
 % This package doesn't work on Windows!
 % Also, you must run \TeX{} processor with |--shell-escape| option.
 % Also, you must have
-% \href{...}{pdflatex},
+% |pdlaftex|,
 % \href{https://www.perl.org}{Perl},
-% \href{...}{Ghostscript},
+% \href{https://www.ghostscript.com}{Ghostscript},
 % and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}
 % installed.
 
@@ -147,6 +147,20 @@
 % This means that
 % \TeX{} processing will stop at the first error. Check your \TeX{} log
 % to understand what went wrong.
+
+% When you render a text instead of a single picture, it's recommended to use
+% \href{https://ctan.org/pkg/geometry}{geometry} package to change the size
+% of the page and then |empty| page style to remove page numbering:
+% \begin{docshot}
+% \documentclass{article}
+% \usepackage[paperwidth=2in]{geometry}
+% \pagestyle{empty}
+% \begin{document}
+% ``There is no sadder thing than
+% a young pessimist, except an old
+% pessimist'' --- \emph{Mark Twain}
+% \end{document}
+% \end{docshot}
 
 % \section{Package Options}
 
@@ -276,6 +290,23 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{small}
+% \DescribeMacro{tiny}
+% You don't have too much freedom in formatting of verbatim texts, but you can make
+% their font a bit smaller using |small| package option. You can also make it very
+% small using |tiny| option:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[small]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \section{Prerequisites}
+
 % \DescribeMacro{\docshotPrerequisite}
 % If you need some files to be present next to the |.tex| snippet while
 % it's rendered by |pdflatex|, you can use |\docshotPrerequisite| with
@@ -367,6 +398,8 @@ Hello, world!
   dtx/.store in=\docshots@dtx,
   tmpdir/.store in=\docshots@tmpdir,
   tmpdir/.default=_docshots,
+  small/.store in=\docshots@small,
+  tiny/.store in=\docshots@tiny,
   runs/.store in=\docshots@runs,
   runs/.default=2,
   pdflatex/.store in=\docshots@pdflatex,
@@ -468,6 +501,12 @@ Hello, world!
   \fvset{frame=leftline,numbers=left,numbersep=3pt,
       framerule=.4pt,rulecolor=\color{gray},
       samepage=true}%
+  \ifdefined\docshots@small%
+    \fvset{fontsize=\small}%
+  \fi%
+  \ifdefined\docshots@tiny%
+    \fvset{fontsize=\scriptsize}%
+  \fi%
 %    \end{macrocode}
 % We render the two column content:
 %    \begin{macrocode}
