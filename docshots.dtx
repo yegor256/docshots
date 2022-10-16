@@ -250,6 +250,18 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{tmpdir}
+% The default location of temp files is |\docshots@tmpdir|. You can change this using |tmpdir| option:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[tmpdir=/tmp/foo]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \StopEventually{}
 
 % \section{Implementation}
@@ -272,6 +284,8 @@ Hello, world!
 \pgfkeys{
   /docshots/.cd,
   dtx/.store in=\docshots@dtx,
+  tmpdir/.store in=\docshots@tmpdir,
+  tmpdir/.default=_docshots,
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
   gs/.store in=\docshots@gs,
@@ -286,7 +300,7 @@ Hello, world!
   left/.default=.3\linewidth,
   right/.store in=\docshots@right,
   right/.default=.55\linewidth,
-  pdflatex,gs,pdfcrop,margin,hspace,left,right
+  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right
 }
 \ProcessPgfOptions{/docshots}
 %    \end{macrocode}
@@ -308,7 +322,7 @@ Hello, world!
 
 % Then, we make a directory where all temporary files will be kept:
 %    \begin{macrocode}
-\iexec[null]{mkdir -p _docshots/\jobname}%
+\iexec[null]{mkdir -p \docshots@tmpdir/\jobname}%
 %    \end{macrocode}
 
 % \begin{macro}{docshot}
@@ -316,39 +330,39 @@ Hello, world!
 %    \begin{macrocode}
 \newenvironment{docshot}
 {\VerbatimEnvironment\begin{VerbatimOut}
-  {_docshots/\jobname/verbatim.tex}}
+  {\docshots@tmpdir/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
   \ifdefined\docshots@dtx%
     \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
-      _docshots/\jobname/verbatim.tex}%
+      \docshots@tmpdir/\jobname/verbatim.tex}%
   \fi%
 %    \end{macrocode}
 % We calculate MD5 hashsum of the file content:
 %    \begin{macrocode}
-  \def\hash{\pdfmdfivesum file {_docshots/\jobname/verbatim.tex}}%
+  \def\hash{\pdfmdfivesum file {\docshots@tmpdir/\jobname/verbatim.tex}}%
 %    \end{macrocode}
 % If the PDF with the required name already exists, we ignore this step.
 % Otherwise, we copy |verbatim.tex| into new file and run |pdflatex|:
 %    \begin{macrocode}
-  \IfFileExists{_docshots/\jobname/\hash.pdf}
+  \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: won't render, the PDF already exists
-      (_docshots/\jobname/\hash.pdf)^^J}}
-    {\iexec[log,quiet]{cp _docshots/\jobname/verbatim.tex
-      _docshots/\jobname/\hash.tex}%
-    \iexec[log,quiet]{cd _docshots/\jobname;
+      (\docshots@tmpdir/\jobname/\hash.pdf)^^J}}
+    {\iexec[log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
+      \docshots@tmpdir/\jobname/\hash.tex}%
+    \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
       \docshots@pdflatex\space -interaction=batchmode
       -shell-escape \hash.tex}}%
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:
 %    \begin{macrocode}
-  \IfFileExists{_docshots/\jobname/\hash.crop.pdf}
+  \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
     {\message{wdocshots: on't pdfcrop, the PDF already exists
-      (_docshots/\jobname/\hash.crop.pdf)^^J}}
+      (\docshots@tmpdir/\jobname/\hash.crop.pdf)^^J}}
     {\iexec[log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
-      _docshots/\jobname/\hash.pdf
-      _docshots/\jobname/\hash.crop.pdf}}%
+      \docshots@tmpdir/\jobname/\hash.pdf
+      \docshots@tmpdir/\jobname/\hash.crop.pdf}}%
 %    \end{macrocode}
 % We configure |fancyvrb|:
 %    \begin{macrocode}
@@ -361,11 +375,11 @@ Hello, world!
   \par%
   \tikz[baseline=(a.north)] \node[draw=gray] (a)
     {\includegraphics[width=\docshots@left]
-      {_docshots/\jobname/\hash.crop.pdf}};%
+      {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
   \hspace{\docshots@hspace}%
   \begin{minipage}[t]{\docshots@right}%
     \vspace{0pt}%
-    \VerbatimInput{_docshots/\jobname/\hash.tex}%
+    \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \vspace{0pt}%
   \end{minipage}%
   \par%
