@@ -438,7 +438,7 @@ Hello, world!
     \foreach \n in {1,...,\docshots@runs}{
       \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
         \docshots@pdflatex\space
-        -interaction=batchmode
+        -interaction=errorstopmode
         -halt-on-error
         -shell-escape
         \hash.tex}
