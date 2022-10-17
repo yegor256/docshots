@@ -3,8 +3,6 @@
 \usepackage{docshots}
 \begin{document}
 
-\START
-
 \begin{docshot}
 \documentclass{article}
 \usepackage{xcolor}
