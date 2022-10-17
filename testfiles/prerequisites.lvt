@@ -3,8 +3,6 @@
 \usepackage[runs=2]{docshots}
 \begin{document}
 
-\START
-
 \docshotPrerequisite{main.bib}
 \docshotAfter{biber --quiet $2}
 \begin{docshot}
