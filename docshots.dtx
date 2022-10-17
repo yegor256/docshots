@@ -520,8 +520,10 @@ Hello, world!
 %    \end{macrocode}
 % We render the two column content:
 %    \begin{macrocode}
+  \begingroup%
   \par%
-  \tikz[baseline=(a.north)] \node[draw=gray] (a)
+  \tikz[baseline=(a.north)]
+    \node (a) [draw=gray]
     {\includegraphics[width=\docshots@left]
       {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
   \hspace{\docshots@hspace}%
@@ -531,6 +533,7 @@ Hello, world!
     \vspace{0pt}%
   \end{minipage}%
   \par%
+  \endgroup%
 }
 %    \end{macrocode}
 % \end{macro}
