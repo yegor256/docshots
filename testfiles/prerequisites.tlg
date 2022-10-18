@@ -30,8 +30,8 @@ This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded forma
  \write18 enabled.
 entering extended mode
 (C967FB271644444EA7B8FB7FACCD8F04.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24>
+LaTeX2e <2022-06-01> patch level 5
+L3 programming layer <2022-07-15>
 (../article.cls
 Document Class: article ....-..-.. v... Standard LaTeX document class
 (../size10.clo))
@@ -64,6 +64,7 @@ No file C967FB271644444EA7B8FB7FACCD8F04.aux.
 (../english.lbx)
 No file C967FB271644444EA7B8FB7FACCD8F04.bbl.
 LaTeX Warning: Citation 'knuth1984' on page 1 undefined on input line ....
+LaTeX Warning: Citation '' on page 1 undefined on input line ....
 LaTeX Warning: Empty bibliography on input line ....
 [1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (C967FB271644444EA7B8FB7FACCD8F04.aux)
@@ -73,7 +74,7 @@ Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                and rerun LaTeX afterwards.
  )</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ><../cmr10.pfb>
-Output written on C967FB271644444EA7B8FB7FACCD8F04.pdf (1 page, 25527 bytes).
+Output written on C967FB271644444EA7B8FB7FACCD8F04.pdf (1 page, 27118 bytes).
 Transcript written on C967FB271644444EA7B8FB7FACCD8F04.log.
 <EOF>
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
@@ -101,8 +102,8 @@ This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded forma
  \write18 enabled.
 entering extended mode
 (C967FB271644444EA7B8FB7FACCD8F04.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24>
+LaTeX2e <2022-06-01> patch level 5
+L3 programming layer <2022-07-15>
 (../article.cls
 Document Class: article ....-..-.. v... Standard LaTeX document class
 (../size10.clo))
@@ -140,7 +141,7 @@ Package biblatex Warning: Please rerun LaTeX.
  )</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ><../cmr10.pfb><
 /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on C967FB271644444EA7B8FB7FACCD8F04.pdf (1 page, 37511 bytes).
+Output written on C967FB271644444EA7B8FB7FACCD8F04.pdf (1 page, 37516 bytes).
 Transcript written on C967FB271644444EA7B8FB7FACCD8F04.log.
 <EOF>
 iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)

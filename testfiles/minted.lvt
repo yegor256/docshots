@@ -1,8 +1,8 @@
 \input{regression-test.tex}
 \documentclass{article}
-\usepackage{minted}
-\setminted[java]{frame=lines,framesep=2mm}
-\usepackage[inputminted=java]{docshots}
+\usepackage[draft=true]{minted}
+\setminted[text]{frame=lines,framesep=2mm}
+\usepackage[inputminted=text]{docshots}
 \begin{document}
 
 \START
