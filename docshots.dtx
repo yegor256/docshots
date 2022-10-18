@@ -306,6 +306,20 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{log}
+% With |log| option you can make us print all possible logs to the main \TeX{} log.
+% By default, we don't do this and you won't see the output of |pdflatex| compilation, for example.
+% Just use it like this:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[log]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \DescribeMacro{inputminted}
 % By default, we render the verbatim text using |\VerbatimInput| command. You
 % can change that and make us use |\inputminted|
@@ -434,6 +448,8 @@ Hello, world!
 \pgfkeys{
   /docshots/.cd,
   dtx/.store in=\docshots@dtx,
+  log/.store in=\docshots@log,
+  log/.default=,
   lstinputlisting/.store in=\docshots@lstinputlisting,
   inputminted/.store in=\docshots@inputminted,
   tmpdir/.store in=\docshots@tmpdir,
@@ -456,24 +472,24 @@ Hello, world!
   left/.default=.3\linewidth,
   right/.store in=\docshots@right,
   right/.default=.55\linewidth,
-  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,runs
+  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,runs,log
 }
 \ProcessPgfOptions{/docshots}
 %    \end{macrocode}
 
 % Then, we print the version of |pdflatex| to \TeX{} log:
 %    \begin{macrocode}
-\iexec[log,quiet]{\docshots@pdflatex\space --version}%
+\iexec[\docshots@log,quiet]{\docshots@pdflatex\space --version}%
 %    \end{macrocode}
 
 % Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to \TeX{} log:
 %    \begin{macrocode}
-\iexec[log,quiet]{\docshots@pdfcrop\space --version}%
+\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space --version}%
 %    \end{macrocode}
 
 % Then, we print the version of |ghostscript| to \TeX{} log:
 %    \begin{macrocode}
-\iexec[log,quiet]{\docshots@gs\space --version}%
+\iexec[\docshots@log,quiet]{\docshots@gs\space --version}%
 %    \end{macrocode}
 
 % Then, we make a directory where all temporary files will be kept:
@@ -507,10 +523,10 @@ Hello, world!
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: won't render, the PDF already exists
       (\docshots@tmpdir/\jobname/\hash.pdf)^^J}}
-    {\iexec[log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
+    {\iexec[\docshots@log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
       \docshots@tmpdir/\jobname/\hash.tex}%
     \foreach \n in {1,...,\docshots@runs}{
-      \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
+      \iexec[\docshots@log,quiet]{cd \docshots@tmpdir/\jobname;
         \docshots@pdflatex\space
         -interaction=errorstopmode
         -halt-on-error
@@ -518,16 +534,16 @@ Hello, world!
         \hash.tex}
       \message{docshots: pdflatex run no.\n^^J}
       \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
-        {\iexec[log,quiet]{chmod a+x
+        {\iexec[\docshots@log,quiet]{chmod a+x
           \docshots@tmpdir/\jobname/after.sh}
-        \iexec[log,quiet]{cd \docshots@tmpdir/\jobname;
+        \iexec[\docshots@log,quiet]{cd \docshots@tmpdir/\jobname;
           ./after.sh \n\space \hash\space \hash.tex}}
         {}}}%
 %    \end{macrocode}
 % Here we delete |after.sh| which may exist here after the last
 % compilation of |pdflatex|:
 %    \begin{macrocode}
-  \iexec[log,quiet]{rm -f \docshots@tmpdir/\jobname/after.sh}
+  \iexec[\docshots@log,quiet]{rm -f \docshots@tmpdir/\jobname/after.sh}
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:
@@ -535,7 +551,7 @@ Hello, world!
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
     {\message{docshots: on't pdfcrop, the PDF already exists
       (\docshots@tmpdir/\jobname/\hash.crop.pdf)^^J}}
-    {\iexec[log,quiet]{\docshots@pdfcrop\space
+    {\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
       \docshots@tmpdir/\jobname/\hash.pdf
       \docshots@tmpdir/\jobname/\hash.crop.pdf}}%
@@ -584,7 +600,7 @@ Hello, world!
 % Then, we define |\docshotPrerequisite| command:
 %    \begin{macrocode}
 \newcommand\docshotPrerequisite[1]{
-  \iexec[log,quiet]{cp #1 \docshots@tmpdir/\jobname}%
+  \iexec[\docshots@log,quiet]{cp #1 \docshots@tmpdir/\jobname}%
   \message{docshots: file #1 copied to
     \docshots@tmpdir/\jobname/#1^^J}%
 }
@@ -595,7 +611,7 @@ Hello, world!
 % Finally, we define |\docshotAfter| command:
 %    \begin{macrocode}
 \newcommand\docshotAfter[1]{
-  \iexec[log,quiet]{/bin/echo -n '\detokenize{#1}'
+  \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
     > \docshots@tmpdir/\jobname/after.sh}%
   \message{docshots: file
     \docshots@tmpdir/\jobname/after.sh created^^J}%
