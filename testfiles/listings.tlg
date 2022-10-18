@@ -14,14 +14,15 @@ This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded forma
  \write18 enabled.
 entering extended mode
 (F63314680C3E56DE0807DB5FB5BD5519.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24>
+LaTeX2e <2022-06-01> patch level 5
+L3 programming layer <2022-07-15>
 (../article.cls
 Document Class: article ....-..-.. v... Standard LaTeX document class
 (../size10.clo))
 (../xcolor.sty
 (../color.cfg)
-(../pdftex.def))
+(../pdftex.def)
+(../mathcolor.ltx))
 (../l3backend-pdftex.def)
 No file F63314680C3E56DE0807DB5FB5BD5519.aux.
 (../supp-pdf.mkii
