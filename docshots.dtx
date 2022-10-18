@@ -566,7 +566,8 @@ Hello, world!
     \ifdefined\docshots@lstinputlisting%
       \lstinputlisting{\docshots@tmpdir/\jobname/\hash.tex}%
     \else\ifdefined\docshots@inputminted%
-      \inputminted{\docshots@inputminted}{\docshots@tmpdir/\jobname/\hash.tex}%
+      \inputminted{\docshots@inputminted}
+        {\docshots@tmpdir/\jobname/\hash.tex}%
     \else%
       \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
