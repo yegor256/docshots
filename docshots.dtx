@@ -306,6 +306,38 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{inputminted}
+% By default, we render the verbatim text using |\VerbatimInput| command. You
+% can change that and make us use |\inputminted|
+% from \href{https://ctan.org/pkg/minted}{minted} package instead, for example:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage{minted}
+\setminted[java]{frame=lines,framesep=2mm}
+\usepackage[inputminted=java]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{lstinputlisting}
+% By default, we render the verbatim text using |\VerbatimInput| command. You
+% can change that and make us use |\lstinputlisting| from
+% \href{https://ctan.org/pkg/listings}{listings} package instead, for example:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage{listings}
+\lstset{basicstyle=\small}
+\usepackage[lstinputlisting]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \section{Prerequisites}
 
 % \DescribeMacro{\docshotPrerequisite}
@@ -402,6 +434,8 @@ Hello, world!
 \pgfkeys{
   /docshots/.cd,
   dtx/.store in=\docshots@dtx,
+  lstinputlisting/.store in=\docshots@lstinputlisting,
+  inputminted/.store in=\docshots@inputminted,
   tmpdir/.store in=\docshots@tmpdir,
   tmpdir/.default=_docshots,
   small/.store in=\docshots@small,
@@ -509,7 +543,7 @@ Hello, world!
 %    \begin{macrocode}
   \fvset{numbers=left,numbersep=3pt}%
   \fvset{frame=leftline,framerule=.4pt,rulecolor=\color{gray}}%
-  \fvset{samepage=true,baselinestretch=1}%
+  \fvset{samepage=true}%
   \fvset{baselinestretch=1}%
   \ifdefined\docshots@small%
     \fvset{fontsize=\small}%
@@ -529,7 +563,13 @@ Hello, world!
   \hspace{\docshots@hspace}%
   \begin{minipage}[t]{\docshots@right}%
     \vspace{0pt}%
-    \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
+    \ifdefined\docshots@lstinputlisting%
+      \lstinputlisting{\docshots@tmpdir/\jobname/\hash.tex}%
+    \else\ifdefined\docshots@inputminted%
+      \inputminted{\docshots@inputminted}{\docshots@tmpdir/\jobname/\hash.tex}%
+    \else%
+      \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
+    \fi\fi%
     \vspace{0pt}%
   \end{minipage}%
   \par%

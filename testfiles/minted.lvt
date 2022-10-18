@@ -1,0 +1,18 @@
+\input{regression-test.tex}
+\documentclass{article}
+\usepackage{minted}
+\setminted[java]{frame=lines,framesep=2mm}
+\usepackage[inputminted=java]{docshots}
+\begin{document}
+
+\START
+
+\begin{docshot}
+\documentclass{article}
+\usepackage{xcolor}
+\begin{document}
+  Hello, {\color{orange}\LaTeX}!
+\end{document}
+\end{docshot}
+
+\END
