@@ -439,7 +439,6 @@ Hello, world!
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
-\usetikzlibrary{shadows.blur}
 %    \end{macrocode}
 
 % Then, we process package options:
@@ -574,7 +573,7 @@ Hello, world!
   \begingroup%
   \par%
   \tikz[baseline=(a.north)]
-    \node (a) [draw=gray]
+    \node (a) [draw=gray,inner sep=0]
     {\includegraphics[width=\docshots@left]
       {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
   \hspace{\docshots@hspace}%
