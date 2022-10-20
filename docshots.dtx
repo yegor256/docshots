@@ -548,7 +548,7 @@ Hello, world!
 % Otherwise, we ask |pdfcrop| to crop the PDF:
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
-    {\message{docshots: on't pdfcrop, the PDF already exists
+    {\message{docshots: won't pdfcrop, the PDF already exists
       (\docshots@tmpdir/\jobname/\hash.crop.pdf)^^J}}
     {\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
