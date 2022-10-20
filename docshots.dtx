@@ -447,7 +447,7 @@ Hello, world!
 \pgfkeys{
   /docshots/.cd,
   dtx/.store in=\docshots@dtx,
-  log/.store in=\docshots@log,
+  log/.code=\def\docshots@log{log},
   log/.default=,
   lstinputlisting/.store in=\docshots@lstinputlisting,
   inputminted/.store in=\docshots@inputminted,
