@@ -1,65 +1,43 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-runsystem((cp main.bib _docshots/prerequisites) > iexec.tmp 2>&1)...executed.
-iexec: [(cp main.bib _docshots/prerequisites) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem((cp main.bib _docshots/prerequisites) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
+runsystem(rm iexec.ret)...executed.
 docshots: file main.bib copied to _docshots/prerequisites/main.bib
-runsystem((/bin/echo -n 'biber --quiet $2' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
-iexec: [(/bin/echo -n 'biber --quiet $2' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem((/bin/echo -n 'biber --quiet $2' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
+runsystem(rm iexec.ret)...executed.
 docshots: file _docshots/prerequisites/after.sh created
-runsystem((cp _docshots/prerequisites/verbatim.tex _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cp _docshots/prerequisites/verbatim.tex _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem((cp _docshots/prerequisites/verbatim.tex _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
+runsystem(rm iexec.ret)...executed.
 docshots: pdflatex run no.1
-runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
-iexec: [(chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; ./after.sh 1 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/prerequisites; ./after.sh 1 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((cd _docshots/prerequisites; ./after.sh 1 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
+runsystem(rm iexec.ret)...executed.
 docshots: pdflatex run no.2
-runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
-iexec: [(chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/prerequisites; ./after.sh 2 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/prerequisites; ./after.sh 2 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((cd _docshots/prerequisites; ./after.sh 2 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1)...executed.
-iexec: [(rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((pdfcrop --margins 5 _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf) > iexec.tmp 2>&1)...executed.
-iexec: [(pdfcrop --margins 5 _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((pdfcrop --margins 5 _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-<_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=28, 355.3275pt x 87.32625pt>
+runsystem(rm iexec.ret)...executed.
+<_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=4, 355.3275pt x 87.32625pt>
 File: _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)
 <use _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf>
 Package pdftex.def Info: _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf  used on input line ....

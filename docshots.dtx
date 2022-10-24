@@ -355,6 +355,7 @@ Hello, world!
 % \section{Prerequisites}
 
 % \DescribeMacro{\docshotPrerequisite}
+% \changes{0.0.3}{2022/10/14}{The command is added to enable copying of supplementary files into docshots snippets processing directory.}
 % If you need some files to be present next to the |.tex| snippet while
 % it's rendered by |pdflatex|, you can use |\docshotPrerequisite| with
 % a single mandatory argument. The argument is the name of a file you need
@@ -429,8 +430,7 @@ Hello, world!
 % \StopEventually{}
 
 % \section{Implementation}
-
-% \changes{v0.0.1}{2022/10/09}{Initial version}
+% \changes{0.0.1}{2022/10/09}{Initial version}
 
 % First, we include a few packages:
 %    \begin{macrocode}
@@ -442,13 +442,15 @@ Hello, world!
 %    \end{macrocode}
 
 % Then, we process package options:
+% \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text either via listings or minted packages.}
+% \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
+\def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
   dtx/.store in=\docshots@dtx,
   log/.code=\def\docshots@log{log},
-  log/.default=,
   lstinputlisting/.store in=\docshots@lstinputlisting,
   inputminted/.store in=\docshots@inputminted,
   tmpdir/.store in=\docshots@tmpdir,
@@ -471,7 +473,7 @@ Hello, world!
   left/.default=.3\linewidth,
   right/.store in=\docshots@right,
   right/.default=.55\linewidth,
-  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,runs,log
+  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,runs
 }
 \ProcessPgfOptions{/docshots}
 %    \end{macrocode}

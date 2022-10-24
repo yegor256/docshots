@@ -3,6 +3,7 @@ build/
 _minted-*/
 _docshots/
 docshots.ds.*
+iexec.ret
 docshots.tex
 *.docshots
 *.diff

@@ -1,27 +1,19 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-runsystem((cp _docshots/minted/verbatim.tex _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cp _docshots/minted/verbatim.tex _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem((cp _docshots/minted/verbatim.tex _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((cd _docshots/minted; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1)...executed.
-iexec: [(cd _docshots/minted; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((cd _docshots/minted; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
+runsystem(rm iexec.ret)...executed.
 docshots: pdflatex run no.1
-runsystem((rm -f _docshots/minted/after.sh) > iexec.tmp 2>&1)...executed.
-iexec: [(rm -f _docshots/minted/after.sh) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem((rm -f _docshots/minted/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-runsystem((pdfcrop --margins 5 _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.pdf _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf) > iexec.tmp 2>&1)...executed.
-iexec: [(pdfcrop --margins 5 _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.pdf _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf) > iexec.tmp 2>&1]
-iexec: Due to 'quiet' option we didn't read the content of 'iexec.tmp' (1386 bytes)
+runsystem(rm iexec.ret)...executed.
+runsystem((pdfcrop --margins 5 _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.pdf _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
-iexec: The file 'iexec.tmp' was deleted
-<_docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf, id=28, 169.63374pt x 588.1975pt>
+runsystem(rm iexec.ret)...executed.
+<_docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf, id=4, 169.63374pt x 588.1975pt>
 File: _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf Graphic file (type pdf)
 <use _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf>
 Package pdftex.def Info: _docshots/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf  used on input line ....
