@@ -128,9 +128,13 @@
 % \begin{docshot}
 % \documentclass{article}
 % \usepackage{tikz}
+% \usetikzlibrary{backgrounds}
 % \pagestyle{empty}
 % \begin{document}
-% \begin{tikzpicture}
+% \begin{tikzpicture}[
+%   show background rectangle,
+%   background rectangle/.style=
+%     {draw=none,fill=gray!20}]
 % \node [circle,draw] (v0) {$v_0$};
 % \node [circle,draw=orange,thick,
 %   below right of=v0] (v1) {$v_1$};
