@@ -533,7 +533,6 @@ Hello, world!
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,
         stdout=\docshots@tmpdir/\jobname/\hash.stdout,
-        stderr=\docshots@tmpdir/\jobname/\hash.stderr,
         exit=\jobname.ret,quiet,
         trace]{cd \docshots@tmpdir/\jobname\space &&
         \docshots@pdflatex\space
