@@ -526,19 +526,21 @@ Hello, world!
 % Otherwise, we copy |verbatim.tex| into new file and run |pdflatex|:
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
-    {\message{docshots: Won't render, the PDF already exists
-      (\docshots@tmpdir/\jobname/\hash.pdf)^^J}}
+    {\message{docshots: Won't render,
+      the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
     {\iexec[\docshots@log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
       \docshots@tmpdir/\jobname/\hash.tex}%
-    \foreach \n in {1,...,\docshots@runs}{
+    \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,stdout=\jobname.out,stderr=\jobname.err,
         exit=\jobname.exit,quiet]{cd \docshots@tmpdir/\jobname;
         \docshots@pdflatex\space
         -interaction=errorstopmode
         -halt-on-error
         -shell-escape
-        \hash.tex}
-      \message{docshots: pdflatex run no.\n^^J}
+        \hash.tex}%
+      \ifnum\n=1\else%
+        \message{docshots: pdflatex run no.\n^^J}%
+      \fi%
       \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
         {\iexec[\docshots@log,quiet]{chmod a+x
           \docshots@tmpdir/\jobname/after.sh}
@@ -555,8 +557,9 @@ Hello, world!
 % Otherwise, we ask |pdfcrop| to crop the PDF:
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
-    {\message{docshots: Won't pdfcrop, the PDF already exists
-      (\docshots@tmpdir/\jobname/\hash.crop.pdf)^^J}}
+    {\message{docshots: Won't pdfcrop,
+      the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
+      already exists^^J}}
     {\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
       \docshots@tmpdir/\jobname/\hash.pdf
@@ -575,7 +578,7 @@ Hello, world!
     \fvset{fontsize=\scriptsize}%
   \fi%
 %    \end{macrocode}
-% We render the two column content:
+% Finally, we render the two-column content:
 %    \begin{macrocode}
   \begingroup%
   \par%
@@ -607,8 +610,8 @@ Hello, world!
 %    \begin{macrocode}
 \newcommand\docshotPrerequisite[1]{
   \iexec[\docshots@log,quiet]{cp #1 \docshots@tmpdir/\jobname}%
-  \message{docshots: File #1 copied to
-    \docshots@tmpdir/\jobname/#1^^J}%
+  \message{docshots: File '#1' copied to
+    '\docshots@tmpdir/\jobname/#1'^^J}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -620,7 +623,7 @@ Hello, world!
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
     > \docshots@tmpdir/\jobname/after.sh}%
   \message{docshots: File
-    \docshots@tmpdir/\jobname/after.sh created^^J}%
+    '\docshots@tmpdir/\jobname/after.sh' created^^J}%
 }
 %    \end{macrocode}
 % \end{macro}
