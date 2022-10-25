@@ -532,7 +532,7 @@ Hello, world!
       \docshots@tmpdir/\jobname/\hash.tex}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,stdout=\jobname.stdout,stderr=\jobname.stderr,
-        exit=\jobname.ret,quiet,trace]{cd \docshots@tmpdir/\jobname;
+        exit=\jobname.ret,quiet,trace]{cd \docshots@tmpdir/\jobname\space &&
         \docshots@pdflatex\space
         -interaction=errorstopmode
         -halt-on-error
@@ -544,7 +544,7 @@ Hello, world!
       \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
         {\iexec[\docshots@log,quiet]{chmod a+x
           \docshots@tmpdir/\jobname/after.sh}
-        \iexec[\docshots@log,quiet]{cd \docshots@tmpdir/\jobname;
+        \iexec[\docshots@log,quiet]{cd \docshots@tmpdir/\jobname\space &&
           ./after.sh \n\space \hash\space \hash.tex}}
         {}}}%
 %    \end{macrocode}

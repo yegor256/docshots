@@ -3,7 +3,7 @@ Don't change this file in any respect.
 runsystem((cp _docshots/listings/verbatim.tex _docshots/listings/F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/listings; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > listings.stdout 2>listings.stderr; /bin/echo -n $?% >listings.ret)...executed.
+runsystem((cd _docshots/listings && pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > listings.stdout 2>listings.stderr; /bin/echo -n $?% >listings.ret)...executed.
 runsystem((rm -f _docshots/listings/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
