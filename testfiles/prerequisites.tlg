@@ -11,18 +11,18 @@ docshots: File '_docshots/prerequisites/after.sh' created
 runsystem((cp _docshots/prerequisites/verbatim.tex _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > prerequisites.stdout 2>prerequisites.stderr; /bin/echo -n $?% >prerequisites.exit)...executed.
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > prerequisites.stdout 2>prerequisites.stderr; /bin/echo -n $?% >prerequisites.ret)...executed.
 runsystem(rm prerequisites.stdout)...executed.
-runsystem(rm prerequisites.exit)...executed.
+runsystem(rm prerequisites.ret)...executed.
 runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 runsystem((cd _docshots/prerequisites; ./after.sh 1 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > prerequisites.stdout 2>prerequisites.stderr; /bin/echo -n $?% >prerequisites.exit)...executed.
+runsystem((cd _docshots/prerequisites; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > prerequisites.stdout 2>prerequisites.stderr; /bin/echo -n $?% >prerequisites.ret)...executed.
 runsystem(rm prerequisites.stdout)...executed.
-runsystem(rm prerequisites.exit)...executed.
+runsystem(rm prerequisites.ret)...executed.
 docshots: pdflatex run no.2
 runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
