@@ -271,7 +271,7 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{tmpdir}
-% The default location of temp files is |\docshots@tmpdir|. You can change this using |tmpdir| option:
+% The default location of temp files is |_docshots|. You can change this using |tmpdir| option:
 %\iffalse
 %<*verb>
 %\fi
@@ -526,12 +526,13 @@ Hello, world!
 % Otherwise, we copy |verbatim.tex| into new file and run |pdflatex|:
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
-    {\message{docshots: won't render, the PDF already exists
+    {\message{docshots: Won't render, the PDF already exists
       (\docshots@tmpdir/\jobname/\hash.pdf)^^J}}
     {\iexec[\docshots@log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
       \docshots@tmpdir/\jobname/\hash.tex}%
     \foreach \n in {1,...,\docshots@runs}{
-      \iexec[\docshots@log,quiet]{cd \docshots@tmpdir/\jobname;
+      \iexec[\docshots@log,stdout=\jobname.out,stderr=\jobname.err,
+        exit=\jobname.exit,quiet]{cd \docshots@tmpdir/\jobname;
         \docshots@pdflatex\space
         -interaction=errorstopmode
         -halt-on-error
@@ -554,7 +555,7 @@ Hello, world!
 % Otherwise, we ask |pdfcrop| to crop the PDF:
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
-    {\message{docshots: won't pdfcrop, the PDF already exists
+    {\message{docshots: Won't pdfcrop, the PDF already exists
       (\docshots@tmpdir/\jobname/\hash.crop.pdf)^^J}}
     {\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space
       --margins \docshots@margin\space
@@ -606,7 +607,7 @@ Hello, world!
 %    \begin{macrocode}
 \newcommand\docshotPrerequisite[1]{
   \iexec[\docshots@log,quiet]{cp #1 \docshots@tmpdir/\jobname}%
-  \message{docshots: file #1 copied to
+  \message{docshots: File #1 copied to
     \docshots@tmpdir/\jobname/#1^^J}%
 }
 %    \end{macrocode}
@@ -618,7 +619,7 @@ Hello, world!
 \newcommand\docshotAfter[1]{
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
     > \docshots@tmpdir/\jobname/after.sh}%
-  \message{docshots: file
+  \message{docshots: File
     \docshots@tmpdir/\jobname/after.sh created^^J}%
 }
 %    \end{macrocode}

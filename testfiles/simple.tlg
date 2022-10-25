@@ -3,9 +3,9 @@ Don't change this file in any respect.
 runsystem((cp _docshots/simple/verbatim.tex _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/simple; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
-runsystem(rm iexec.tmp)...executed.
-runsystem(rm iexec.ret)...executed.
+runsystem((cd _docshots/simple; pdflatex -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > simple.out 2>simple.err; /bin/echo -n $?% >simple.exit)...executed.
+runsystem(rm simple.out)...executed.
+runsystem(rm simple.exit)...executed.
 docshots: pdflatex run no.1
 runsystem((rm -f _docshots/simple/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
