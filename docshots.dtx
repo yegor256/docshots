@@ -531,8 +531,11 @@ Hello, world!
     {\iexec[\docshots@log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
       \docshots@tmpdir/\jobname/\hash.tex}%
     \foreach \n in {1,...,\docshots@runs}{%
-      \iexec[\docshots@log,stdout=\jobname.stdout,stderr=\jobname.stderr,
-        exit=\jobname.ret,quiet,trace]{cd \docshots@tmpdir/\jobname\space &&
+      \iexec[\docshots@log,
+        stdout=\docshots@tmpdir/\jobname/\hash.stdout,
+        stderr=\docshots@tmpdir/\jobname/\hash.stderr,
+        exit=\jobname.ret,quiet,
+        trace]{cd \docshots@tmpdir/\jobname\space &&
         \docshots@pdflatex\space
         -interaction=errorstopmode
         -halt-on-error
