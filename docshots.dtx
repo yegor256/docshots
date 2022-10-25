@@ -532,7 +532,7 @@ Hello, world!
       \docshots@tmpdir/\jobname/\hash.tex}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,stdout=\jobname.stdout,stderr=\jobname.stderr,
-        exit=\jobname.ret,quiet]{cd \docshots@tmpdir/\jobname;
+        exit=\jobname.ret,quiet,trace]{cd \docshots@tmpdir/\jobname;
         \docshots@pdflatex\space
         -interaction=errorstopmode
         -halt-on-error
