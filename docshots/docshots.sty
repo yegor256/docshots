@@ -96,13 +96,13 @@
 }
 \ProcessPgfOptions{/docshots}
 
-\iexec[\docshots@log,quiet]{\docshots@pdflatex\space --version}%
+\iexec[\docshots@log,quiet]{"\docshots@pdflatex" --version}%
 
-\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space --version}%
+\iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
 
-\iexec[\docshots@log,quiet]{\docshots@gs\space --version}%
+\iexec[\docshots@log,quiet]{"\docshots@gs" --version}%
 
-\iexec[null]{mkdir -p \docshots@tmpdir/\jobname}%
+\iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
 
 \newenvironment{docshot}
 {\VerbatimEnvironment\begin{VerbatimOut}
