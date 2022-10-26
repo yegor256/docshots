@@ -149,7 +149,7 @@
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
     {\iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
-      --margins \docshots@margin\space
+      --margins 0
       "\docshots@tmpdir/\jobname/\hash.pdf"
       "\docshots@tmpdir/\jobname/\hash.crop.pdf"}}%
   \fvset{numbers=left,numbersep=3pt}%
@@ -165,7 +165,8 @@
   \begingroup%
   \par%
   \tikz[baseline=(a.north)]
-    \node (a) [draw=gray,inner sep=0,line width=.2pt]
+    \node (a) [draw=gray,inner sep=\docshots@margin,
+      line width=.2pt]
     {\includegraphics[width=\docshots@left]
       {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
   \hspace{\docshots@hspace}%
