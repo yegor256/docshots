@@ -226,6 +226,18 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{nocrop}
+% You may disable cropping with the help of |nocrop| option:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[nocrop]{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \DescribeMacro{hspace}
 % The horizontal distance between the image and its verbatim \TeX{} source
 % may be configured via |hspace| package option:
@@ -444,6 +456,7 @@ Hello, world!
 % Then, we process package options:
 % \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text either via listings or minted packages.}
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
+% \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
 \RequirePackage{ifluatex}
@@ -453,6 +466,7 @@ Hello, world!
   /docshots/.cd,
   dtx/.store in=\docshots@dtx,
   log/.code=\def\docshots@log{log},
+  nocrop/.code=\def\docshots@nocrop{},
   lstinputlisting/.store in=\docshots@lstinputlisting,
   inputminted/.store in=\docshots@inputminted,
   tmpdir/.store in=\docshots@tmpdir,
@@ -487,7 +501,9 @@ Hello, world!
 
 % Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to \TeX{} log:
 %    \begin{macrocode}
-\iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
+\ifdefined\docshots@nocrop\else%
+  \iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
+\fi%
 %    \end{macrocode}
 
 % Then, we print the version of |ghostscript| to \TeX{} log:
@@ -532,7 +548,6 @@ Hello, world!
 % Otherwise, we copy |verbatim.tex| into new file and run |pdflatex|:
 % \changes{0.1.0}{2022/10/26}{The output is saved to a hash-named file, for better uniqueness of temporary files.}
 %    \begin{macrocode}
-  {\message{hash is \hash^^J}}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
@@ -570,10 +585,16 @@ Hello, world!
     {\message{docshots: Won't pdfcrop,
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
-    {\iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
-      --margins 0
-      "\docshots@tmpdir/\jobname/\hash.pdf"
-      "\docshots@tmpdir/\jobname/\hash.crop.pdf"}}%
+    {\ifdefined\docshots@nocrop
+      \iexec[\docshots@log,quiet]{cp
+        "\docshots@tmpdir/\jobname/\hash.pdf"
+        "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
+      \else%
+      \iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
+        --margins 0
+        "\docshots@tmpdir/\jobname/\hash.pdf"
+        "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
+      \fi}%
 %    \end{macrocode}
 % We configure |fancyvrb|:
 %    \begin{macrocode}
