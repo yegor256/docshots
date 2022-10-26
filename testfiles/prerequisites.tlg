@@ -1,35 +1,35 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-runsystem((cp main.bib _docshots/prerequisites) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((cp main.bib "_docshots/prerequisites") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 docshots: File 'main.bib' copied to '_docshots/prerequisites/main.bib'
-runsystem((/bin/echo -n 'biber --quiet $2' > _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((/bin/echo -n 'biber --quiet $2' > "_docshots/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 docshots: File '_docshots/prerequisites/after.sh' created
-runsystem((cp _docshots/prerequisites/verbatim.tex _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((cp "_docshots/prerequisites/verbatim.tex" "_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/prerequisites && pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >prerequisites.ret)...executed.
-runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((cd "_docshots/prerequisites" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...executed.
+runsystem((chmod a+x "_docshots/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/prerequisites && ./after.sh 1 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((cd "_docshots/prerequisites" && ./after.sh 1 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/prerequisites && pdflatex -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >prerequisites.ret)...executed.
+runsystem((cd "_docshots/prerequisites" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...executed.
 docshots: pdflatex run no.2
-runsystem((chmod a+x _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((chmod a+x "_docshots/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((cd _docshots/prerequisites && ./after.sh 2 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((cd "_docshots/prerequisites" && ./after.sh 2 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((rm -f _docshots/prerequisites/after.sh) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((rm -f "_docshots/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem((pdfcrop --margins 5 _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf _docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(("pdfcrop" --margins 5 "_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf" "_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 <_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=4, 355.3275pt x 87.32625pt>

@@ -529,14 +529,14 @@ Hello, world!
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
-    {\iexec[\docshots@log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
-      \docshots@tmpdir/\jobname/\hash.tex}%
+    {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/verbatim.tex"
+      "\docshots@tmpdir/\jobname/\hash.tex"}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,
         stdout=\docshots@tmpdir/\jobname/\hash.stdout,
-        exit=\jobname.ret,quiet,
-        trace]{cd \docshots@tmpdir/\jobname\space &&
-        \docshots@pdflatex\space
+        exit=\docshots@tmpdir/\jobname/\hash.ret,
+        quiet,trace]{cd "\docshots@tmpdir/\jobname" &&
+        "\docshots@pdflatex"
         -interaction=errorstopmode
         -halt-on-error
         -shell-escape
@@ -546,15 +546,15 @@ Hello, world!
       \fi%
       \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
         {\iexec[\docshots@log,quiet]{chmod a+x
-          \docshots@tmpdir/\jobname/after.sh}
-        \iexec[\docshots@log,quiet]{cd \docshots@tmpdir/\jobname\space &&
+          "\docshots@tmpdir/\jobname/after.sh"}
+        \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir/\jobname" &&
           ./after.sh \n\space \hash\space \hash.tex}}
         {}}}%
 %    \end{macrocode}
 % Here we delete |after.sh| which may exist here after the last
 % compilation of |pdflatex|:
 %    \begin{macrocode}
-  \iexec[\docshots@log,quiet]{rm -f \docshots@tmpdir/\jobname/after.sh}
+  \iexec[\docshots@log,quiet]{rm -f "\docshots@tmpdir/\jobname/after.sh"}
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:
@@ -563,10 +563,10 @@ Hello, world!
     {\message{docshots: Won't pdfcrop,
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
-    {\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space
+    {\iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
       --margins \docshots@margin\space
-      \docshots@tmpdir/\jobname/\hash.pdf
-      \docshots@tmpdir/\jobname/\hash.crop.pdf}}%
+      "\docshots@tmpdir/\jobname/\hash.pdf"
+      "\docshots@tmpdir/\jobname/\hash.crop.pdf"}}%
 %    \end{macrocode}
 % We configure |fancyvrb|:
 %    \begin{macrocode}
@@ -612,7 +612,7 @@ Hello, world!
 % Then, we define |\docshotPrerequisite| command:
 %    \begin{macrocode}
 \newcommand\docshotPrerequisite[1]{
-  \iexec[\docshots@log,quiet]{cp #1 \docshots@tmpdir/\jobname}%
+  \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
 }
@@ -624,7 +624,7 @@ Hello, world!
 %    \begin{macrocode}
 \newcommand\docshotAfter[1]{
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
-    > \docshots@tmpdir/\jobname/after.sh}%
+    > "\docshots@tmpdir/\jobname/after.sh"}%
   \message{docshots: File
     '\docshots@tmpdir/\jobname/after.sh' created^^J}%
 }
