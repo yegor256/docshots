@@ -582,7 +582,7 @@ Hello, world!
 % We configure |fancyvrb|:
 %    \begin{macrocode}
   \fvset{numbers=left,numbersep=3pt}%
-  \fvset{frame=leftline,framerule=.4pt,rulecolor=\color{gray}}%
+  \fvset{frame=leftline,framerule=.2pt,rulecolor=\color{gray}}%
   \fvset{samepage=true}%
   \fvset{baselinestretch=1}%
   \ifdefined\docshots@small%
@@ -597,7 +597,7 @@ Hello, world!
   \begingroup%
   \par%
   \tikz[baseline=(a.north)]
-    \node (a) [draw=gray,inner sep=0]
+    \node (a) [draw=gray,inner sep=0,line width=.2pt]
     {\includegraphics[width=\docshots@left]
       {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
   \hspace{\docshots@hspace}%
