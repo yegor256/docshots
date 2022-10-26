@@ -28,7 +28,7 @@ For more informaiton, read \TeX{} Book by Donald Knuth.
 \end{document}
 ```
 
-Otherwise, you can download [`docshots.sty`](https://raw.githubusercontent.com/objectionary/eolang.sty/gh-pages/docshots/docshots.sty) and add to your project.
+Otherwise, you can download [`docshots.sty`](https://raw.githubusercontent.com/yegor256/docshots/gh-pages/docshots/docshots.sty) and add to your project.
 
 If you want to contribute yourself, make a fork, then create a branch, 
 then run `l3build ctan` in the root directory.
