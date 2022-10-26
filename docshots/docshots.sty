@@ -117,14 +117,14 @@
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
-    {\iexec[\docshots@log,quiet]{cp \docshots@tmpdir/\jobname/verbatim.tex
-      \docshots@tmpdir/\jobname/\hash.tex}%
+    {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/verbatim.tex"
+      "\docshots@tmpdir/\jobname/\hash.tex"}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,
         stdout=\docshots@tmpdir/\jobname/\hash.stdout,
-        exit=\jobname.ret,quiet,
-        trace]{cd \docshots@tmpdir/\jobname\space &&
-        \docshots@pdflatex\space
+        exit=\docshots@tmpdir/\jobname/\hash.ret,
+        quiet,trace]{cd "\docshots@tmpdir/\jobname" &&
+        "\docshots@pdflatex"
         -interaction=errorstopmode
         -halt-on-error
         -shell-escape
@@ -134,19 +134,19 @@
       \fi%
       \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
         {\iexec[\docshots@log,quiet]{chmod a+x
-          \docshots@tmpdir/\jobname/after.sh}
-        \iexec[\docshots@log,quiet]{cd \docshots@tmpdir/\jobname\space &&
+          "\docshots@tmpdir/\jobname/after.sh"}
+        \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir/\jobname" &&
           ./after.sh \n\space \hash\space \hash.tex}}
         {}}}%
-  \iexec[\docshots@log,quiet]{rm -f \docshots@tmpdir/\jobname/after.sh}
+  \iexec[\docshots@log,quiet]{rm -f "\docshots@tmpdir/\jobname/after.sh"}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
     {\message{docshots: Won't pdfcrop,
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
-    {\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space
+    {\iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
       --margins \docshots@margin\space
-      \docshots@tmpdir/\jobname/\hash.pdf
-      \docshots@tmpdir/\jobname/\hash.crop.pdf}}%
+      "\docshots@tmpdir/\jobname/\hash.pdf"
+      "\docshots@tmpdir/\jobname/\hash.crop.pdf"}}%
   \fvset{numbers=left,numbersep=3pt}%
   \fvset{frame=leftline,framerule=.4pt,rulecolor=\color{gray}}%
   \fvset{samepage=true}%
@@ -181,14 +181,14 @@
 }
 
 \newcommand\docshotPrerequisite[1]{
-  \iexec[\docshots@log,quiet]{cp #1 \docshots@tmpdir/\jobname}%
+  \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
 }
 
 \newcommand\docshotAfter[1]{
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
-    > \docshots@tmpdir/\jobname/after.sh}%
+    > "\docshots@tmpdir/\jobname/after.sh"}%
   \message{docshots: File
     '\docshots@tmpdir/\jobname/after.sh' created^^J}%
 }
