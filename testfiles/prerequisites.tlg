@@ -8,6 +8,7 @@ runsystem((/bin/echo -n 'biber --quiet $2' > "_docshots/prerequisites/after.sh")
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 docshots: File '_docshots/prerequisites/after.sh' created
+hash is C967FB271644444EA7B8FB7FACCD8F04
 runsystem((cp "_docshots/prerequisites/verbatim.tex" "_docshots/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.

@@ -5,3 +5,6 @@ hard pgf
 hard pgfopts
 hard listings
 hard minted
+hard pdftexcmds
+hard ifluatex
+hard ifxetex

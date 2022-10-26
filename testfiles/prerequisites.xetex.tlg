@@ -1,0 +1,37 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+runsystem((cp main.bib "_docshots-xe/prerequisites") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: File 'main.bib' copied to '_docshots-xe/prerequisites/main.bib'
+runsystem((/bin/echo -n 'biber --quiet $2' > "_docshots-xe/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: File '_docshots-xe/prerequisites/after.sh' created
+hash is C967FB271644444EA7B8FB7FACCD8F04
+runsystem((cp "_docshots-xe/prerequisites/verbatim.tex" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+runsystem((cd "_docshots-xe/prerequisites" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...executed.
+runsystem((chmod a+x "_docshots-xe/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+runsystem((cd "_docshots-xe/prerequisites" && ./after.sh 1 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+runsystem((cd "_docshots-xe/prerequisites" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...executed.
+docshots: pdflatex run no.2
+runsystem((chmod a+x "_docshots-xe/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+runsystem((cd "_docshots-xe/prerequisites" && ./after.sh 2 C967FB271644444EA7B8FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+runsystem((rm -f "_docshots-xe/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+runsystem(("pdfcrop" --margins 5 "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+File: _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)
+<use _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf>

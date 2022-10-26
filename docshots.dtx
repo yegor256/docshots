@@ -450,6 +450,8 @@ Hello, world!
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
+\RequirePackage{ifluatex}
+\RequirePackage{ifxetex}
 \def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
@@ -458,7 +460,7 @@ Hello, world!
   lstinputlisting/.store in=\docshots@lstinputlisting,
   inputminted/.store in=\docshots@inputminted,
   tmpdir/.store in=\docshots@tmpdir,
-  tmpdir/.default=_docshots,
+  tmpdir/.default=_docshots\ifxetex-xe\else\ifluatex-lua\fi\fi,
   small/.store in=\docshots@small,
   tiny/.store in=\docshots@tiny,
   runs/.store in=\docshots@runs,
@@ -502,10 +504,19 @@ Hello, world!
 \iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
 %    \end{macrocode}
 
+% \begin{macro}{\docshots@mdfive}
+% \changes{0.1.1}{2022/10/26}{New supplementary command added to calculate MD5 sum of a file.}
+% Then, we define a command for MD5 hash calculating of a file:
+%    \begin{macrocode}
+\RequirePackage{pdftexcmds}
+\makeatletter\newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}\makeatother
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{docshot}
 % Then, we define |docshot| environment:
 %    \begin{macrocode}
-\newenvironment{docshot}
+\makeatletter\newenvironment{docshot}
 {\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
@@ -519,13 +530,13 @@ Hello, world!
 %    \end{macrocode}
 % We calculate MD5 hashsum of the file content:
 %    \begin{macrocode}
-  \def\hash{\pdfmdfivesum file
-    {\docshots@tmpdir/\jobname/verbatim.tex}}%
+  \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/verbatim.tex}}%
 %    \end{macrocode}
 % If the PDF with the required name already exists, we ignore this step.
 % Otherwise, we copy |verbatim.tex| into new file and run |pdflatex|:
 % \changes{0.1.0}{2022/10/26}{The output is saved to a hash-named file, for better uniqueness of temporary files.}
 %    \begin{macrocode}
+  {\message{hash is \hash^^J}}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
@@ -604,30 +615,30 @@ Hello, world!
   \end{minipage}%
   \par%
   \endgroup%
-}
+}\makeatother
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\docshotPrerequisite}
 % Then, we define |\docshotPrerequisite| command:
 %    \begin{macrocode}
-\newcommand\docshotPrerequisite[1]{
+\makeatletter\newcommand\docshotPrerequisite[1]{
   \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
-}
+}\makeatother
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\docshotAfter}
 % Finally, we define |\docshotAfter| command:
 %    \begin{macrocode}
-\newcommand\docshotAfter[1]{
+\makeatletter\newcommand\docshotAfter[1]{
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
     > "\docshots@tmpdir/\jobname/after.sh"}%
   \message{docshots: File
     '\docshots@tmpdir/\jobname/after.sh' created^^J}%
-}
+}\makeatother
 %    \end{macrocode}
 % \end{macro}
 
