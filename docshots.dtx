@@ -151,17 +151,18 @@
 
 % When you render a text instead of a single picture, it's recommended to use
 % \href{https://ctan.org/pkg/geometry}{geometry} package to change the size
-% of the page and then |empty| page style to remove page numbering:
+% of the page:
 % \begin{docshot}
 % \documentclass{article}
-% \usepackage[paperwidth=2in]{geometry}
-% \pagestyle{empty}
+% \usepackage[paperwidth=2in,
+%   paperheight=2.2in]{geometry}
 % \begin{document}
 % ``There is no sadder thing than
 % a young pessimist, except an old
 % pessimist'' --- \emph{Mark Twain}
 % \end{document}
 % \end{docshot}
+% You can also use |\pagestyle{empty}| as was done in previous docshots.
 
 % \section{Package Options}
 
