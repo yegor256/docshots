@@ -524,6 +524,7 @@ Hello, world!
 %    \end{macrocode}
 % If the PDF with the required name already exists, we ignore this step.
 % Otherwise, we copy |verbatim.tex| into new file and run |pdflatex|:
+% \changes{0.1.0}{2022/10/26}{The output is saved to a hash-named file, for better uniqueness of temporary files.}
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
