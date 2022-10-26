@@ -49,13 +49,13 @@ runsystem((rm -f "_docshots-lua/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/
 echo -n $?% >iexec.ret)...executed
 runsystem(rm iexec.tmp)...executed
 runsystem(rm iexec.ret)...executed
-runsystem(("pdfcrop" --margins 5 "_docshots-lua/prerequisites/C967FB271644444EA7
+runsystem(("pdfcrop" --margins 0 "_docshots-lua/prerequisites/C967FB271644444EA7
 B8FB7FACCD8F04.pdf" "_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F0
 4.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed
 runsystem(rm iexec.tmp)...executed
 runsystem(rm iexec.ret)...executed
-<_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=4, 355.3275pt x 87.32625pt>
+<_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=4, 345.29pt x 77.28876pt>
 File: _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)
 <use _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf>
 Package luatex.def Info: _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf  used on input line ....
-(luatex.def)             Requested size: 103.50105pt x 25.43588pt.
+(luatex.def)             Requested size: 103.50105pt x 23.16675pt.

@@ -30,7 +30,7 @@ runsystem(rm iexec.ret)...executed.
 runsystem((rm -f "_docshots-xe/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem(("pdfcrop" --margins 5 "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(("pdfcrop" --margins 0 "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 File: _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)

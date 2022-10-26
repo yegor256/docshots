@@ -9,7 +9,7 @@ runsystem((cd "_docshots-xe/minted" && "pdflatex" -interaction=errorstopmode -ha
 runsystem((rm -f "_docshots-xe/minted/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-runsystem(("pdfcrop" --margins 5 "_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.pdf" "_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(("pdfcrop" --margins 0 "_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.pdf" "_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 File: _docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf Graphic file (type pdf)

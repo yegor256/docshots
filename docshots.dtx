@@ -128,13 +128,9 @@
 % \begin{docshot}
 % \documentclass{article}
 % \usepackage{tikz}
-% \usetikzlibrary{backgrounds}
 % \pagestyle{empty}
 % \begin{document}
-% \begin{tikzpicture}[
-%   show background rectangle,
-%   background rectangle/.style=
-%     {draw=none,fill=gray!20}]
+% \begin{tikzpicture}
 % \node [circle,draw] (v0) {$v_0$};
 % \node [circle,draw=orange,thick,
 %   below right of=v0] (v1) {$v_1$};
@@ -575,7 +571,7 @@ Hello, world!
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
     {\iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
-      --margins \docshots@margin\space
+      --margins 0
       "\docshots@tmpdir/\jobname/\hash.pdf"
       "\docshots@tmpdir/\jobname/\hash.crop.pdf"}}%
 %    \end{macrocode}
@@ -597,7 +593,8 @@ Hello, world!
   \begingroup%
   \par%
   \tikz[baseline=(a.north)]
-    \node (a) [draw=gray,inner sep=0,line width=.2pt]
+    \node (a) [draw=gray,inner sep=\docshots@margin,
+      line width=.2pt]
     {\includegraphics[width=\docshots@left]
       {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
   \hspace{\docshots@hspace}%
