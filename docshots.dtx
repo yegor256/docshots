@@ -484,22 +484,22 @@ Hello, world!
 
 % Then, we print the version of |pdflatex| to \TeX{} log:
 %    \begin{macrocode}
-\iexec[\docshots@log,quiet]{\docshots@pdflatex\space --version}%
+\iexec[\docshots@log,quiet]{"\docshots@pdflatex" --version}%
 %    \end{macrocode}
 
 % Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to \TeX{} log:
 %    \begin{macrocode}
-\iexec[\docshots@log,quiet]{\docshots@pdfcrop\space --version}%
+\iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
 %    \end{macrocode}
 
 % Then, we print the version of |ghostscript| to \TeX{} log:
 %    \begin{macrocode}
-\iexec[\docshots@log,quiet]{\docshots@gs\space --version}%
+\iexec[\docshots@log,quiet]{"\docshots@gs" --version}%
 %    \end{macrocode}
 
 % Then, we make a directory where all temporary files will be kept:
 %    \begin{macrocode}
-\iexec[null]{mkdir -p \docshots@tmpdir/\jobname}%
+\iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
 %    \end{macrocode}
 
 % \begin{macro}{docshot}
