@@ -58,6 +58,7 @@
 
 
 
+
 \RequirePackage{iexec}
 \RequirePackage{fancyvrb}
 \RequirePackage{xcolor}
@@ -72,6 +73,7 @@
   /docshots/.cd,
   dtx/.store in=\docshots@dtx,
   log/.code=\def\docshots@log{log},
+  nocrop/.code=\def\docshots@nocrop{},
   lstinputlisting/.store in=\docshots@lstinputlisting,
   inputminted/.store in=\docshots@inputminted,
   tmpdir/.store in=\docshots@tmpdir,
@@ -100,7 +102,9 @@
 
 \iexec[\docshots@log,quiet]{"\docshots@pdflatex" --version}%
 
-\iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
+\ifdefined\docshots@nocrop\else%
+  \iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
+\fi%
 
 \iexec[\docshots@log,quiet]{"\docshots@gs" --version}%
 
@@ -118,7 +122,6 @@
       \docshots@tmpdir/\jobname/verbatim.tex}%
   \fi%
   \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/verbatim.tex}}%
-  {\message{hash is \hash^^J}}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
@@ -148,10 +151,16 @@
     {\message{docshots: Won't pdfcrop,
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
-    {\iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
-      --margins 0
-      "\docshots@tmpdir/\jobname/\hash.pdf"
-      "\docshots@tmpdir/\jobname/\hash.crop.pdf"}}%
+    {\ifdefined\docshots@nocrop
+      \iexec[\docshots@log,quiet]{cp
+        "\docshots@tmpdir/\jobname/\hash.pdf"
+        "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
+      \else%
+      \iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
+        --margins 0
+        "\docshots@tmpdir/\jobname/\hash.pdf"
+        "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
+      \fi}%
   \fvset{numbers=left,numbersep=3pt}%
   \fvset{frame=leftline,framerule=.2pt,rulecolor=\color{gray}}%
   \fvset{samepage=true}%
