@@ -56,6 +56,7 @@
 \documentclass{ltxdoc}
 \usepackage[tt=false, type1=true]{libertine}
 \usepackage{microtype}
+\AddToHook{env/verbatim/begin}{\microtypesetup{protrusion=false}}
 \usepackage[dtx]{docshots}
 \usepackage{href-ul}
 \usepackage{xcolor}
@@ -96,11 +97,11 @@
 % To \href{https://tex.stackexchange.com/questions/661027}{my best}
 % knowledge, there were no packages that would allow
 % you do exactly this. That's why I created this simple package.
+
 % For example, this code:
-%
-%\iffalse
-%<*verb>
-%\fi
+%\iffalse%
+%<*verb>%
+%\fi%
 \begin{verbatim}
 \begin{docshot}
 \documentclass{article}
