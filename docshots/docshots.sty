@@ -65,6 +65,8 @@
 \RequirePackage{tikz}
 
 \RequirePackage{pgfopts}
+\RequirePackage{ifluatex}
+\RequirePackage{ifxetex}
 \def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
@@ -73,7 +75,7 @@
   lstinputlisting/.store in=\docshots@lstinputlisting,
   inputminted/.store in=\docshots@inputminted,
   tmpdir/.store in=\docshots@tmpdir,
-  tmpdir/.default=_docshots,
+  tmpdir/.default=_docshots\ifxetex-xe\else\ifluatex-lua\fi\fi,
   small/.store in=\docshots@small,
   tiny/.store in=\docshots@tiny,
   runs/.store in=\docshots@runs,
@@ -104,7 +106,10 @@
 
 \iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
 
-\newenvironment{docshot}
+\RequirePackage{pdftexcmds}
+\makeatletter\newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}\makeatother
+
+\makeatletter\newenvironment{docshot}
 {\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
@@ -112,8 +117,8 @@
     \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
       \docshots@tmpdir/\jobname/verbatim.tex}%
   \fi%
-  \def\hash{\pdfmdfivesum file
-    {\docshots@tmpdir/\jobname/verbatim.tex}}%
+  \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/verbatim.tex}}%
+  {\message{hash is \hash^^J}}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
@@ -178,20 +183,20 @@
   \end{minipage}%
   \par%
   \endgroup%
-}
+}\makeatother
 
-\newcommand\docshotPrerequisite[1]{
+\makeatletter\newcommand\docshotPrerequisite[1]{
   \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
-}
+}\makeatother
 
-\newcommand\docshotAfter[1]{
+\makeatletter\newcommand\docshotAfter[1]{
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
     > "\docshots@tmpdir/\jobname/after.sh"}%
   \message{docshots: File
     '\docshots@tmpdir/\jobname/after.sh' created^^J}%
-}
+}\makeatother
 
 
 
