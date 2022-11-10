@@ -366,6 +366,26 @@ Hello, world!
 %</verb>
 %\fi
 
+% \section{Fine-uning Options}
+
+% \DescribeMacro{\docshotOptions}
+% By default, we render the verbatim text using |\VerbatimInput| command with
+% no options. You can add your options using |\docshotOptions| command:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\docshotOptions{firstline=4}
+\begin{docshot}
+...
+\end{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% The options will be cleaned up by the first render of a docshot.
+
 % \section{Prerequisites}
 
 % \DescribeMacro{\docshotPrerequisite}
@@ -624,17 +644,21 @@ Hello, world!
   \begin{minipage}[t]{\docshots@right}%
     \vspace{0pt}%
     \ifdefined\docshots@lstinputlisting%
-      \lstinputlisting{\docshots@tmpdir/\jobname/\hash.tex}%
+      \expandafter\lstinputlisting\expandafter[\docshots@opts]
+        {\docshots@tmpdir/\jobname/\hash.tex}%
     \else\ifdefined\docshots@inputminted%
-      \inputminted{\docshots@inputminted}
+      \expandafter\inputminted\expandafter[\docshots@opts]
+        {\docshots@inputminted}
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \else%
-      \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
+      \expandafter\VerbatimInput\expandafter[\docshots@opts]
+        {\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
   \end{minipage}%
   \par%
   \endgroup%
+  \docshotOptions{}%
 }\makeatother
 %    \end{macrocode}
 % \end{macro}
@@ -658,6 +682,18 @@ Hello, world!
     > "\docshots@tmpdir/\jobname/after.sh"}%
   \message{docshots: File
     '\docshots@tmpdir/\jobname/after.sh' created^^J}%
+}\makeatother
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\docshotOptions}
+% Finally, we define |\docshotOptions| command:
+% \changes{0.3.0}{2022/11/10}{New command introduced to help specify custom options for verbatim environments.}
+%    \begin{macrocode}
+\makeatletter
+\gdef\docshots@opts{}
+\newcommand\docshotOptions[1]{%
+  \gdef\docshots@opts{#1}%
 }\makeatother
 %    \end{macrocode}
 % \end{macro}
