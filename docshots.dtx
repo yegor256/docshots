@@ -556,6 +556,7 @@ Hello, world!
 {\end{VerbatimOut}%
 %    \end{macrocode}
 % If we are in |dtx| mode, leading percent characters must be removed:
+% \changes{0.3.1}{2022/11/20}{A bug fixed, now handling of leading percentage symbols is done right.}
 %    \begin{macrocode}
   \ifdefined\docshots@dtx%
     \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25}\\s?/\\1/g"
