@@ -558,7 +558,7 @@ Hello, world!
 % If we are in |dtx| mode, leading percent characters must be removed:
 %    \begin{macrocode}
   \ifdefined\docshots@dtx%
-    \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
+    \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25}\\s?/\\1/g"
       \docshots@tmpdir/\jobname/verbatim.tex}%
   \fi%
 %    \end{macrocode}
