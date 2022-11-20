@@ -122,7 +122,7 @@
   {\docshots@tmpdir/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
   \ifdefined\docshots@dtx%
-    \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25} /\\1/g"
+    \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25}\\s?/\\1/g"
       \docshots@tmpdir/\jobname/verbatim.tex}%
   \fi%
   \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/verbatim.tex}}%
