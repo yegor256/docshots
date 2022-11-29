@@ -15,6 +15,7 @@ sites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?%
 >iexec.ret)...executed
 runsystem(rm iexec.tmp)...executed
 runsystem(rm iexec.ret)...executed
+docshots: rendering at line no. 19
 runsystem((cd "_docshots-lua/prerequisites" && "pdflatex" -interaction=errorstop
 mode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docsh
 ots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n

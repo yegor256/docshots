@@ -576,6 +576,7 @@ Hello, world!
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
     {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/verbatim.tex"
       "\docshots@tmpdir/\jobname/\hash.tex"}%
+    \message{docshots: rendering at line no. \the\inputlineno^^J}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,
         stdout=\docshots@tmpdir/\jobname/\hash.stdout,

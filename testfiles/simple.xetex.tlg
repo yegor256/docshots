@@ -4,6 +4,7 @@ runsystem((cp "_docshots-xe/simple/verbatim.tex" "_docshots-xe/simple/F63314680C
 executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
+docshots: rendering at line no. 14
 runsystem((cd "_docshots-xe/simple" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > _docshots-xe/simple/F63314680C3E56DE0807DB5FB5BD5519.stdout 2>&1; /bin/echo -n $?% >_docshots-xe/simple/F63314680C3E56DE0807DB5FB5BD5519.ret)...executed.
 runsystem((rm -f "_docshots-xe/simple/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
