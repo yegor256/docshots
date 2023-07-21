@@ -1,59 +1,59 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 runsystem((cp main.bib "_docshots-lua/prerequisites") > iexec.tmp 2>&1; /bin/ech
-o -n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+o -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 docshots: File 'main.bib' copied to '_docshots-lua/prerequisites/main.bib'
 runsystem((/bin/echo -n 'biber --quiet $2' > "_docshots-lua/prerequisites/after.
-sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 docshots: File '_docshots-lua/prerequisites/after.sh' created
 runsystem((cp "_docshots-lua/prerequisites/verbatim.tex" "_docshots-lua/prerequi
 sites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% 
->iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+>iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 docshots: rendering at line no. 19
 runsystem((cd "_docshots-lua/prerequisites" && "pdflatex" -interaction=errorstop
 mode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docsh
 ots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n
  $?% >_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...execut
-ed
+ed.
 runsystem((chmod a+x "_docshots-lua/prerequisites/after.sh") > iexec.tmp 2>&1; /
-bin/echo -n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 runsystem((cd "_docshots-lua/prerequisites" && ./after.sh 1 C967FB271644444EA7B8
 FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -
-n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 runsystem((cd "_docshots-lua/prerequisites" && "pdflatex" -interaction=errorstop
 mode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docsh
 ots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n
  $?% >_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...execut
-ed
+ed.
 docshots: pdflatex run no.2
 runsystem((chmod a+x "_docshots-lua/prerequisites/after.sh") > iexec.tmp 2>&1; /
-bin/echo -n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 runsystem((cd "_docshots-lua/prerequisites" && ./after.sh 2 C967FB271644444EA7B8
 FB7FACCD8F04 C967FB271644444EA7B8FB7FACCD8F04.tex) > iexec.tmp 2>&1; /bin/echo -
-n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 runsystem((rm -f "_docshots-lua/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/
-echo -n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 runsystem(("pdfcrop" --margins 0 "_docshots-lua/prerequisites/C967FB271644444EA7
 B8FB7FACCD8F04.pdf" "_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F0
-4.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed
-runsystem(rm iexec.tmp)...executed
-runsystem(rm iexec.ret)...executed
+4.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
 <_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=4, 345.29pt x 77.28876pt>
 File: _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)
 <use _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf>
