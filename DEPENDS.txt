@@ -6,3 +6,15 @@ hard pgfopts
 hard listings
 hard minted
 hard pdftexcmds
+soft scheme-basic
+soft xetex
+soft tools
+soft ffcode
+soft libertine
+soft microtype
+soft hypdoc
+soft l3build
+soft href-ul
+soft newtx
+soft biblatex
+soft biber
