@@ -623,16 +623,21 @@ Hello, world!
 %    \end{macrocode}
 % We configure |fancyvrb|:
 %    \begin{macrocode}
-  \fvset{numbers=left,numbersep=3pt}%
-  \fvset{frame=leftline,framerule=.2pt,rulecolor=\color{gray}}%
-  \fvset{samepage=true}%
-  \fvset{baselinestretch=1}%
+  \def\docshots@xopts{
+    numbers=left,numbersep=3pt,
+    frame=leftline,framerule=.2pt,rulecolor=\color{gray},
+    samepage=true,
+    baselinestretch=1
+  }%
   \ifdefined\docshots@small%
-    \fvset{fontsize=\small}%
+    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},fontsize=\small}%
   \fi%
   \ifdefined\docshots@tiny%
-    \fvset{fontsize=\scriptsize}%
+    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},fontsize=\scriptsize}%
   \fi%
+  \ifdefined\docshots@opts
+    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},\docshots@opts}
+  \fi
 %    \end{macrocode}
 % Finally, we render the two-column content:
 %    \begin{macrocode}
@@ -654,7 +659,7 @@ Hello, world!
         {\docshots@inputminted}
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \else%
-      \expandafter\VerbatimInput\expandafter[\docshots@opts]
+      \expandafter\VerbatimInput\expandafter[\docshots@xopts]
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
