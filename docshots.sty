@@ -7,7 +7,7 @@
 %% docshots.dtx  (with options: `package')
 %% (The MIT License)
 %% 
-%% Copyright (c) 2021-2023 Yegor Bugayenko
+%% Copyright (c) 2021-2024 Yegor Bugayenko
 %% 
 %% Permission is hereby granted, free of charge, to any person obtaining a copy
 %% of this software and associated documentation files (the 'Software'), to deal
@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[0000-00-00 0.0.0 TeX Samples Next to Their PDF Snapshots in DTX]
+[2024-01-09 09.21.13 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -166,16 +166,22 @@
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
       \fi}%
-  \fvset{numbers=left,numbersep=3pt}%
-  \fvset{frame=leftline,framerule=.2pt,rulecolor=\color{gray}}%
-  \fvset{samepage=true}%
-  \fvset{baselinestretch=1}%
+  \def\docshots@xopts{
+    numbers=left,numbersep=3pt,
+    frame=leftline,framerule=.2pt,rulecolor=\color{gray},
+    samepage=true,
+    commandchars=none,
+    baselinestretch=1
+  }%
   \ifdefined\docshots@small%
-    \fvset{fontsize=\small}%
+    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},fontsize=\small}%
   \fi%
   \ifdefined\docshots@tiny%
-    \fvset{fontsize=\scriptsize}%
+    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},fontsize=\scriptsize}%
   \fi%
+  \ifdefined\docshots@opts
+    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},\docshots@opts}
+  \fi
   \begingroup%
   \par%
   \tikz[baseline=(a.north)]
@@ -194,7 +200,7 @@
         {\docshots@inputminted}
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \else%
-      \expandafter\VerbatimInput\expandafter[\docshots@opts]
+      \expandafter\VerbatimInput\expandafter[\docshots@xopts]
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
