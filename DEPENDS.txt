@@ -18,3 +18,4 @@ soft newtx
 soft scheme-basic
 soft tools
 soft xetex
+soft upquote

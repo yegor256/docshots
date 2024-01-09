@@ -9,19 +9,25 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, macos-12]
+        os: [ubuntu-22.04, macos-12]
     steps:
       - uses: actions/checkout@v3
       - run: sudo apt-get -y install ghostscript
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-22.04'
       - uses: teatimeguest/setup-texlive-action@v2.6.2
         with:
           update-all-packages: true
           package-file: DEPENDS.txt
       - run: l3build ctan --show-log-on-error --halt-on-error
-      - uses: JamesIves/github-pages-deploy-action@v4.4.3
+      - run: |
+          mkdir build/gh-pages
+          cp build/distrib/tds/tex/latex/docshots/docshots.sty build/gh-pages
+          sed -i "s/0\.0\.0/$(date +%H.%M.%S)/g" build/gh-pages/docshots.sty
+          sed -i "s/0000-00-00/$(date +%Y-%m-%d)/g" build/gh-pages/docshots.sty
+        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-22.04'
+      - uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages
-          folder: build/distrib/tds/tex/latex
+          folder: build/gh-pages
           clean: true
-        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-20.04'
+        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-22.04'
