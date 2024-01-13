@@ -496,7 +496,7 @@ Hello, world!
 \RequirePackage{tikz}
 %    \end{macrocode}
 
-% Then, we process package options:
+% Then, we process package options with the help of \href{https://ctan.org/pkg/pgfopts}{pgfopts}:
 % \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text either via listings or minted packages.}
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 % \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
@@ -702,23 +702,27 @@ Hello, world!
 % \begin{macro}{\docshotPrerequisite}
 % Then, we define |\docshotPrerequisite| command:
 %    \begin{macrocode}
-\makeatletter\newcommand\docshotPrerequisite[1]{
+\makeatletter
+\newcommand\docshotPrerequisite[1]{
   \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\docshotAfter}
 % Then, we define |\docshotAfter| command:
 %    \begin{macrocode}
-\makeatletter\newcommand\docshotAfter[1]{
+\makeatletter
+\newcommand\docshotAfter[1]{
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
     > "\docshots@tmpdir/\jobname/after.sh"}%
   \message{docshots: File
     '\docshots@tmpdir/\jobname/after.sh' created^^J}%
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -730,7 +734,8 @@ Hello, world!
 \gdef\docshots@opts{}
 \newcommand\docshotOptions[1]{%
   \gdef\docshots@opts{#1}%
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
