@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2024-01-13 03.53.10 TeX Samples Next to Their PDF Snapshots in DTX]
+[2024-01-13 03.56.08 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -119,9 +119,12 @@
 \iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
 
 \RequirePackage{pdftexcmds}
-\makeatletter\newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}\makeatother
+\makeatletter
+\newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}
+\makeatother
 
-\makeatletter\newenvironment{docshot}
+\makeatletter
+\newenvironment{docshot}
 {\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
