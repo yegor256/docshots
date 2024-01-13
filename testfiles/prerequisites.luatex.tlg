@@ -33,7 +33,7 @@ runsystem(rm iexec.ret)...executed.
 runsystem(("pdfcrop" --margins 0 "_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf" "_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: the PDF from line no. 19{} is ready
+docshots: the PDF is ready from line no. 19
 <_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=4, 345.29pt x 77.28876pt>
 File: _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)
 <use _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf>

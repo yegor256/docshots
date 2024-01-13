@@ -645,7 +645,7 @@ Hello, world!
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
       \fi}%
-  \message{docshots: the PDF from line no. \the\inputlineno{} is ready^^J}%
+  \message{docshots: the PDF is ready from line no. \the\inputlineno^^J}%
 %    \end{macrocode}
 % Finally, we render the two-column content:
 %    \begin{macrocode}
@@ -667,27 +667,21 @@ Hello, world!
         {\docshots@inputminted}
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \else%
-      \def\docshots@xopts{
-        numbers=left,numbersep=3pt,
-        frame=leftline,framerule=.2pt,rulecolor=\color{gray},
-        samepage=true,
-        commandchars=none,
-        baselinestretch=1
-      }%
+      \fvset{numbers=left,numbersep=3pt}%
+      \fvset{frame=leftline,framerule=.2pt,rulecolor=\color{gray}}%
+      \fvset{samepage=true}%
+      \fvset{commandchars=none}%
+      \fvset{baselinestretch=1}%
       \ifdefined\docshots@small%
-        \edef\docshots@xopts{%
-          \unexpanded\expandafter{\docshots@xopts},fontsize=\small}%
+        \fvset{fontsize=\small}%
       \fi%
       \ifdefined\docshots@tiny%
-        \edef\docshots@xopts{%
-          \unexpanded\expandafter{\docshots@xopts},fontsize=\scriptsize}%
+        \fvset{fontsize=\scriptsize}%
       \fi%
-      \ifdefined\docshots@opts
-        \edef\docshots@xopts{%
-          \unexpanded\expandafter{\docshots@xopts},\docshots@opts}
-      \fi
-      \expandafter\VerbatimInput\expandafter[\docshots@xopts]
-        {\docshots@tmpdir/\jobname/\hash.tex}%
+      \ifdefined\docshots@opts%
+        \fvset{\docshots@opts}%
+      \fi%
+      \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
   \end{minipage}%
