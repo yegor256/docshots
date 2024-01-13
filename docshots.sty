@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2024-01-13 03.56.08 TeX Samples Next to Their PDF Snapshots in DTX]
+[2024-01-13 03.56.53 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -219,7 +219,8 @@
   \par%
   \endgroup%
   \docshotOptions{}%
-}\makeatother
+}
+\makeatother
 
 \makeatletter\newcommand\docshotPrerequisite[1]{
   \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
