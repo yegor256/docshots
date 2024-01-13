@@ -620,25 +620,7 @@ Hello, world!
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
       \fi}%
-%    \end{macrocode}
-% We configure |fancyvrb|:
-%    \begin{macrocode}
-  \def\docshots@xopts{
-    numbers=left,numbersep=3pt,
-    frame=leftline,framerule=.2pt,rulecolor=\color{gray},
-    samepage=true,
-    commandchars=none,
-    baselinestretch=1
-  }%
-  \ifdefined\docshots@small%
-    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},fontsize=\small}%
-  \fi%
-  \ifdefined\docshots@tiny%
-    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},fontsize=\scriptsize}%
-  \fi%
-  \ifdefined\docshots@opts
-    \edef\docshots@xopts{\unexpanded\expandafter{\docshots@xopts},\docshots@opts}
-  \fi
+  \message{docshots: the PDF from line no. \the\inputlineno{} is ready^^J}%
 %    \end{macrocode}
 % Finally, we render the two-column content:
 %    \begin{macrocode}
@@ -660,6 +642,25 @@ Hello, world!
         {\docshots@inputminted}
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \else%
+      \def\docshots@xopts{
+        numbers=left,numbersep=3pt,
+        frame=leftline,framerule=.2pt,rulecolor=\color{gray},
+        samepage=true,
+        commandchars=none,
+        baselinestretch=1
+      }%
+      \ifdefined\docshots@small%
+        \edef\docshots@xopts{%
+          \unexpanded\expandafter{\docshots@xopts},fontsize=\small}%
+      \fi%
+      \ifdefined\docshots@tiny%
+        \edef\docshots@xopts{%
+          \unexpanded\expandafter{\docshots@xopts},fontsize=\scriptsize}%
+      \fi%
+      \ifdefined\docshots@opts
+        \edef\docshots@xopts{%
+          \unexpanded\expandafter{\docshots@xopts},\docshots@opts}
+      \fi
       \expandafter\VerbatimInput\expandafter[\docshots@xopts]
         {\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%

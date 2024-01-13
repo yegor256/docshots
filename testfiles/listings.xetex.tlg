@@ -11,6 +11,7 @@ runsystem(rm iexec.ret)...executed.
 runsystem(("pdfcrop" --margins 0 "_docshots-xe/listings/F63314680C3E56DE0807DB5FB5BD5519.pdf" "_docshots-xe/listings/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
+docshots: the PDF from line no. 16{} is ready
 File: _docshots-xe/listings/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf Graphic file (type pdf)
 <use _docshots-xe/listings/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf>
 (_docshots-xe/listings/F63314680C3E56DE0807DB5FB5BD5519.tex)
