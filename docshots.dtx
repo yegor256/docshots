@@ -561,17 +561,21 @@ Hello, world!
 
 % \begin{macro}{\docshots@mdfive}
 % \changes{0.1.1}{2022/10/26}{New supplementary command added to calculate MD5 sum of a file.}
-% Then, we define a command for MD5 hash calculating of a file:
+% Then, we define a command for MD5 hash calculating of a file, with
+% the help of \href{https://ctan.org/pkg/pdftexcmds}{pdftexcmds}:
 %    \begin{macrocode}
 \RequirePackage{pdftexcmds}
-\makeatletter\newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}\makeatother
+\makeatletter
+\newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{docshot}
 % Then, we define |docshot| environment:
 %    \begin{macrocode}
-\makeatletter\newenvironment{docshot}
+\makeatletter
+\newenvironment{docshot}
 {\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/verbatim.tex}}
 {\end{VerbatimOut}%
