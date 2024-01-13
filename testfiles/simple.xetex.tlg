@@ -14,3 +14,7 @@ runsystem(rm iexec.ret)...executed.
 docshots: the PDF from line no. 14{} is ready
 File: _docshots-xe/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf Graphic file (type pdf)
 <use _docshots-xe/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf>
+! TeX capacity exceeded, sorry [input stack size=10000].
+\@nomath ...e \@font@warning {Command \noexpand #1
+                                                  invalid in math mode}\fi 
+l. ...\end{docshot}

@@ -466,12 +466,33 @@ Hello, world!
 % \section{Implementation}
 % \changes{0.0.1}{2022/10/09}{Initial version}
 
-% First, we include a few packages:
+% First, we include \href{https://ctan.org/pkg/iexec}{iexec}
+% in order to execute shell commands, such as |pdflatex| and |pdfcrop|:
 %    \begin{macrocode}
 \RequirePackage{iexec}
+%    \end{macrocode}
+
+% Then, we include \href{https://ctan.org/pkg/fancyvrb}{fancyvrb}
+% in order to render verbatim texts:
+%    \begin{macrocode}
 \RequirePackage{fancyvrb}
+%    \end{macrocode}
+
+% Then, we include \href{https://ctan.org/pkg/xcolor}{xcolor}
+% in order to make borders gray:
+%    \begin{macrocode}
 \RequirePackage{xcolor}
+%    \end{macrocode}
+
+% Then, we include \href{https://ctan.org/pkg/graphicx}{graphicx}
+% in order to be able to use |\includegraphics| command:
+%    \begin{macrocode}
 \RequirePackage{graphicx}
+%    \end{macrocode}
+
+% Then, we include \href{https://ctan.org/pkg/tikz}{tikz}
+% in order to be able to position elements:
+%    \begin{macrocode}
 \RequirePackage{tikz}
 %    \end{macrocode}
 

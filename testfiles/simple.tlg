@@ -17,3 +17,7 @@ File: _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf Graphic file (t
 <use _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf>
 Package pdftex.def Info: _docshots/simple/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf  used on input line ....
 (pdftex.def)             Requested size: 103.50105pt x 374.94382pt.
+! TeX capacity exceeded, sorry [input stack size=10000].
+\@nomath ...e \@font@warning {Command \noexpand #1
+                                                  invalid in math mode}\fi 
+l. ...\end{docshot}
