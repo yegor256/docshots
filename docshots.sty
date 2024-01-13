@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2024-01-13 03.56.53 TeX Samples Next to Their PDF Snapshots in DTX]
+[2024-01-13 03.57.55 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -222,24 +222,29 @@
 }
 \makeatother
 
-\makeatletter\newcommand\docshotPrerequisite[1]{
+\makeatletter
+\newcommand\docshotPrerequisite[1]{
   \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
-}\makeatother
+}
+\makeatother
 
-\makeatletter\newcommand\docshotAfter[1]{
+\makeatletter
+\newcommand\docshotAfter[1]{
   \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
     > "\docshots@tmpdir/\jobname/after.sh"}%
   \message{docshots: File
     '\docshots@tmpdir/\jobname/after.sh' created^^J}%
-}\makeatother
+}
+\makeatother
 
 \makeatletter
 \gdef\docshots@opts{}
 \newcommand\docshotOptions[1]{%
   \gdef\docshots@opts{#1}%
-}\makeatother
+}
+\makeatother
 
 
 
