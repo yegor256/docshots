@@ -7,6 +7,7 @@
 
 \docshotPrerequisite{main.bib}
 \docshotAfter{biber --quiet $2}
+\docshotOptions{firstline=2,lastline=8}
 \begin{docshot}
   \documentclass[natbib=false]{article}
   \usepackage[natbib=true]{biblatex}

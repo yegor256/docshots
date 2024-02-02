@@ -11,7 +11,7 @@ docshots: File '_docshots-xe/prerequisites/after.sh' created
 runsystem((cp "_docshots-xe/prerequisites/verbatim.tex" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: rendering at line no. 19
+docshots: rendering at line no. 20
 runsystem((cd "_docshots-xe/prerequisites" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...executed.
 runsystem((chmod a+x "_docshots-xe/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
@@ -33,6 +33,6 @@ runsystem(rm iexec.ret)...executed.
 runsystem(("pdfcrop" --margins 0 "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: the PDF is ready from line no. 19
+docshots: the PDF is ready from line no. 20
 File: _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)
 <use _docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf>

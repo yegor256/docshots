@@ -660,8 +660,10 @@ Hello, world!
   \begin{minipage}[t]{\docshots@right}%
     \vspace{0pt}%
     \ifdefined\docshots@lstinputlisting%
-      \expandafter\lstinputlisting\expandafter[\docshots@opts]
-        {\docshots@tmpdir/\jobname/\hash.tex}%
+      \ifdefined\docshots@opts%
+        \expandafter\lstset\expandafter{\docshots@opts}%
+      \fi%
+      \lstinputlisting{\docshots@tmpdir/\jobname/\hash.tex}%
     \else\ifdefined\docshots@inputminted%
       \expandafter\inputminted\expandafter[\docshots@opts]
         {\docshots@inputminted}
@@ -679,7 +681,7 @@ Hello, world!
         \fvset{fontsize=\scriptsize}%
       \fi%
       \ifdefined\docshots@opts%
-        \fvset{\docshots@opts}%
+        \expandafter\fvset\expandafter{\docshots@opts}%
       \fi%
       \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%

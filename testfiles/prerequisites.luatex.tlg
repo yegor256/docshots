@@ -11,7 +11,7 @@ docshots: File '_docshots-lua/prerequisites/after.sh' created
 runsystem((cp "_docshots-lua/prerequisites/verbatim.tex" "_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: rendering at line no. 19
+docshots: rendering at line no. 20
 runsystem((cd "_docshots-lua/prerequisites" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C967FB271644444EA7B8FB7FACCD8F04.tex) > _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.stdout 2>&1; /bin/echo -n $?% >_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.ret)...executed.
 runsystem((chmod a+x "_docshots-lua/prerequisites/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
@@ -33,7 +33,7 @@ runsystem(rm iexec.ret)...executed.
 runsystem(("pdfcrop" --margins 0 "_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.pdf" "_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: the PDF is ready from line no. 19
+docshots: the PDF is ready from line no. 20
 <_docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf, id=4, 345.29pt x 77.28876pt>
 File: _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf Graphic file (type pdf)
 <use _docshots-lua/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.crop.pdf>
