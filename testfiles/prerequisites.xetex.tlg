@@ -8,7 +8,7 @@ runsystem((/bin/echo -n 'biber --quiet $2' > "_docshots-xe/prerequisites/after.s
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 docshots: File '_docshots-xe/prerequisites/after.sh' created
-runsystem((cp "_docshots-xe/prerequisites/verbatim.tex" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem((cp "_docshots-xe/prerequisites/docshots-source.tex" "_docshots-xe/prerequisites/C967FB271644444EA7B8FB7FACCD8F04.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
 docshots: rendering at line no. 20
