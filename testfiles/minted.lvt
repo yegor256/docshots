@@ -1,5 +1,6 @@
 \input{regression-test.tex}
 \documentclass{article}
+\usepackage{pdftexcmds}
 \usepackage[draft=true,cache=false]{minted}
 \setminted[text]{frame=lines,framesep=2mm}
 \usepackage[inputminted=text]{docshots}
