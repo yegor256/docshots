@@ -3,7 +3,7 @@ Don't change this file in any respect.
 runsystem((cp "_docshots-xe/minted/docshots-temp.tex" "_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: rendering at line no. 16
+docshots: rendering at line no. 17
 runsystem((cd "_docshots-xe/minted" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape F63314680C3E56DE0807DB5FB5BD5519.tex) > _docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.stdout 2>&1; /bin/echo -n $?% >_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.ret)...executed.
 runsystem((rm -f "_docshots-xe/minted/after.sh") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
@@ -11,7 +11,7 @@ runsystem(rm iexec.ret)...executed.
 runsystem(("pdfcrop" --margins 0 "_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.pdf" "_docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: the PDF is ready from line no. 16
+docshots: the PDF is ready from line no. 17
 File: _docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf Graphic file (type pdf)
 <use _docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf>
 \pydata@fh@_4B2C4DCFC01CAC9A960EFD78DCDD3194.data.minted=\write...

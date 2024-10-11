@@ -1,6 +1,7 @@
 \input{regression-test.tex}
 \documentclass{article}
 \usepackage[cache=false]{minted}
+\makeatletter\def\minted@pygmentize{\def\PYG##1{}}\makeatother % to disable highlighting
 \setminted[text]{frame=lines,framesep=2mm}
 \usepackage[inputminted=text]{docshots}
 \begin{document}
