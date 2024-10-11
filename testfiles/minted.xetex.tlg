@@ -14,3 +14,8 @@ runsystem(rm iexec.ret)...executed.
 docshots: the PDF is ready from line no. 16
 File: _docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf Graphic file (type pdf)
 <use _docshots-xe/minted/F63314680C3E56DE0807DB5FB5BD5519.crop.pdf>
+\pydata@fh@_4B2C4DCFC01CAC9A960EFD78DCDD3194.data.minted=\write...
+! Undefined control sequence.
+\minted@detectconfig@i ...pydatawritekeyedefvalue 
+                                                  {jobname}{\jobname }\pydat...
+l. ...\end{docshot}
