@@ -1,3 +1,5 @@
+# Nicely Rendered LaTeX Examples for Your `.dtx` File
+
 [![l3build](https://github.com/yegor256/docshots/actions/workflows/l3build.yml/badge.svg)](https://github.com/yegor256/docshots/actions/workflows/l3build.yml)
 [![CTAN](https://img.shields.io/ctan/v/docshots)](https://ctan.org/pkg/docshots)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/docshots/blob/master/LICENSE.txt)

@@ -577,7 +577,7 @@ Hello, world!
 \makeatletter
 \newenvironment{docshot}
 {\VerbatimEnvironment\begin{VerbatimOut}
-  {\docshots@tmpdir/\jobname/docshots-source.tex}}
+  {\docshots@tmpdir/\jobname/docshots-temp.tex}}
 {\end{VerbatimOut}%
 %    \end{macrocode}
 % If we are in |dtx| mode, leading percent characters must be removed:
@@ -585,22 +585,22 @@ Hello, world!
 %    \begin{macrocode}
   \ifdefined\docshots@dtx%
     \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25}\\s?/\\1/g"
-      \docshots@tmpdir/\jobname/docshots-source.tex}%
+      \docshots@tmpdir/\jobname/docshots-temp.tex}%
   \fi%
 %    \end{macrocode}
 % We calculate MD5 hashsum of the file content:
 %    \begin{macrocode}
-  \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/docshots-source.tex}}%
+  \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/docshots-temp.tex}}%
 %    \end{macrocode}
 % If the PDF with the required name already exists, we ignore this step.
-% Otherwise, we copy |docshots-source.tex| into new file and run |pdflatex|:
+% Otherwise, we copy |docshots-temp.tex| into new file and run |pdflatex|:
 % \changes{0.1.0}{2022/10/26}{The output is saved to a hash-named file, for better uniqueness of temporary files.}
 % \changes{0.4.0}{2022/11/29}{Now, \TeX output has a log message with the number of the line in the source file, which we render.}
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
-    {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/docshots-source.tex"
+    {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/docshots-temp.tex"
       "\docshots@tmpdir/\jobname/\hash.tex"}%
     \message{docshots: rendering at line no. \the\inputlineno^^J}%
     \foreach \n in {1,...,\docshots@runs}{%
