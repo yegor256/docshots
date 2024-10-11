@@ -25,7 +25,7 @@ ctanupload = true
 typesetopts = "-interaction=batchmode -shell-escape -halt-on-error"
 checkopts = "-interaction=batchmode -shell-escape -halt-on-error"
 checkengines = {"pdftex", "luatex", "xetex"}
-excludetests = {"minted"}
+excludetests = {"minted"} -- doesn't work for some reason :(
 tagfiles = {"build.lua", "docshots.dtx"}
 cleanfiles = {"ascii.tcx", "*.log", "*.glo", "*.fls", "*.idx", "*.out", "*.fdb_latexmk", "*.aux", "*.sty", "*.zip", "docshots.pdf"}
 typesetruns = 2
