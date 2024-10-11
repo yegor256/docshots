@@ -15,6 +15,7 @@ soft hypdoc
 soft l3build
 soft libertine
 soft microtype
+soft minted
 soft newtx
 soft scheme-basic
 soft tools
