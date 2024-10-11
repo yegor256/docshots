@@ -1,5 +1,6 @@
 hard fancyvrb
 hard iexec
+hard lineno
 hard listings
 hard minted
 hard pdfcrop
@@ -17,5 +18,5 @@ soft microtype
 soft newtx
 soft scheme-basic
 soft tools
-soft xetex
 soft upquote
+soft xetex
