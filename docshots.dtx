@@ -46,9 +46,9 @@
 \CodelineIndex
 \RecordChanges
 \begin{document}
-	\DocInput{docshots.dtx}
-	\PrintChanges
-	\PrintIndex
+  \DocInput{docshots.dtx}
+  \PrintChanges
+  \PrintIndex
 \end{document}
 %</driver>
 % \fi
@@ -63,7 +63,7 @@
 % This package doesn't work on Windows!
 % Also, you must run \TeX{} processor with |--shell-escape| option.
 % Also, you must have
-% |pdlaftex|,
+% |pdflatex|,
 % \href{https://www.perl.org}{Perl},
 % \href{https://www.ghostscript.com}{Ghostscript},
 % and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}
@@ -77,7 +77,7 @@
 % using a subprocess that would render it (via |pdflatex|, for example).
 % To \href{https://tex.stackexchange.com/questions/661027}{my best}
 % knowledge, there were no packages that would allow
-% you do exactly this. That's why I created this simple package.
+% you to do exactly this. That's why I created this simple package.
 
 % For example, this code:
 %\iffalse%
@@ -126,7 +126,7 @@
 % After a successful processing of \TeX{} sources, we use
 % \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to trim the document.
 
-% We execute |pdflatex| with |-interaction=batchmode| and |-halt-on-error| options.
+% We execute |pdflatex| with |-interaction=errorstopmode| and |-halt-on-error| options.
 % This means that
 % \TeX{} processing will stop at the first error. Check your \TeX{} log
 % to understand what went wrong.
@@ -157,7 +157,7 @@
 %\fi
 \begin{verbatim}
 \documentclass{article}
-\usepackage[pdflatex=/usr/local/bin/pdflatex]{docshot}
+\usepackage[pdflatex=/usr/local/bin/pdflatex]{docshots}
 \begin{document}
 \begin{docshot}
 Hello, world!
@@ -176,7 +176,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[gs=/usr/bin/ghostscript]{docshot}
+\usepackage[gs=/usr/bin/ghostscript]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -190,20 +190,20 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[pdfcrop=/bin/pdfcrop]{docshot}
+\usepackage[pdfcrop=/bin/pdfcrop]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
 %\fi
 
 % \DescribeMacro{margin}
-% When we crop the PDF rendered, we leave a margin around the content. The
+% When we crop the rendered PDF, we leave a margin around the content. The
 % default value may be changed by the package option |margin|:
 %\iffalse
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[margin=10]{docshot}
+\usepackage[margin=10]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -215,7 +215,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[nocrop]{docshot}
+\usepackage[nocrop]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -228,7 +228,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[hspace=1em]{docshot}
+\usepackage[hspace=1em]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -242,7 +242,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[left=2in,right=.5\linewidth]{docshot}
+\usepackage[left=2in,right=.5\linewidth]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -255,7 +255,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[dtx]{docshot}
+\usepackage[dtx]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -267,7 +267,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[tmpdir=/tmp/foo]{docshot}
+\usepackage[tmpdir=/tmp/foo]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -280,7 +280,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[runs=3]{docshot}
+\usepackage[runs=3]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -295,7 +295,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[small]{docshot}
+\usepackage[small]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -309,7 +309,7 @@ Hello, world!
 %<*verb>
 %\fi
 \begin{verbatim}
-\usepackage[log]{docshot}
+\usepackage[log]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -325,7 +325,7 @@ Hello, world!
 \begin{verbatim}
 \usepackage{minted}
 \setminted[java]{frame=lines,framesep=2mm}
-\usepackage[inputminted=java]{docshot}
+\usepackage[inputminted=java]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -341,7 +341,7 @@ Hello, world!
 \begin{verbatim}
 \usepackage{listings}
 \lstset{basicstyle=\small}
-\usepackage[lstinputlisting]{docshot}
+\usepackage[lstinputlisting]{docshots}
 \end{verbatim}
 %\iffalse
 %</verb>
@@ -383,7 +383,7 @@ Hello, world!
 %\fi
 \begin{verbatim}
 \documentclass{article}
-\usepackage{docshot}
+\usepackage{docshots}
 \docshotPrerequisite{duck.jpg}
 \begin{document}
 \begin{docshot}
@@ -411,7 +411,7 @@ Hello, world!
 %\fi
 \begin{verbatim}
 \documentclass{article}
-\usepackage{docshot}
+\usepackage{docshots}
 \docshotPrerequisite{main.bib}
 \begin{document}
 \docshotAfter{biber $2}
@@ -437,7 +437,7 @@ Hello, world!
 % \item[|\$2|] the hash of the snippet,
 % \item[|\$3|] the name of the |.tex| file.
 % \end{description}
-% |$2| is basically equals to |$1| with an
+% |$3| is basically equal to |$2| with an
 % attached |.tex| suffix. |\docshotAfter| applies only to the first |docshot|
 % environment that goes after it! You must specify |\docshotAfter| before
 % each |docshot| where you want such post-processing to happen.
