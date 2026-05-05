@@ -59,26 +59,25 @@
 % \maketitle
 %
 % \textbf{\color{red}NB!}
-% This package doesn't work on Windows!
-% Also, you must run \TeX{} processor with |--shell-escape| option.
-% Also, you must have
+% This package does not operate on Windows!
+% The \TeX{} processor must furthermore be invoked with the |--shell-escape| option,
+% and the following must be installed on the host system:
 % |pdflatex|,
 % \href{https://www.perl.org}{Perl},
 % \href{https://www.ghostscript.com}{Ghostscript},
-% and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}
-% installed.
+% and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}.
 
 % \section{Introduction}
 %
-% When you want to demonstrate to the readers of your documentation
-% how to use certain \TeX{} commands, the best way would be
-% to show exactly how the entire document will be rendered in PDF,
-% using a subprocess that would render it (via |pdflatex|, for example).
-% To \href{https://tex.stackexchange.com/questions/661027}{my best}
-% knowledge, there were no packages that would allow
-% you to do exactly this. That's why I created this simple package.
+% When demonstrating to the readers of a document how certain \TeX{}
+% commands are to be employed, the most cogent approach is to display
+% precisely how the entire document will be rendered as a PDF, by means
+% of a subprocess (such as |pdflatex|) that performs the rendering.
+% To the \href{https://tex.stackexchange.com/questions/661027}{author's
+% best} knowledge, no existing package addressed this need; whence the
+% present, modest package was devised.
 
-% For example, this code:
+% For instance, the following code:
 %\iffalse%
 %<*verb>%
 %\fi%
@@ -95,7 +94,7 @@
 %\iffalse
 %</verb>
 %\fi
-% is rendered as such:
+% is rendered thus:
 % \begin{docshot}
 % \documentclass{article}
 % \usepackage{xcolor}
@@ -105,7 +104,7 @@
 % \end{document}
 % \end{docshot}
 
-% Here is a more complex example:
+% A more elaborate example follows:
 % \begin{docshot}
 % \documentclass{article}
 % \usepackage{tikz}
@@ -120,19 +119,18 @@
 % \end{document}
 % \end{docshot}
 
-% The picture you see on the left side is rendered by a subprocess
-% executing |pdflatex| with the |.tex| content taken from the source file.
-% After a successful processing of \TeX{} sources, we use
-% \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to trim the document.
+% The figure on the left is produced by a subprocess that executes
+% |pdflatex| upon the |.tex| content extracted from the source file.
+% Once the \TeX{} sources have been successfully processed,
+% \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} is invoked to trim the document.
 
-% We execute |pdflatex| with |-interaction=errorstopmode| and |-halt-on-error| options.
-% This means that
-% \TeX{} processing will stop at the first error. Check your \TeX{} log
-% to understand what went wrong.
+% |pdflatex| is run with the |-interaction=errorstopmode| and |-halt-on-error| options.
+% Consequently, \TeX{} processing halts at the first error encountered. The \TeX{}
+% log should be consulted to ascertain the cause of any failure.
 
-% When you render a text instead of a single picture, it's recommended to use
-% \href{https://ctan.org/pkg/geometry}{geometry} package to change the size
-% of the page:
+% Whenever text rather than a single figure is to be rendered, the
+% \href{https://ctan.org/pkg/geometry}{geometry} package is recommended for
+% adjusting the page dimensions:
 % \begin{docshot}
 % \documentclass{article}
 % \usepackage[paperwidth=2in,
@@ -143,13 +141,13 @@
 % pessimist'' --- \emph{Mark Twain}
 % \end{document}
 % \end{docshot}
-% You can also use |\pagestyle{empty}| as was done in previous docshots.
+% The use of |\pagestyle{empty}|, as employed in the preceding docshots, is likewise viable.
 
 % \section{Package Options}
 
 % \DescribeMacro{pdflatex}
-% The default command line tool for turning |.tex| into
-% |.pdf| is |pdflatex|. However, you can change that by using |pdflatex| package option,
+% The default command-line tool for converting |.tex| into
+% |.pdf| is |pdflatex|. This may, however, be altered by means of the |pdflatex| package option,
 % for example:
 %\iffalse
 %<*verb>
@@ -168,8 +166,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{gs}
-% The default location of Ghostscript is just |gs|.
-% You can change that by using |gs| package option,
+% The default location of Ghostscript is simply |gs|.
+% This may be altered by means of the |gs| package option,
 % for example:
 %\iffalse
 %<*verb>
@@ -182,8 +180,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{pdfcrop}
-% The default location of |pdfcrop| is just |pdfcrop|.
-% You can change that by using |pdfcrop| package option,
+% The default location of |pdfcrop| is simply |pdfcrop|.
+% This may be altered by means of the |pdfcrop| package option,
 % for example:
 %\iffalse
 %<*verb>
@@ -196,8 +194,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{margin}
-% When we crop the rendered PDF, we leave a margin around the content. The
-% default value may be changed by the package option |margin|:
+% When the rendered PDF is cropped, a margin is preserved around the content. The
+% default value may be modified by the |margin| package option:
 %\iffalse
 %<*verb>
 %\fi
@@ -209,7 +207,7 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{nocrop}
-% You may disable cropping with the help of |nocrop| option:
+% Cropping may be disabled by means of the |nocrop| option:
 %\iffalse
 %<*verb>
 %\fi
@@ -222,7 +220,7 @@ Hello, world!
 
 % \DescribeMacro{hspace}
 % The horizontal distance between the image and its verbatim \TeX{} source
-% may be configured via |hspace| package option:
+% may be configured by means of the |hspace| package option:
 %\iffalse
 %<*verb>
 %\fi
@@ -235,8 +233,8 @@ Hello, world!
 
 % \DescribeMacro{left}
 % \DescribeMacro{right}
-% The default width of the image may be changed by |left| option, while
-% the width of the verbatim \TeX{} source may be modified by |right| option:
+% The default width of the image may be altered by the |left| option, while
+% the width of the verbatim \TeX{} source may be adjusted by the |right| option:
 %\iffalse
 %<*verb>
 %\fi
@@ -248,8 +246,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{dtx}
-% If you use this package inside |.dtx| documentation, add |dtx| package option. Thanks
-% to this option all comment symbols will be removed from line starts:
+% Whenever this package is employed within |.dtx| documentation, the |dtx| package option must be added. Under
+% this option, all leading comment symbols are removed from the start of each line:
 %\iffalse
 %<*verb>
 %\fi
@@ -261,7 +259,7 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{tmpdir}
-% The default location of temp files is |_docshots|. You can change this using |tmpdir| option:
+% The default location for temporary files is |_docshots|. This may be altered by means of the |tmpdir| option:
 %\iffalse
 %<*verb>
 %\fi
@@ -273,8 +271,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{runs}
-% By default, we run |pdflatex| just once for each docshot. You can change this number using the package
-% option |runs|. This may be helpful if you need Bib\TeX{} processing, for example:
+% By default, |pdflatex| is invoked but once per docshot. This number may be modified by means of the |runs| package
+% option, which proves serviceable when Bib\TeX{} processing is required, for example:
 %\iffalse
 %<*verb>
 %\fi
@@ -287,9 +285,9 @@ Hello, world!
 
 % \DescribeMacro{small}
 % \DescribeMacro{tiny}
-% You don't have too much freedom in formatting of verbatim texts, but you can make
-% their font a bit smaller using |small| package option. You can also make it very
-% small using |tiny| option:
+% The latitude available for formatting verbatim texts is limited; nevertheless, the font
+% may be reduced somewhat by means of the |small| package option, or rendered considerably
+% smaller still by the |tiny| option:
 %\iffalse
 %<*verb>
 %\fi
@@ -301,9 +299,9 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{log}
-% With |log| option you can make us print all possible logs to the main \TeX{} log.
-% By default, we don't do this and you won't see the output of |pdflatex| compilation, for example.
-% Just use it like this:
+% By means of the |log| option, the package writes all available logs into the main \TeX{} log.
+% By default, this is not done, and the output of |pdflatex| compilation, for instance, remains hidden.
+% The option is employed thus:
 %\iffalse
 %<*verb>
 %\fi
@@ -315,9 +313,9 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{inputminted}
-% By default, we render the verbatim text using |\VerbatimInput| command. You
-% can change that and make us use |\inputminted|
-% from \href{https://ctan.org/pkg/minted}{minted} package instead, for example:
+% By default, the verbatim text is rendered by means of the |\VerbatimInput| command. This
+% may be substituted with |\inputminted|
+% from the \href{https://ctan.org/pkg/minted}{minted} package, for example:
 %\iffalse
 %<*verb>
 %\fi
@@ -331,9 +329,9 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{lstinputlisting}
-% By default, we render the verbatim text using |\VerbatimInput| command. You
-% can change that and make us use |\lstinputlisting| from
-% \href{https://ctan.org/pkg/listings}{listings} package instead, for example:
+% By default, the verbatim text is rendered by means of the |\VerbatimInput| command. This
+% may be substituted with |\lstinputlisting| from the
+% \href{https://ctan.org/pkg/listings}{listings} package, for example:
 %\iffalse
 %<*verb>
 %\fi
@@ -349,8 +347,8 @@ Hello, world!
 % \section{Fine-tuning Options}
 
 % \DescribeMacro{\docshotOptions}
-% By default, we render the verbatim text using |\VerbatimInput| command with
-% no options. You can add your options using |\docshotOptions| command:
+% By default, the verbatim text is rendered by means of the |\VerbatimInput| command with
+% no options. Additional options may be supplied via the |\docshotOptions| command:
 %\iffalse
 %<*verb>
 %\fi
@@ -364,19 +362,18 @@ Hello, world!
 %</verb>
 %\fi
 
-% The options will be cleaned up by the first render of a docshot.
+% The options are cleared upon the first rendering of a docshot.
 
 % \section{Prerequisites}
 
 % \DescribeMacro{\docshotPrerequisite}
 % \changes{0.0.3}{2022/10/14}{The command is added to enable copying of supplementary files into docshots snippets processing directory.}
-% If you need some files to be present next to the |.tex| snippet while
-% it's rendered by |pdflatex|, you can use |\docshotPrerequisite| with
-% a single mandatory argument. The argument is the name of a file you need
-% to be copied from current directory to the temporary directory, where
-% all snippets are rendered. The command can be used either in the body
-% of the document or in the preamble --- it doesn't matter, as long as
-% it shows up before the docshot that needs the prerequisite. For example:
+% Whenever certain files are required to be present alongside the |.tex| snippet during
+% rendering by |pdflatex|, the |\docshotPrerequisite| command may be employed, accepting
+% a single mandatory argument. The argument denotes the name of a file to be copied from
+% the current directory to the temporary directory in which all snippets are rendered. The
+% command may appear either in the body of the document or in the preamble---the placement is
+% immaterial, provided that it precedes the docshot which requires the prerequisite. For example:
 %\iffalse
 %<*verb>
 %\fi
@@ -390,7 +387,7 @@ Hello, world!
   \usepackage{graphicx}
   \pagestyle{empty}
   \begin{document}
-    This is my favorite picture of a duck:
+    A favoured photograph of a duck:
     \includegraphics[width=2in]{duck.jpg}
   \end{document}
 \end{docshot}
@@ -401,10 +398,10 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{\docshotAfter}
-% If you need something to happen after each |pdflatex| run of a docshot, you may use
-% |\docshotAfter| command right before |docshot| environment. For example, you have a bibliography file that
-% you want to be visible for all snippets and you want all of them to
-% run \href{https://ctan.org/pkg/biber}{biber} in order to process citations:
+% Should some action be required after each |pdflatex| run of a docshot, the
+% |\docshotAfter| command may be placed immediately before the |docshot| environment. For example, when a bibliography file is to remain
+% visible for every snippet and \href{https://ctan.org/pkg/biber}{biber} is to be invoked
+% upon each in order to process citations:
 %\iffalse
 %<*verb>
 %\fi
@@ -420,7 +417,7 @@ Hello, world!
   \addbibresource{main.bib}
   \pagestyle{empty}
   \begin{document}
-    You must read the book of \citet{knuth1984}.
+    The book of \citet{knuth1984} is essential reading.
     \printbibliography
   \end{document}
 \end{docshot}
@@ -429,17 +426,17 @@ Hello, world!
 %\iffalse
 %</verb>
 %\fi
-% The script you specify in the first argument of |\docshotAfter| will get
-% three arguments when it runs:
+% The script supplied as the first argument of |\docshotAfter| receives
+% three arguments at runtime:
 % \begin{description}\setlength\itemsep{0em}
 % \item[|\$1|] the cycle of |pdflatex| processing (1, 2, ...),
 % \item[|\$2|] the hash of the snippet,
 % \item[|\$3|] the name of the |.tex| file.
 % \end{description}
-% |$3| is basically equal to |$2| with an
-% attached |.tex| suffix. |\docshotAfter| applies only to the first |docshot|
-% environment that goes after it! You must specify |\docshotAfter| before
-% each |docshot| where you want such post-processing to happen.
+% |$3| is, in essence, |$2| with an appended |.tex| suffix. |\docshotAfter|
+% applies solely to the first |docshot| environment that follows it; |\docshotAfter|
+% must therefore be specified before every |docshot| in which such post-processing
+% is desired.
 
 % \StopEventually{}
 
