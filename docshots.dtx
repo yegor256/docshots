@@ -518,6 +518,23 @@ Hello, world!
   \def\docshots@gsdefault{gs}%
   \def\docshots@sep{/}%
 \fi
+%    \end{macrocode}
+% On Unix we render inside the temporary directory. On Windows we cannot, since
+% |cmd.exe| keeps a |cd| in effect after the parentheses close, which would send
+% iexec's exit-code file to the wrong place; instead we stay put and point
+% |pdflatex| at the directory with |-output-directory|:
+%    \begin{macrocode}
+\ifdocshots@windows
+  \def\docshots@render{"\docshots@pdflatex"
+    -interaction=errorstopmode -halt-on-error -shell-escape
+    -output-directory="\docshots@tmpdir\docshots@sep\jobname"
+    "\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.tex"}%
+\else
+  \def\docshots@render{cd "\docshots@tmpdir/\jobname" &&
+    "\docshots@pdflatex"
+    -interaction=errorstopmode -halt-on-error -shell-escape
+    \hash.tex}%
+\fi
 \def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
@@ -625,12 +642,7 @@ Hello, world!
       \iexec[\docshots@log,
         stdout=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.stdout,
         exit=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.ret,
-        quiet,trace]{cd "\docshots@tmpdir\docshots@sep\jobname" &&
-        "\docshots@pdflatex"
-        -interaction=errorstopmode
-        -halt-on-error
-        -shell-escape
-        \hash.tex}%
+        quiet,trace]{\docshots@render}%
       \ifnum\n=1\else%
         \message{docshots: pdflatex run no.\n^^J}%
       \fi%
