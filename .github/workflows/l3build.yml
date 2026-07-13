@@ -30,8 +30,10 @@ jobs:
         shell: pwsh
         run: |
           choco install --yes --no-progress ghostscript
-          $bin = (Get-ChildItem 'C:\Program Files\gs\gs*\bin' -Directory | Select-Object -First 1).FullName
-          Add-Content -Path $env:GITHUB_PATH -Value $bin
+          $gs = Get-ChildItem 'C:\Program Files\gs' -Recurse -Filter gswin64c.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $gs) { throw 'gswin64c.exe not found after install' }
+          Write-Host "Ghostscript at $($gs.DirectoryName)"
+          Add-Content -Path $env:GITHUB_PATH -Value $gs.DirectoryName
       - run: sed -E 's/^(hard|soft)[[:space:]]+//' DEPENDS.txt > .texlive-packages.txt
       - uses: zauguin/install-texlive@v4.4.0
         with:
