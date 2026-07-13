@@ -59,14 +59,13 @@
 %
 % \maketitle
 %
-% \textbf{\color{red}NB!}
-% This package does not operate on Windows!
-% The \TeX{} processor must furthermore be invoked with the |--shell-escape| option,
+% The \TeX{} processor must be invoked with the |--shell-escape| option,
 % and the following must be installed on the host system:
 % |pdflatex|,
 % \href{https://www.perl.org}{Perl},
 % \href{https://www.ghostscript.com}{Ghostscript},
 % and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}.
+% The package operates on Windows as well as on Unix, provided these tools are on the |PATH|.
 
 % \section{Introduction}
 %
@@ -167,7 +166,7 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{gs}
-% The default location of Ghostscript is simply |gs|.
+% The default location of Ghostscript is simply |gs| on Unix and |gswin64c| on Windows.
 % This may be altered by means of the |gs| package option,
 % for example:
 %\iffalse
@@ -478,10 +477,32 @@ Hello, world!
 % \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text either via listings or minted packages.}
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 % \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
+% We also detect Windows, in order to pick the right default for Ghostscript,
+% and we prepare an expanding variant of the string-replacement command
+% for later use in \docshotAfter:
+% \changes{0.5.0}{2026/07/13}{Windows compatibility: file operations go through Perl, and the "gs" default becomes "gswin64c" on Windows.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
 \RequirePackage{ifluatex}
 \RequirePackage{ifxetex}
+\RequirePackage{expl3}
+\newif\ifdocshots@windows
+\ExplSyntaxOn
+\sys_if_platform_windows:TF{\docshots@windowstrue}{\docshots@windowsfalse}
+\cs_generate_variant:Nn \str_replace_all:Nnn { Nne }
+\newcommand\docshots@aftercmd[3]{%
+  \str_set:Nx \l_tmpa_str { \docshots@after }%
+  \str_replace_all:Nne \l_tmpa_str { $1 } { #1 }%
+  \str_replace_all:Nne \l_tmpa_str { $2 } { #2 }%
+  \str_replace_all:Nne \l_tmpa_str { $3 } { #3 }%
+  \cs_set:Npx \docshots@aftersh { \str_use:N \l_tmpa_str }%
+}
+\ExplSyntaxOff
+\ifdocshots@windows
+  \def\docshots@gsdefault{gswin64c}%
+\else
+  \def\docshots@gsdefault{gs}%
+\fi
 \def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
@@ -499,7 +520,7 @@ Hello, world!
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
   gs/.store in=\docshots@gs,
-  gs/.default=gs,
+  gs/.default=\docshots@gsdefault,
   pdfcrop/.store in=\docshots@pdfcrop,
   pdfcrop/.default=pdfcrop,
   margin/.store in=\docshots@margin,
@@ -527,14 +548,17 @@ Hello, world!
 \fi%
 %    \end{macrocode}
 
-% Then, we print the version of |ghostscript| to \TeX{} log:
+% Then, we print the version of |ghostscript| to \TeX{} log, ignoring a
+% failure, since Ghostscript is not strictly required for rendering:
 %    \begin{macrocode}
-\iexec[\docshots@log,quiet]{"\docshots@gs" --version}%
+\iexec[\docshots@log,quiet,ignore]{"\docshots@gs" --version}%
 %    \end{macrocode}
 
-% Then, we make a directory where all temporary files will be kept:
+% Then, we make a directory where all temporary files will be kept. We use
+% Perl instead of |mkdir|, so that the code works on Windows too:
 %    \begin{macrocode}
-\iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
+\iexec[null]{perl -MFile::Path=make_path -e "make_path(shift)"
+  "\docshots@tmpdir/\jobname"}%
 %    \end{macrocode}
 
 % \begin{macro}{\docshots@mdfive}
@@ -578,7 +602,8 @@ Hello, world!
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
-    {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/docshots-temp.tex"
+    {\iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+      "\docshots@tmpdir/\jobname/docshots-temp.tex"
       "\docshots@tmpdir/\jobname/\hash.tex"}%
     \message{docshots: rendering at line no. \the\inputlineno^^J}%
     \foreach \n in {1,...,\docshots@runs}{%
@@ -594,17 +619,19 @@ Hello, world!
       \ifnum\n=1\else%
         \message{docshots: pdflatex run no.\n^^J}%
       \fi%
-      \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
-        {\iexec[\docshots@log,quiet]{chmod a+x
-          "\docshots@tmpdir/\jobname/after.sh"}
-        \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir/\jobname" &&
-          ./after.sh \n\space \hash\space \hash.tex}}
-        {}}}%
 %    \end{macrocode}
-% Here we delete |after.sh| which may exist here after the last
-% compilation of |pdflatex|:
+% If a post-processing command was registered by \docshotAfter, we substitute
+% its |$1|, |$2|, and |$3| placeholders and execute it. There is no shell script
+% and no |chmod|, so the mechanism works on Windows too:
 %    \begin{macrocode}
-  \iexec[\docshots@log,quiet]{rm -f "\docshots@tmpdir/\jobname/after.sh"}
+      \ifdefined\docshots@after%
+        \begingroup%
+          \docshots@aftercmd{\n}{\hash}{\hash.tex}%
+          \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir/\jobname" &&
+            \docshots@aftersh}%
+        \endgroup%
+      \fi}}%
+  \global\let\docshots@after\@undefined%
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:
@@ -678,7 +705,8 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \newcommand\docshotPrerequisite[1]{
-  \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
+  \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+    "#1" "\docshots@tmpdir/\jobname/#1"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
 }
@@ -687,14 +715,15 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\docshotAfter}
-% Then, we define |\docshotAfter| command:
+% Then, we define |\docshotAfter| command. Rather than writing a shell script,
+% we merely remember the command as a detokenized string; the |docshot|
+% environment substitutes its placeholders and runs it after each |pdflatex|:
+% \changes{0.5.0}{2026/07/13}{The command is remembered as a string and executed directly, instead of being written to a shell script, for Windows compatibility.}
 %    \begin{macrocode}
 \makeatletter
 \newcommand\docshotAfter[1]{
-  \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
-    > "\docshots@tmpdir/\jobname/after.sh"}%
-  \message{docshots: File
-    '\docshots@tmpdir/\jobname/after.sh' created^^J}%
+  \xdef\docshots@after{\detokenize{#1}}%
+  \message{docshots: post-processing command '\docshots@after' registered^^J}%
 }
 \makeatother
 %    \end{macrocode}
