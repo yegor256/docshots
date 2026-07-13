@@ -490,8 +490,9 @@ Hello, world!
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 % \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
 % We also detect Windows, in order to pick the right default for Ghostscript,
-% and we prepare an expanding variant of the string-replacement command
-% for later use in \docshotAfter:
+% the right file separator for shell commands (a backslash, since |cmd.exe|
+% rejects forward slashes in redirection targets), and an expanding variant of
+% the string-replacement command for later use in \docshotAfter:
 % \changes{0.5.0}{2026/07/13}{Windows compatibility: file operations go through Perl, and the "gs" default becomes "gswin64c" on Windows.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
@@ -512,8 +513,10 @@ Hello, world!
 \ExplSyntaxOff
 \ifdocshots@windows
   \def\docshots@gsdefault{gswin64c}%
+  \edef\docshots@sep{\@backslashchar}%
 \else
   \def\docshots@gsdefault{gs}%
+  \def\docshots@sep{/}%
 \fi
 \def\docshots@log{}
 \pgfkeys{
@@ -620,9 +623,9 @@ Hello, world!
     \message{docshots: rendering at line no. \the\inputlineno^^J}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,
-        stdout=\docshots@tmpdir/\jobname/\hash.stdout,
-        exit=\docshots@tmpdir/\jobname/\hash.ret,
-        quiet,trace]{cd "\docshots@tmpdir/\jobname" &&
+        stdout=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.stdout,
+        exit=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.ret,
+        quiet,trace]{cd "\docshots@tmpdir\docshots@sep\jobname" &&
         "\docshots@pdflatex"
         -interaction=errorstopmode
         -halt-on-error
@@ -639,7 +642,7 @@ Hello, world!
       \ifdefined\docshots@after%
         \begingroup%
           \docshots@aftercmd{\n}{\hash}{\hash.tex}%
-          \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir/\jobname" &&
+          \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir\docshots@sep\jobname" &&
             \docshots@aftersh}%
         \endgroup%
       \fi}}%
