@@ -65,6 +65,8 @@
 % \href{https://www.perl.org}{Perl},
 % \href{https://www.ghostscript.com}{Ghostscript},
 % and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}.
+% The |--shell-escape| option is required because the package launches these
+% external programs from within the \TeX{} run in order to compile and crop each snippet.
 % The package operates on Windows as well as on Unix, provided these tools are on the |PATH|.
 
 % \section{Introduction}
@@ -74,7 +76,7 @@
 % precisely how the entire document will be rendered as a PDF, by means
 % of a subprocess (such as |pdflatex|) that performs the rendering.
 % To the \href{https://tex.stackexchange.com/questions/661027}{author's
-% best} knowledge, no existing package addressed this need; whence the
+% best} knowledge, no existing package addresses this need; hence the
 % present, modest package was devised.
 
 % For instance, the following code:
@@ -119,14 +121,21 @@
 % \end{document}
 % \end{docshot}
 
+% The body of every |docshot| environment must be a complete, self-contained
+% \LaTeX{} document: it begins with |\documentclass|, loads whatever packages it
+% requires, and wraps its content in |\begin{document}| and |\end{document}|. The
+% body is written verbatim to a separate |.tex| file and compiled on its own, exactly
+% as the two examples above demonstrate.
+
 % The figure on the left is produced by a subprocess that executes
-% |pdflatex| upon the |.tex| content extracted from the source file.
+% |pdflatex| on the |.tex| content extracted from the source file.
 % Once the \TeX{} sources have been successfully processed,
 % \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} is invoked to trim the document.
 
 % |pdflatex| is run with the |-interaction=errorstopmode| and |-halt-on-error| options.
 % Consequently, \TeX{} processing halts at the first error encountered. The \TeX{}
-% log should be consulted to ascertain the cause of any failure.
+% log should be consulted to ascertain the cause of any failure; the |log| option,
+% described below, copies the full output of |pdflatex| into that log.
 
 % Whenever text rather than a single figure is to be rendered, the
 % \href{https://ctan.org/pkg/geometry}{geometry} package is recommended for
@@ -141,9 +150,12 @@
 % pessimist'' --- \emph{Mark Twain}
 % \end{document}
 % \end{docshot}
-% The use of |\pagestyle{empty}|, as employed in the preceding docshots, is likewise viable.
+% The use of |\pagestyle{empty}|, as in the preceding docshots, is likewise possible.
 
 % \section{Package Options}
+
+% All options listed below are supplied to the package in the usual way, within the
+% optional argument of |\usepackage[...]{docshots}|.
 
 % \DescribeMacro{pdflatex}
 % The default command-line tool for converting |.tex| into
@@ -247,7 +259,7 @@ Hello, world!
 
 % \DescribeMacro{dtx}
 % Whenever this package is employed within |.dtx| documentation, the |dtx| package option must be added. Under
-% this option, all leading comment symbols are removed from the start of each line:
+% this option, all leading comment symbols (the |%| characters) are removed from the start of each line:
 %\iffalse
 %<*verb>
 %\fi
@@ -286,7 +298,7 @@ Hello, world!
 % \DescribeMacro{small}
 % \DescribeMacro{tiny}
 % The latitude available for formatting verbatim texts is limited; nevertheless, the font
-% may be reduced somewhat by means of the |small| package option, or rendered considerably
+% may be reduced somewhat by means of the |small| package option, or made considerably
 % smaller still by the |tiny| option:
 %\iffalse
 %<*verb>
@@ -367,7 +379,7 @@ Hello, world!
 % \section{Prerequisites}
 
 % \DescribeMacro{\docshotPrerequisite}
-% \changes{0.0.3}{2022/10/14}{The command is added to enable copying of supplementary files into docshots snippets processing directory.}
+% \changes{0.0.3}{2022/10/14}{The command is added to enable copying of supplementary files into the directory where docshot snippets are processed.}
 % Whenever certain files are required to be present alongside the |.tex| snippet during
 % rendering by |pdflatex|, the |\docshotPrerequisite| command may be employed, accepting
 % a single mandatory argument. The argument denotes the name of a file to be copied from
@@ -400,8 +412,8 @@ Hello, world!
 % \DescribeMacro{\docshotAfter}
 % Should some action be required after each |pdflatex| run of a docshot, the
 % |\docshotAfter| command may be placed immediately before the |docshot| environment. For example, when a bibliography file is to remain
-% visible for every snippet and \href{https://ctan.org/pkg/biber}{biber} is to be invoked
-% upon each in order to process citations:
+% available to every snippet and \href{https://ctan.org/pkg/biber}{biber} is to be invoked
+% on each in order to process citations:
 %\iffalse
 %<*verb>
 %\fi
@@ -462,7 +474,7 @@ Hello, world!
 %    \end{macrocode}
 
 % Then, we include \href{https://ctan.org/pkg/graphicx}{graphicx}
-% in order to be able to use |\includegraphics| command:
+% in order to be able to use the |\includegraphics| command:
 %    \begin{macrocode}
 \RequirePackage{graphicx}
 %    \end{macrocode}
@@ -474,7 +486,7 @@ Hello, world!
 %    \end{macrocode}
 
 % Then, we process package options with the help of \href{https://ctan.org/pkg/pgfopts}{pgfopts}:
-% \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text either via listings or minted packages.}
+% \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text via either the listings or the minted package.}
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 % \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
 % We also detect Windows, in order to pick the right default for Ghostscript,
@@ -536,19 +548,19 @@ Hello, world!
 \ProcessPgfOptions{/docshots}
 %    \end{macrocode}
 
-% Then, we print the version of |pdflatex| to \TeX{} log:
+% Then, we print the version of |pdflatex| to the \TeX{} log:
 %    \begin{macrocode}
 \iexec[\docshots@log,quiet]{"\docshots@pdflatex" --version}%
 %    \end{macrocode}
 
-% Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to \TeX{} log:
+% Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to the \TeX{} log:
 %    \begin{macrocode}
 \ifdefined\docshots@nocrop\else%
   \iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
 \fi%
 %    \end{macrocode}
 
-% Then, we print the version of |ghostscript| to \TeX{} log, ignoring a
+% Then, we print the version of |ghostscript| to the \TeX{} log, ignoring a
 % failure, since Ghostscript is not strictly required for rendering:
 %    \begin{macrocode}
 \iexec[\docshots@log,quiet,ignore]{"\docshots@gs" --version}%
@@ -595,7 +607,7 @@ Hello, world!
   \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/docshots-temp.tex}}%
 %    \end{macrocode}
 % If the PDF with the required name already exists, we ignore this step.
-% Otherwise, we copy |docshots-temp.tex| into new file and run |pdflatex|:
+% Otherwise, we copy |docshots-temp.tex| into a new file and run |pdflatex|:
 % \changes{0.1.0}{2022/10/26}{The output is saved to a hash-named file, for better uniqueness of temporary files.}
 % \changes{0.4.0}{2022/11/29}{Now, \TeX output has a log message with the number of the line in the source file, which we render.}
 %    \begin{macrocode}
