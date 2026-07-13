@@ -522,13 +522,14 @@ Hello, world!
 % On Unix we render inside the temporary directory. On Windows we cannot, since
 % |cmd.exe| keeps a |cd| in effect after the parentheses close, which would send
 % iexec's exit-code file to the wrong place; instead we stay put and point
-% |pdflatex| at the directory with |-output-directory|:
+% |pdflatex| at the directory with |-output-directory|. The |pdflatex| arguments
+% keep forward slashes, since \TeX{} reads a backslash as an escape character:
 %    \begin{macrocode}
 \ifdocshots@windows
   \def\docshots@render{"\docshots@pdflatex"
     -interaction=errorstopmode -halt-on-error -shell-escape
-    -output-directory="\docshots@tmpdir\docshots@sep\jobname"
-    "\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.tex"}%
+    -output-directory="\docshots@tmpdir/\jobname"
+    "\docshots@tmpdir/\jobname/\hash.tex"}%
 \else
   \def\docshots@render{cd "\docshots@tmpdir/\jobname" &&
     "\docshots@pdflatex"
