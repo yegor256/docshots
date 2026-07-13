@@ -669,11 +669,12 @@ Hello, world!
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
     {\ifdefined\docshots@nocrop
-      \iexec[\docshots@log,quiet]{cp
+      \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
       \else%
       \iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
+        --gscmd "\docshots@gs"
         --margins 0
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
