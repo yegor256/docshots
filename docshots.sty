@@ -7,7 +7,7 @@
 %% docshots.dtx  (with options: `package')
 %% (The MIT License)
 %% 
-%% Copyright (c) 2021-2025 Yegor Bugayenko
+%% Copyright (c) 2021-2026 Yegor Bugayenko
 %% 
 %% Permission is hereby granted, free of charge, to any person obtaining a copy
 %% of this software and associated documentation files (the 'Software'), to deal
@@ -31,7 +31,9 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2025/02/21 18.02.04 TeX Samples Next to Their PDF Snapshots in DTX]
+[2026-07-15 08.01.52 TeX Samples Next to Their PDF Snapshots in DTX]
+
+
 
 
 
@@ -76,6 +78,37 @@
 \RequirePackage{pgfopts}
 \RequirePackage{ifluatex}
 \RequirePackage{ifxetex}
+\RequirePackage{expl3}
+\newif\ifdocshots@windows
+\ExplSyntaxOn
+\sys_if_platform_windows:TF{\docshots@windowstrue}{\docshots@windowsfalse}
+\cs_generate_variant:Nn \str_replace_all:Nnn { Nne }
+\newcommand\docshots@aftercmd[3]{%
+  \str_set:Nx \l_tmpa_str { \docshots@after }%
+  \str_replace_all:Nne \l_tmpa_str { $1 } { #1 }%
+  \str_replace_all:Nne \l_tmpa_str { $2 } { #2 }%
+  \str_replace_all:Nne \l_tmpa_str { $3 } { #3 }%
+  \cs_set:Npx \docshots@aftersh { \str_use:N \l_tmpa_str }%
+}
+\ExplSyntaxOff
+\ifdocshots@windows
+  \def\docshots@gsdefault{gswin64c}%
+  \edef\docshots@sep{\@backslashchar}%
+\else
+  \def\docshots@gsdefault{gs}%
+  \def\docshots@sep{/}%
+\fi
+\ifdocshots@windows
+  \def\docshots@render{"\docshots@pdflatex"
+    -interaction=errorstopmode -halt-on-error -shell-escape
+    -output-directory="\docshots@tmpdir/\jobname"
+    "\docshots@tmpdir/\jobname/\hash.tex"}%
+\else
+  \def\docshots@render{cd "\docshots@tmpdir/\jobname" &&
+    "\docshots@pdflatex"
+    -interaction=errorstopmode -halt-on-error -shell-escape
+    \hash.tex}%
+\fi
 \def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
@@ -93,7 +126,7 @@
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
   gs/.store in=\docshots@gs,
-  gs/.default=gs,
+  gs/.default=\docshots@gsdefault,
   pdfcrop/.store in=\docshots@pdfcrop,
   pdfcrop/.default=pdfcrop,
   margin/.store in=\docshots@margin,
@@ -114,9 +147,10 @@
   \iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
 \fi%
 
-\iexec[\docshots@log,quiet]{"\docshots@gs" --version}%
+\iexec[\docshots@log,quiet,ignore]{"\docshots@gs" --version}%
 
-\iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
+\iexec[null]{perl -MFile::Path=make_path -e "make_path(shift)"
+  "\docshots@tmpdir/\jobname"}%
 
 \RequirePackage{pdftexcmds}
 \makeatletter
@@ -136,39 +170,37 @@
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
-    {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/docshots-temp.tex"
+    {\iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+      "\docshots@tmpdir/\jobname/docshots-temp.tex"
       "\docshots@tmpdir/\jobname/\hash.tex"}%
     \message{docshots: rendering at line no. \the\inputlineno^^J}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,
-        stdout=\docshots@tmpdir/\jobname/\hash.stdout,
-        exit=\docshots@tmpdir/\jobname/\hash.ret,
-        quiet,trace]{cd "\docshots@tmpdir/\jobname" &&
-        "\docshots@pdflatex"
-        -interaction=errorstopmode
-        -halt-on-error
-        -shell-escape
-        \hash.tex}%
+        stdout=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.stdout,
+        exit=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.ret,
+        quiet,trace]{\docshots@render}%
       \ifnum\n=1\else%
         \message{docshots: pdflatex run no.\n^^J}%
       \fi%
-      \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
-        {\iexec[\docshots@log,quiet]{chmod a+x
-          "\docshots@tmpdir/\jobname/after.sh"}
-        \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir/\jobname" &&
-          ./after.sh \n\space \hash\space \hash.tex}}
-        {}}}%
-  \iexec[\docshots@log,quiet]{rm -f "\docshots@tmpdir/\jobname/after.sh"}
+      \ifdefined\docshots@after%
+        \begingroup%
+          \docshots@aftercmd{\n}{\hash}{\hash.tex}%
+          \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir\docshots@sep\jobname" &&
+            \docshots@aftersh}%
+        \endgroup%
+      \fi}}%
+  \global\let\docshots@after\@undefined%
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
     {\message{docshots: Won't pdfcrop,
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
     {\ifdefined\docshots@nocrop
-      \iexec[\docshots@log,quiet]{cp
+      \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
       \else%
       \iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
+        --gscmd "\docshots@gs"
         --margins 0
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
@@ -220,7 +252,8 @@
 
 \makeatletter
 \newcommand\docshotPrerequisite[1]{
-  \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
+  \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+    "#1" "\docshots@tmpdir/\jobname/#1"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
 }
@@ -228,10 +261,8 @@
 
 \makeatletter
 \newcommand\docshotAfter[1]{
-  \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
-    > "\docshots@tmpdir/\jobname/after.sh"}%
-  \message{docshots: File
-    '\docshots@tmpdir/\jobname/after.sh' created^^J}%
+  \xdef\docshots@after{\detokenize{#1}}%
+  \message{docshots: post-processing command '\docshots@after' registered^^J}%
 }
 \makeatother
 
