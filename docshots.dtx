@@ -59,14 +59,15 @@
 %
 % \maketitle
 %
-% \textbf{\color{red}NB!}
-% This package does not operate on Windows!
-% The \TeX{} processor must furthermore be invoked with the |--shell-escape| option,
+% The \TeX{} processor must be invoked with the |--shell-escape| option,
 % and the following must be installed on the host system:
 % |pdflatex|,
 % \href{https://www.perl.org}{Perl},
 % \href{https://www.ghostscript.com}{Ghostscript},
 % and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}.
+% The |--shell-escape| option is required because the package launches these
+% external programs from within the \TeX{} run in order to compile and crop each snippet.
+% The package operates on Windows as well as on Unix, provided these tools are on the |PATH|.
 
 % \section{Introduction}
 %
@@ -75,7 +76,7 @@
 % precisely how the entire document will be rendered as a PDF, by means
 % of a subprocess (such as |pdflatex|) that performs the rendering.
 % To the \href{https://tex.stackexchange.com/questions/661027}{author's
-% best} knowledge, no existing package addressed this need; whence the
+% best} knowledge, no existing package addresses this need; hence the
 % present, modest package was devised.
 
 % For instance, the following code:
@@ -120,14 +121,21 @@
 % \end{document}
 % \end{docshot}
 
+% The body of every |docshot| environment must be a complete, self-contained
+% \LaTeX{} document: it begins with |\documentclass|, loads whatever packages it
+% requires, and wraps its content in |\begin{document}| and |\end{document}|. The
+% body is written verbatim to a separate |.tex| file and compiled on its own, exactly
+% as the two examples above demonstrate.
+
 % The figure on the left is produced by a subprocess that executes
-% |pdflatex| upon the |.tex| content extracted from the source file.
+% |pdflatex| on the |.tex| content extracted from the source file.
 % Once the \TeX{} sources have been successfully processed,
 % \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} is invoked to trim the document.
 
 % |pdflatex| is run with the |-interaction=errorstopmode| and |-halt-on-error| options.
 % Consequently, \TeX{} processing halts at the first error encountered. The \TeX{}
-% log should be consulted to ascertain the cause of any failure.
+% log should be consulted to ascertain the cause of any failure; the |log| option,
+% described below, copies the full output of |pdflatex| into that log.
 
 % Whenever text rather than a single figure is to be rendered, the
 % \href{https://ctan.org/pkg/geometry}{geometry} package is recommended for
@@ -142,9 +150,12 @@
 % pessimist'' --- \emph{Mark Twain}
 % \end{document}
 % \end{docshot}
-% The use of |\pagestyle{empty}|, as employed in the preceding docshots, is likewise viable.
+% The use of |\pagestyle{empty}|, as in the preceding docshots, is likewise possible.
 
 % \section{Package Options}
+
+% All options listed below are supplied to the package in the usual way, within the
+% optional argument of |\usepackage[...]{docshots}|.
 
 % \DescribeMacro{pdflatex}
 % The default command-line tool for converting |.tex| into
@@ -167,7 +178,7 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{gs}
-% The default location of Ghostscript is simply |gs|.
+% The default location of Ghostscript is simply |gs| on Unix and |gswin64c| on Windows.
 % This may be altered by means of the |gs| package option,
 % for example:
 %\iffalse
@@ -248,7 +259,7 @@ Hello, world!
 
 % \DescribeMacro{dtx}
 % Whenever this package is employed within |.dtx| documentation, the |dtx| package option must be added. Under
-% this option, all leading comment symbols are removed from the start of each line:
+% this option, all leading comment symbols (the |%| characters) are removed from the start of each line:
 %\iffalse
 %<*verb>
 %\fi
@@ -287,7 +298,7 @@ Hello, world!
 % \DescribeMacro{small}
 % \DescribeMacro{tiny}
 % The latitude available for formatting verbatim texts is limited; nevertheless, the font
-% may be reduced somewhat by means of the |small| package option, or rendered considerably
+% may be reduced somewhat by means of the |small| package option, or made considerably
 % smaller still by the |tiny| option:
 %\iffalse
 %<*verb>
@@ -368,7 +379,7 @@ Hello, world!
 % \section{Prerequisites}
 
 % \DescribeMacro{\docshotPrerequisite}
-% \changes{0.0.3}{2022/10/14}{The command is added to enable copying of supplementary files into docshots snippets processing directory.}
+% \changes{0.0.3}{2022/10/14}{The command is added to enable copying of supplementary files into the directory where docshot snippets are processed.}
 % Whenever certain files are required to be present alongside the |.tex| snippet during
 % rendering by |pdflatex|, the |\docshotPrerequisite| command may be employed, accepting
 % a single mandatory argument. The argument denotes the name of a file to be copied from
@@ -401,8 +412,8 @@ Hello, world!
 % \DescribeMacro{\docshotAfter}
 % Should some action be required after each |pdflatex| run of a docshot, the
 % |\docshotAfter| command may be placed immediately before the |docshot| environment. For example, when a bibliography file is to remain
-% visible for every snippet and \href{https://ctan.org/pkg/biber}{biber} is to be invoked
-% upon each in order to process citations:
+% available to every snippet and \href{https://ctan.org/pkg/biber}{biber} is to be invoked
+% on each in order to process citations:
 %\iffalse
 %<*verb>
 %\fi
@@ -463,7 +474,7 @@ Hello, world!
 %    \end{macrocode}
 
 % Then, we include \href{https://ctan.org/pkg/graphicx}{graphicx}
-% in order to be able to use |\includegraphics| command:
+% in order to be able to use the |\includegraphics| command:
 %    \begin{macrocode}
 \RequirePackage{graphicx}
 %    \end{macrocode}
@@ -475,13 +486,56 @@ Hello, world!
 %    \end{macrocode}
 
 % Then, we process package options with the help of \href{https://ctan.org/pkg/pgfopts}{pgfopts}:
-% \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text either via listings or minted packages.}
+% \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text via either the listings or the minted package.}
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 % \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
+% We also detect Windows, in order to pick the right default for Ghostscript,
+% the right file separator for shell commands (a backslash, since |cmd.exe|
+% rejects forward slashes in redirection targets), and an expanding variant of
+% the string-replacement command for later use in \docshotAfter:
+% \changes{0.5.0}{2026/07/13}{Windows compatibility: file operations go through Perl, and the "gs" default becomes "gswin64c" on Windows.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
 \RequirePackage{ifluatex}
 \RequirePackage{ifxetex}
+\RequirePackage{expl3}
+\newif\ifdocshots@windows
+\ExplSyntaxOn
+\sys_if_platform_windows:TF{\docshots@windowstrue}{\docshots@windowsfalse}
+\cs_generate_variant:Nn \str_replace_all:Nnn { Nne }
+\newcommand\docshots@aftercmd[3]{%
+  \str_set:Nx \l_tmpa_str { \docshots@after }%
+  \str_replace_all:Nne \l_tmpa_str { $1 } { #1 }%
+  \str_replace_all:Nne \l_tmpa_str { $2 } { #2 }%
+  \str_replace_all:Nne \l_tmpa_str { $3 } { #3 }%
+  \cs_set:Npx \docshots@aftersh { \str_use:N \l_tmpa_str }%
+}
+\ExplSyntaxOff
+\ifdocshots@windows
+  \def\docshots@gsdefault{gswin64c}%
+  \edef\docshots@sep{\@backslashchar}%
+\else
+  \def\docshots@gsdefault{gs}%
+  \def\docshots@sep{/}%
+\fi
+%    \end{macrocode}
+% On Unix we render inside the temporary directory. On Windows we cannot, since
+% |cmd.exe| keeps a |cd| in effect after the parentheses close, which would send
+% iexec's exit-code file to the wrong place; instead we stay put and point
+% |pdflatex| at the directory with |-output-directory|. The |pdflatex| arguments
+% keep forward slashes, since \TeX{} reads a backslash as an escape character:
+%    \begin{macrocode}
+\ifdocshots@windows
+  \def\docshots@render{"\docshots@pdflatex"
+    -interaction=errorstopmode -halt-on-error -shell-escape
+    -output-directory="\docshots@tmpdir/\jobname"
+    "\docshots@tmpdir/\jobname/\hash.tex"}%
+\else
+  \def\docshots@render{cd "\docshots@tmpdir/\jobname" &&
+    "\docshots@pdflatex"
+    -interaction=errorstopmode -halt-on-error -shell-escape
+    \hash.tex}%
+\fi
 \def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
@@ -499,7 +553,7 @@ Hello, world!
   pdflatex/.store in=\docshots@pdflatex,
   pdflatex/.default=pdflatex,
   gs/.store in=\docshots@gs,
-  gs/.default=gs,
+  gs/.default=\docshots@gsdefault,
   pdfcrop/.store in=\docshots@pdfcrop,
   pdfcrop/.default=pdfcrop,
   margin/.store in=\docshots@margin,
@@ -515,26 +569,29 @@ Hello, world!
 \ProcessPgfOptions{/docshots}
 %    \end{macrocode}
 
-% Then, we print the version of |pdflatex| to \TeX{} log:
+% Then, we print the version of |pdflatex| to the \TeX{} log:
 %    \begin{macrocode}
 \iexec[\docshots@log,quiet]{"\docshots@pdflatex" --version}%
 %    \end{macrocode}
 
-% Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to \TeX{} log:
+% Then, we print the version of \href{https://ctan.org/pkg/pdfcrop}{pdfcrop} to the \TeX{} log:
 %    \begin{macrocode}
 \ifdefined\docshots@nocrop\else%
   \iexec[\docshots@log,quiet]{"\docshots@pdfcrop" --version}%
 \fi%
 %    \end{macrocode}
 
-% Then, we print the version of |ghostscript| to \TeX{} log:
+% Then, we print the version of |ghostscript| to the \TeX{} log, ignoring a
+% failure, since Ghostscript is not strictly required for rendering:
 %    \begin{macrocode}
-\iexec[\docshots@log,quiet]{"\docshots@gs" --version}%
+\iexec[\docshots@log,quiet,ignore]{"\docshots@gs" --version}%
 %    \end{macrocode}
 
-% Then, we make a directory where all temporary files will be kept:
+% Then, we make a directory where all temporary files will be kept. We use
+% Perl instead of |mkdir|, so that the code works on Windows too:
 %    \begin{macrocode}
-\iexec[null]{mkdir -p "\docshots@tmpdir/\jobname"}%
+\iexec[null]{perl -MFile::Path=make_path -e "make_path(shift)"
+  "\docshots@tmpdir/\jobname"}%
 %    \end{macrocode}
 
 % \begin{macro}{\docshots@mdfive}
@@ -571,40 +628,38 @@ Hello, world!
   \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/docshots-temp.tex}}%
 %    \end{macrocode}
 % If the PDF with the required name already exists, we ignore this step.
-% Otherwise, we copy |docshots-temp.tex| into new file and run |pdflatex|:
+% Otherwise, we copy |docshots-temp.tex| into a new file and run |pdflatex|:
 % \changes{0.1.0}{2022/10/26}{The output is saved to a hash-named file, for better uniqueness of temporary files.}
 % \changes{0.4.0}{2022/11/29}{Now, \TeX output has a log message with the number of the line in the source file, which we render.}
 %    \begin{macrocode}
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.pdf}
     {\message{docshots: Won't render,
       the PDF '\docshots@tmpdir/\jobname/\hash.pdf' already exists^^J}}
-    {\iexec[\docshots@log,quiet]{cp "\docshots@tmpdir/\jobname/docshots-temp.tex"
+    {\iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+      "\docshots@tmpdir/\jobname/docshots-temp.tex"
       "\docshots@tmpdir/\jobname/\hash.tex"}%
     \message{docshots: rendering at line no. \the\inputlineno^^J}%
     \foreach \n in {1,...,\docshots@runs}{%
       \iexec[\docshots@log,
-        stdout=\docshots@tmpdir/\jobname/\hash.stdout,
-        exit=\docshots@tmpdir/\jobname/\hash.ret,
-        quiet,trace]{cd "\docshots@tmpdir/\jobname" &&
-        "\docshots@pdflatex"
-        -interaction=errorstopmode
-        -halt-on-error
-        -shell-escape
-        \hash.tex}%
+        stdout=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.stdout,
+        exit=\docshots@tmpdir\docshots@sep\jobname\docshots@sep\hash.ret,
+        quiet,trace]{\docshots@render}%
       \ifnum\n=1\else%
         \message{docshots: pdflatex run no.\n^^J}%
       \fi%
-      \IfFileExists{\docshots@tmpdir/\jobname/after.sh}
-        {\iexec[\docshots@log,quiet]{chmod a+x
-          "\docshots@tmpdir/\jobname/after.sh"}
-        \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir/\jobname" &&
-          ./after.sh \n\space \hash\space \hash.tex}}
-        {}}}%
 %    \end{macrocode}
-% Here we delete |after.sh| which may exist here after the last
-% compilation of |pdflatex|:
+% If a post-processing command was registered by \docshotAfter, we substitute
+% its |$1|, |$2|, and |$3| placeholders and execute it. There is no shell script
+% and no |chmod|, so the mechanism works on Windows too:
 %    \begin{macrocode}
-  \iexec[\docshots@log,quiet]{rm -f "\docshots@tmpdir/\jobname/after.sh"}
+      \ifdefined\docshots@after%
+        \begingroup%
+          \docshots@aftercmd{\n}{\hash}{\hash.tex}%
+          \iexec[\docshots@log,quiet]{cd "\docshots@tmpdir\docshots@sep\jobname" &&
+            \docshots@aftersh}%
+        \endgroup%
+      \fi}}%
+  \global\let\docshots@after\@undefined%
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:
@@ -614,11 +669,12 @@ Hello, world!
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
       already exists^^J}}
     {\ifdefined\docshots@nocrop
-      \iexec[\docshots@log,quiet]{cp
+      \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
       \else%
       \iexec[\docshots@log,quiet]{"\docshots@pdfcrop"
+        --gscmd "\docshots@gs"
         --margins 0
         "\docshots@tmpdir/\jobname/\hash.pdf"
         "\docshots@tmpdir/\jobname/\hash.crop.pdf"}%
@@ -678,7 +734,8 @@ Hello, world!
 %    \begin{macrocode}
 \makeatletter
 \newcommand\docshotPrerequisite[1]{
-  \iexec[\docshots@log,quiet]{cp #1 "\docshots@tmpdir/\jobname"}%
+  \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+    "#1" "\docshots@tmpdir/\jobname/#1"}%
   \message{docshots: File '#1' copied to
     '\docshots@tmpdir/\jobname/#1'^^J}%
 }
@@ -687,14 +744,15 @@ Hello, world!
 % \end{macro}
 
 % \begin{macro}{\docshotAfter}
-% Then, we define |\docshotAfter| command:
+% Then, we define |\docshotAfter| command. Rather than writing a shell script,
+% we merely remember the command as a detokenized string; the |docshot|
+% environment substitutes its placeholders and runs it after each |pdflatex|:
+% \changes{0.5.0}{2026/07/13}{The command is remembered as a string and executed directly, instead of being written to a shell script, for Windows compatibility.}
 %    \begin{macrocode}
 \makeatletter
 \newcommand\docshotAfter[1]{
-  \iexec[\docshots@log,quiet]{/bin/echo -n '\detokenize{#1}'
-    > "\docshots@tmpdir/\jobname/after.sh"}%
-  \message{docshots: File
-    '\docshots@tmpdir/\jobname/after.sh' created^^J}%
+  \xdef\docshots@after{\detokenize{#1}}%
+  \message{docshots: post-processing command '\docshots@after' registered^^J}%
 }
 \makeatother
 %    \end{macrocode}
