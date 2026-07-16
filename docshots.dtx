@@ -36,10 +36,16 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{lmodern}
+\usepackage{fail-fast}
+\usepackage{silence}
+\WarningFilter{latex}{Marginpar on page}
 \usepackage{microtype}
 \AddToHook{env/verbatim/begin}{\microtypesetup{protrusion=false}}
 \usepackage[dtx]{docshots}
+\PassOptionsToPackage{hyperindex=false}{hyperref}
 \usepackage{href-ul}
+\usepackage{bookmark}
+\renewcommand{\RerunFileCheck}[3]{\AddToHook{enddocument/info}{#2}}
 \usepackage{xcolor}
 \PageIndex
 \EnableCrossrefs

@@ -9,6 +9,8 @@ hard pgf
 hard pgfopts
 soft biber
 soft biblatex
+soft bookmark
+soft fail-fast
 soft ffcode
 soft href-ul
 soft hypdoc
@@ -18,6 +20,7 @@ soft microtype
 soft minted
 soft newtx
 soft scheme-basic
+soft silence
 soft tools
 soft upquote
 soft xetex
