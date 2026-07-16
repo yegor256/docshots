@@ -1,0 +1,34 @@
+% SPDX-FileCopyrightText: Copyright (c) 2021-2026 Yegor Bugayenko
+% SPDX-License-Identifier: MIT
+
+\input{regression-test.tex}
+\documentclass{article}
+\usepackage[snippet=left]{docshots}
+\begin{document}
+
+\START
+
+\begin{docshot}
+\documentclass{article}
+\begin{document}
+  Left snippet.
+\end{document}
+\end{docshot}
+
+\docshotSnippet{right}
+\begin{docshot}
+\documentclass{article}
+\begin{document}
+  Right snippet.
+\end{document}
+\end{docshot}
+
+\docshotSnippet{none}
+\begin{docshot}
+\documentclass{article}
+\begin{document}
+  No snippet.
+\end{document}
+\end{docshot}
+
+\END

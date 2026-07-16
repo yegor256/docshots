@@ -263,6 +263,21 @@ Hello, world!
 %</verb>
 %\fi
 
+% \DescribeMacro{snippet}
+% By default, the verbatim \TeX{} source is placed to the right of the snapshot.
+% The |snippet| option accepts one of three values---|left|, |right|, or
+% |none|---to place the source on either side of the snapshot or to suppress it
+% entirely, leaving the snapshot alone:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\usepackage[snippet=left]{docshots}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \DescribeMacro{dtx}
 % Whenever this package is employed within |.dtx| documentation, the |dtx| package option must be added. Under
 % this option, all leading comment symbols (the |%| characters) are removed from the start of each line:
@@ -382,6 +397,25 @@ Hello, world!
 
 % The options are cleared upon the first rendering of a docshot.
 
+% \DescribeMacro{\docshotSnippet}
+% \changes{0.6.0}{2026/07/16}{The command is added to override the "snippet" placement of a single docshot.}
+% The package-wide |snippet| option may be overridden for a single docshot by
+% means of the |\docshotSnippet| command, which likewise accepts |left|,
+% |right|, or |none| and applies solely to the |docshot| that immediately
+% follows it:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\docshotSnippet{none}
+\begin{docshot}
+...
+\end{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
 % \section{Prerequisites}
 
 % \DescribeMacro{\docshotPrerequisite}
@@ -495,6 +529,7 @@ Hello, world!
 % \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text via either the listings or the minted package.}
 % \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
 % \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
+% \changes{0.6.0}{2026/07/16}{Package option "snippet" added, with values "left", "right", and "none", to place the verbatim source on either side of the snapshot or to omit it entirely.}
 % We also detect Windows, in order to pick the right default for Ghostscript,
 % the right file separator for shell commands (a backslash, since |cmd.exe|
 % rejects forward slashes in redirection targets), and an expanding variant of
@@ -570,9 +605,18 @@ Hello, world!
   left/.default=.3\linewidth,
   right/.store in=\docshots@right,
   right/.default=.55\linewidth,
-  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,runs
+  snippet/.store in=\docshots@snippet,
+  snippet/.default=right,
+  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,snippet,runs
 }
 \ProcessPgfOptions{/docshots}
+%    \end{macrocode}
+% We remember the three admissible values of the |snippet| option, so that a
+% docshot may later compare its own placement against them:
+%    \begin{macrocode}
+\def\docshots@snippetleft{left}
+\def\docshots@snippetright{right}
+\def\docshots@snippetnone{none}
 %    \end{macrocode}
 
 % Then, we print the version of |pdflatex| to the \TeX{} log:
@@ -691,17 +735,22 @@ Hello, world!
       \fi}%
   \message{docshots: the PDF is ready from line no. \the\inputlineno^^J}%
 %    \end{macrocode}
-% Finally, we render the two-column content:
+% Finally, we render the content. When no per-docshot placement was requested
+% via \docshotSnippet, we inherit the package-wide |snippet| setting. The
+% snapshot is a framed image, and the source is a top-aligned minipage; we
+% keep each in a macro of its own, so that either may precede the other:
 %    \begin{macrocode}
   \begingroup%
   \par%
-  \tikz[baseline=(a.north)]
+  \ifdefined\docshots@thissnippet\else%
+    \let\docshots@thissnippet\docshots@snippet%
+  \fi%
+  \def\docshots@image{\tikz[baseline=(a.north)]
     \node (a) [draw=gray,inner sep=\docshots@margin,
       line width=.2pt]
     {\includegraphics[width=\docshots@left]
-      {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
-  \hspace{\docshots@hspace}%
-  \begin{minipage}[t]{\docshots@right}%
+      {\docshots@tmpdir/\jobname/\hash.crop.pdf}};}%
+  \def\docshots@code{\begin{minipage}[t]{\docshots@right}%
     \vspace{0pt}%
     \ifdefined\docshots@lstinputlisting%
       \ifdefined\docshots@opts%
@@ -730,9 +779,24 @@ Hello, world!
       \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
-  \end{minipage}%
+  \end{minipage}}%
+%    \end{macrocode}
+% According to the |snippet| setting, the source stands to the left of the
+% snapshot, to its right, or is omitted altogether:
+%    \begin{macrocode}
+  \ifx\docshots@thissnippet\docshots@snippetnone%
+    \docshots@image%
+  \else\ifx\docshots@thissnippet\docshots@snippetleft%
+    \docshots@code\hspace{\docshots@hspace}\docshots@image%
+  \else\ifx\docshots@thissnippet\docshots@snippetright%
+    \docshots@image\hspace{\docshots@hspace}\docshots@code%
+  \else%
+    \PackageError{docshots}{Unknown snippet
+      '\docshots@thissnippet', use left, right, or none}{}%
+  \fi\fi\fi%
   \par%
   \endgroup%
+  \global\let\docshots@thissnippet\@undefined%
   \docshotOptions{}%
 }
 \makeatother
@@ -763,6 +827,19 @@ Hello, world!
 \newcommand\docshotAfter[1]{
   \xdef\docshots@after{\detokenize{#1}}%
   \message{docshots: post-processing command '\docshots@after' registered^^J}%
+}
+\makeatother
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\docshotSnippet}
+% Then, we define |\docshotSnippet| command, which overrides the |snippet|
+% placement for the single docshot that follows it:
+% \changes{0.6.0}{2026/07/16}{New command introduced to override the "snippet" placement of a single docshot.}
+%    \begin{macrocode}
+\makeatletter
+\newcommand\docshotSnippet[1]{%
+  \gdef\docshots@thissnippet{#1}%
 }
 \makeatother
 %    \end{macrocode}
