@@ -1,0 +1,46 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+runsystem((perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)" "_docshots-lua/snippet/docshots-temp.tex" "_docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: rendering at line no. 16
+runsystem((cd "_docshots-lua/snippet" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape 6E11CC1997D30A6656B18B0C776612DD.tex) > _docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.stdout 2>&1; /bin/echo -n $?% >_docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.ret)...executed.
+runsystem(("pdfcrop" --gscmd "gs" --margins 0 "_docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.pdf" "_docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: the PDF is ready from line no. 16
+<_docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.crop.pdf, id=4, 159.59625pt x 578.16pt>
+File: _docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.crop.pdf Graphic file (type pdf)
+<use _docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.crop.pdf>
+Package luatex.def Info: _docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.crop.pdf  used on input line ....
+(luatex.def)             Requested size: 103.50105pt x 374.94382pt.
+runsystem((perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)" "_docshots-lua/snippet/docshots-temp.tex" "_docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: rendering at line no. 24
+runsystem((cd "_docshots-lua/snippet" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape 6BC193BC30DAEA956E52AECAFFE6CDA2.tex) > _docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.stdout 2>&1; /bin/echo -n $?% >_docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.ret)...executed.
+runsystem(("pdfcrop" --gscmd "gs" --margins 0 "_docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.pdf" "_docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: the PDF is ready from line no. 24
+<_docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf, id=5, 159.59625pt x 578.16pt>
+File: _docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf Graphic file (type pdf)
+<use _docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf>
+Package luatex.def Info: _docshots-lua/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf  used on input line ....
+(luatex.def)             Requested size: 103.50105pt x 374.94382pt.
+runsystem((perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)" "_docshots-lua/snippet/docshots-temp.tex" "_docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: rendering at line no. 32
+runsystem((cd "_docshots-lua/snippet" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C0BDB1F9A833386F0C21ACFD59F1B7AE.tex) > _docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.stdout 2>&1; /bin/echo -n $?% >_docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.ret)...executed.
+runsystem(("pdfcrop" --gscmd "gs" --margins 0 "_docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.pdf" "_docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
+runsystem(rm iexec.tmp)...executed.
+runsystem(rm iexec.ret)...executed.
+docshots: the PDF is ready from line no. 32
+<_docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf, id=6, 159.59625pt x 577.15625pt>
+File: _docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf Graphic file (type pdf)
+<use _docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf>
+Package luatex.def Info: _docshots-lua/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf  used on input line ....
+(luatex.def)             Requested size: 103.50105pt x 374.29286pt.
+[1
+<./_docshots-lua/snippet/6E11CC1997D30A6656B18B0C776612DD.crop.pdf>]
