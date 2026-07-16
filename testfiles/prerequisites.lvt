@@ -8,10 +8,7 @@
 
 \START
 
-\docshotPrerequisite{main.bib}
-\docshotAfter{biber --quiet $2}
-\docshotOptions{firstline=2,lastline=8}
-\begin{docshot}
+\begin{docshot}[prerequisite=main.bib, after={biber --quiet $2}, options={firstline=2,lastline=8}]
   \documentclass[natbib=false]{article}
   \usepackage[natbib=true]{biblatex}
   \addbibresource{main.bib}
