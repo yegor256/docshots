@@ -31,7 +31,9 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2026-07-16 13.48.07 TeX Samples Next to Their PDF Snapshots in DTX]
+[2026-07-16 14.24.49 TeX Samples Next to Their PDF Snapshots in DTX]
+
+
 
 
 
@@ -137,9 +139,14 @@
   left/.default=.3\linewidth,
   right/.store in=\docshots@right,
   right/.default=.55\linewidth,
-  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,runs
+  snippet/.store in=\docshots@snippet,
+  snippet/.default=right,
+  tmpdir,pdflatex,gs,pdfcrop,margin,hspace,left,right,snippet,runs
 }
 \ProcessPgfOptions{/docshots}
+\def\docshots@snippetleft{left}
+\def\docshots@snippetright{right}
+\def\docshots@snippetnone{none}
 
 \iexec[\docshots@log,quiet]{"\docshots@pdflatex" --version}%
 
@@ -208,13 +215,15 @@
   \message{docshots: the PDF is ready from line no. \the\inputlineno^^J}%
   \begingroup%
   \par%
-  \tikz[baseline=(a.north)]
+  \ifdefined\docshots@thissnippet\else%
+    \let\docshots@thissnippet\docshots@snippet%
+  \fi%
+  \def\docshots@image{\tikz[baseline=(a.north)]
     \node (a) [draw=gray,inner sep=\docshots@margin,
       line width=.2pt]
     {\includegraphics[width=\docshots@left]
-      {\docshots@tmpdir/\jobname/\hash.crop.pdf}};%
-  \hspace{\docshots@hspace}%
-  \begin{minipage}[t]{\docshots@right}%
+      {\docshots@tmpdir/\jobname/\hash.crop.pdf}};}%
+  \def\docshots@code{\begin{minipage}[t]{\docshots@right}%
     \vspace{0pt}%
     \ifdefined\docshots@lstinputlisting%
       \ifdefined\docshots@opts%
@@ -243,9 +252,20 @@
       \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
-  \end{minipage}%
+  \end{minipage}}%
+  \ifx\docshots@thissnippet\docshots@snippetnone%
+    \docshots@image%
+  \else\ifx\docshots@thissnippet\docshots@snippetleft%
+    \docshots@code\hspace{\docshots@hspace}\docshots@image%
+  \else\ifx\docshots@thissnippet\docshots@snippetright%
+    \docshots@image\hspace{\docshots@hspace}\docshots@code%
+  \else%
+    \PackageError{docshots}{Unknown snippet
+      '\docshots@thissnippet', use left, right, or none}{}%
+  \fi\fi\fi%
   \par%
   \endgroup%
+  \global\let\docshots@thissnippet\@undefined%
   \docshotOptions{}%
 }
 \makeatother
@@ -263,6 +283,12 @@
 \newcommand\docshotAfter[1]{
   \xdef\docshots@after{\detokenize{#1}}%
   \message{docshots: post-processing command '\docshots@after' registered^^J}%
+}
+\makeatother
+
+\makeatletter
+\newcommand\docshotSnippet[1]{%
+  \gdef\docshots@thissnippet{#1}%
 }
 \makeatother
 
