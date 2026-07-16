@@ -15,16 +15,14 @@
 \end{document}
 \end{docshot}
 
-\docshotSnippet{right}
-\begin{docshot}
+\begin{docshot}[snippet=right]
 \documentclass{article}
 \begin{document}
   Right snippet.
 \end{document}
 \end{docshot}
 
-\docshotSnippet{none}
-\begin{docshot}
+\begin{docshot}[snippet=none]
 \documentclass{article}
 \begin{document}
   No snippet.

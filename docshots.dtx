@@ -379,15 +379,18 @@ Hello, world!
 
 % \section{Fine-tuning Options}
 
-% \DescribeMacro{\docshotOptions}
-% By default, the verbatim text is rendered by means of the |\VerbatimInput| command with
-% no options. Additional options may be supplied via the |\docshotOptions| command:
+% \DescribeEnv{docshot}
+% \changes{0.6.0}{2026/07/16}{The environment gains an optional argument that carries the per-docshot settings, replacing the docshotSnippet, docshotOptions, docshotAfter, and docshotPrerequisite commands.}
+% Every |docshot| environment accepts an optional argument, in which per-docshot
+% settings are supplied as a comma-separated list of |key=value| pairs. Four keys
+% are recognised: |snippet|, |options|, |after|, and |prerequisite|. Each applies
+% solely to the environment that carries it, leaving the defaults intact for the
+% docshots that follow:
 %\iffalse
 %<*verb>
 %\fi
 \begin{verbatim}
-\docshotOptions{firstline=4}
-\begin{docshot}
+\begin{docshot}[snippet=left, options={firstline=4}]
 ...
 \end{docshot}
 \end{verbatim}
@@ -395,20 +398,14 @@ Hello, world!
 %</verb>
 %\fi
 
-% The options are cleared upon the first rendering of a docshot.
-
-% \DescribeMacro{\docshotSnippet}
-% \changes{0.6.0}{2026/07/16}{The command is added to override the "snippet" placement of a single docshot.}
-% The package-wide |snippet| option may be overridden for a single docshot by
-% means of the |\docshotSnippet| command, which likewise accepts |left|,
-% |right|, or |none| and applies solely to the |docshot| that immediately
-% follows it:
+% \DescribeMacro{snippet}
+% The |snippet| key overrides the package-wide |snippet| option for a single
+% docshot, accepting |left|, |right|, or |none|:
 %\iffalse
 %<*verb>
 %\fi
 \begin{verbatim}
-\docshotSnippet{none}
-\begin{docshot}
+\begin{docshot}[snippet=none]
 ...
 \end{docshot}
 \end{verbatim}
@@ -416,25 +413,32 @@ Hello, world!
 %</verb>
 %\fi
 
-% \section{Prerequisites}
-
-% \DescribeMacro{\docshotPrerequisite}
-% \changes{0.0.3}{2022/10/14}{The command is added to enable copying of supplementary files into the directory where docshot snippets are processed.}
-% Whenever certain files are required to be present alongside the |.tex| snippet during
-% rendering by |pdflatex|, the |\docshotPrerequisite| command may be employed, accepting
-% a single mandatory argument. The argument denotes the name of a file to be copied from
-% the current directory to the temporary directory in which all snippets are rendered. The
-% command may appear either in the body of the document or in the preamble---the placement is
-% immaterial, provided that it precedes the docshot which requires the prerequisite. For example:
+% \DescribeMacro{options}
+% By default, the verbatim text is rendered by means of the |\VerbatimInput|
+% command with no options. Additional options may be supplied through the
+% |options| key:
 %\iffalse
 %<*verb>
 %\fi
 \begin{verbatim}
-\documentclass{article}
-\usepackage{docshots}
-\docshotPrerequisite{duck.jpg}
-\begin{document}
-\begin{docshot}
+\begin{docshot}[options={firstline=4}]
+...
+\end{docshot}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+
+% \DescribeMacro{prerequisite}
+% Whenever a file is required to be present alongside the |.tex| snippet during
+% rendering by |pdflatex|, the |prerequisite| key names a file to be copied from
+% the current directory to the temporary directory in which all snippets are
+% rendered. The key may be repeated for several files:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\begin{docshot}[prerequisite=duck.jpg]
   \documentclass{article}
   \usepackage{graphicx}
   \pagestyle{empty}
@@ -443,27 +447,21 @@ Hello, world!
     \includegraphics[width=2in]{duck.jpg}
   \end{document}
 \end{docshot}
-\end{document}
 \end{verbatim}
 %\iffalse
 %</verb>
 %\fi
 
-% \DescribeMacro{\docshotAfter}
+% \DescribeMacro{after}
 % Should some action be required after each |pdflatex| run of a docshot, the
-% |\docshotAfter| command may be placed immediately before the |docshot| environment. For example, when a bibliography file is to remain
-% available to every snippet and \href{https://ctan.org/pkg/biber}{biber} is to be invoked
-% on each in order to process citations:
+% |after| key supplies the command to run. For example, when a bibliography is to
+% remain available to a snippet and \href{https://ctan.org/pkg/biber}{biber} is
+% to be invoked on it in order to process citations:
 %\iffalse
 %<*verb>
 %\fi
 \begin{verbatim}
-\documentclass{article}
-\usepackage{docshots}
-\docshotPrerequisite{main.bib}
-\begin{document}
-\docshotAfter{biber $2}
-\begin{docshot}
+\begin{docshot}[prerequisite=main.bib, after={biber $2}]
   \documentclass{acmart}
   \usepackage[natbib=true]{biblatex}
   \addbibresource{main.bib}
@@ -473,22 +471,17 @@ Hello, world!
     \printbibliography
   \end{document}
 \end{docshot}
-\end{document}
 \end{verbatim}
 %\iffalse
 %</verb>
 %\fi
-% The script supplied as the first argument of |\docshotAfter| receives
-% three arguments at runtime:
+% The command supplied to the |after| key receives three arguments at runtime:
 % \begin{description}\setlength\itemsep{0em}
 % \item[|\$1|] the cycle of |pdflatex| processing (1, 2, ...),
 % \item[|\$2|] the hash of the snippet,
 % \item[|\$3|] the name of the |.tex| file.
 % \end{description}
-% |$3| is, in essence, |$2| with an appended |.tex| suffix. |\docshotAfter|
-% applies solely to the first |docshot| environment that follows it; |\docshotAfter|
-% must therefore be specified before every |docshot| in which such post-processing
-% is desired.
+% |$3| is, in essence, |$2| with an appended |.tex| suffix.
 
 % \StopEventually{}
 
@@ -533,7 +526,7 @@ Hello, world!
 % We also detect Windows, in order to pick the right default for Ghostscript,
 % the right file separator for shell commands (a backslash, since |cmd.exe|
 % rejects forward slashes in redirection targets), and an expanding variant of
-% the string-replacement command for later use in \docshotAfter:
+% the string-replacement command for later use by the |after| key:
 % \changes{0.5.0}{2026/07/13}{Windows compatibility: file operations go through Perl, and the "gs" default becomes "gswin64c" on Windows.}
 %    \begin{macrocode}
 \RequirePackage{pgfopts}
@@ -656,13 +649,65 @@ Hello, world!
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\docshots@prereq}
+% \changes{0.0.3}{2022/10/14}{New supplementary command added to copy prerequisite files into the rendering directory.}
+% Then, we define an internal command that copies a prerequisite file from the
+% current directory into the temporary one, so that |pdflatex| finds it during
+% rendering:
+%    \begin{macrocode}
+\makeatletter
+\newcommand\docshots@prereq[1]{%
+  \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+    "#1" "\docshots@tmpdir/\jobname/#1"}%
+  \message{docshots: File '#1' copied to
+    '\docshots@tmpdir/\jobname/#1'^^J}%
+}
+%    \end{macrocode}
+% \end{macro}
+
+% Then, we register the keys accepted by the optional argument of the |docshot|
+% environment. Each stores into the same internal macro that the environment
+% reads while rendering:
+%    \begin{macrocode}
+\pgfkeys{
+  /docshots/shot/.cd,
+  snippet/.store in=\docshots@thissnippet,
+  options/.store in=\docshots@opts,
+  after/.code=\edef\docshots@after{\detokenize{#1}},
+  prerequisite/.code=\docshots@prereq{#1},
+}
+%    \end{macrocode}
+
+% Then, we define the reader of that optional argument. Before peeking for the
+% |[|, we make the end-of-line active, exactly as |fancyvrb| does: an absent
+% optional argument then leaves the raw end-of-line in place, which |fancyvrb|
+% needs in order to find where the verbatim body begins. A plain |\@ifnextchar|
+% would skip that end-of-line and mislead the verbatim scanner:
+%    \begin{macrocode}
+\def\docshots@shot{%
+  \catcode`\^^M=\active%
+  \@ifnextchar[%]
+    {\catcode`\^^M=5 \docshots@grab}%
+    {\catcode`\^^M=5 \docshots@begin}}
+\def\docshots@grab[#1]{\pgfkeys{/docshots/shot/.cd,#1}\docshots@begin}
+\def\docshots@begin{\VerbatimEnvironment\begin{VerbatimOut}
+  {\docshots@tmpdir/\jobname/docshots-temp.tex}}
+\makeatother
+%    \end{macrocode}
+
 % \begin{macro}{docshot}
-% Then, we define |docshot| environment:
+% \changes{0.6.0}{2026/07/16}{The environment gains an optional argument carrying per-docshot settings; the commands docshotSnippet, docshotOptions, docshotAfter, and docshotPrerequisite are removed in its favour.}
+% Then, we define the |docshot| environment. Its optional argument carries the
+% per-docshot settings (|snippet|, |options|, |after|, and |prerequisite|),
+% which we parse under normal catcodes, before the body is captured verbatim.
+% The defaults are set locally, so that each docshot starts afresh and no
+% setting leaks into the next:
 %    \begin{macrocode}
 \makeatletter
 \newenvironment{docshot}
-{\VerbatimEnvironment\begin{VerbatimOut}
-  {\docshots@tmpdir/\jobname/docshots-temp.tex}}
+{\let\docshots@thissnippet\docshots@snippet%
+ \def\docshots@opts{}%
+ \docshots@shot}
 {\end{VerbatimOut}%
 %    \end{macrocode}
 % If we are in |dtx| mode, leading percent characters must be removed. The
@@ -702,7 +747,7 @@ Hello, world!
         \message{docshots: pdflatex run no.\n^^J}%
       \fi%
 %    \end{macrocode}
-% If a post-processing command was registered by \docshotAfter, we substitute
+% If a post-processing command was registered by the |after| key, we substitute
 % its |$1|, |$2|, and |$3| placeholders and execute it. There is no shell script
 % and no |chmod|, so the mechanism works on Windows too:
 %    \begin{macrocode}
@@ -713,7 +758,6 @@ Hello, world!
             \docshots@aftersh}%
         \endgroup%
       \fi}}%
-  \global\let\docshots@after\@undefined%
 %    \end{macrocode}
 % If a cropped version of the PDF with the required name already exists, we ignore this step.
 % Otherwise, we ask |pdfcrop| to crop the PDF:
@@ -735,16 +779,13 @@ Hello, world!
       \fi}%
   \message{docshots: the PDF is ready from line no. \the\inputlineno^^J}%
 %    \end{macrocode}
-% Finally, we render the content. When no per-docshot placement was requested
-% via \docshotSnippet, we inherit the package-wide |snippet| setting. The
-% snapshot is a framed image, and the source is a top-aligned minipage; we
-% keep each in a macro of its own, so that either may precede the other:
+% Finally, we render the content. The placement was resolved by the optional
+% argument, defaulting to the package-wide |snippet| setting. The snapshot is a
+% framed image, and the source is a top-aligned minipage; we keep each in a
+% macro of its own, so that either may precede the other:
 %    \begin{macrocode}
   \begingroup%
   \par%
-  \ifdefined\docshots@thissnippet\else%
-    \let\docshots@thissnippet\docshots@snippet%
-  \fi%
   \def\docshots@image{\tikz[baseline=(a.north)]
     \node (a) [draw=gray,inner sep=\docshots@margin,
       line width=.2pt]
@@ -796,63 +837,6 @@ Hello, world!
   \fi\fi\fi%
   \par%
   \endgroup%
-  \global\let\docshots@thissnippet\@undefined%
-  \docshotOptions{}%
-}
-\makeatother
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\docshotPrerequisite}
-% Then, we define |\docshotPrerequisite| command:
-%    \begin{macrocode}
-\makeatletter
-\newcommand\docshotPrerequisite[1]{
-  \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
-    "#1" "\docshots@tmpdir/\jobname/#1"}%
-  \message{docshots: File '#1' copied to
-    '\docshots@tmpdir/\jobname/#1'^^J}%
-}
-\makeatother
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\docshotAfter}
-% Then, we define |\docshotAfter| command. Rather than writing a shell script,
-% we merely remember the command as a detokenized string; the |docshot|
-% environment substitutes its placeholders and runs it after each |pdflatex|:
-% \changes{0.5.0}{2026/07/13}{The command is remembered as a string and executed directly, instead of being written to a shell script, for Windows compatibility.}
-%    \begin{macrocode}
-\makeatletter
-\newcommand\docshotAfter[1]{
-  \xdef\docshots@after{\detokenize{#1}}%
-  \message{docshots: post-processing command '\docshots@after' registered^^J}%
-}
-\makeatother
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\docshotSnippet}
-% Then, we define |\docshotSnippet| command, which overrides the |snippet|
-% placement for the single docshot that follows it:
-% \changes{0.6.0}{2026/07/16}{New command introduced to override the "snippet" placement of a single docshot.}
-%    \begin{macrocode}
-\makeatletter
-\newcommand\docshotSnippet[1]{%
-  \gdef\docshots@thissnippet{#1}%
-}
-\makeatother
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\docshotOptions}
-% Finally, we define |\docshotOptions| command:
-% \changes{0.3.0}{2022/11/10}{New command introduced to help specify custom options for verbatim environments.}
-%    \begin{macrocode}
-\makeatletter
-\gdef\docshots@opts{}
-\newcommand\docshotOptions[1]{%
-  \gdef\docshots@opts{#1}%
 }
 \makeatother
 %    \end{macrocode}

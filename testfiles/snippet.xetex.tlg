@@ -14,23 +14,23 @@ File: _docshots-xe/snippet/6E11CC1997D30A6656B18B0C776612DD.crop.pdf Graphic fil
 runsystem((perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)" "_docshots-xe/snippet/docshots-temp.tex" "_docshots-xe/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: rendering at line no. 24
+docshots: rendering at line no. 23
 runsystem((cd "_docshots-xe/snippet" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape 6BC193BC30DAEA956E52AECAFFE6CDA2.tex) > _docshots-xe/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.stdout 2>&1; /bin/echo -n $?% >_docshots-xe/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.ret)...executed.
 runsystem(("pdfcrop" --gscmd "gs" --margins 0 "_docshots-xe/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.pdf" "_docshots-xe/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: the PDF is ready from line no. 24
+docshots: the PDF is ready from line no. 23
 File: _docshots-xe/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf Graphic file (type pdf)
 <use _docshots-xe/snippet/6BC193BC30DAEA956E52AECAFFE6CDA2.crop.pdf>
 runsystem((perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)" "_docshots-xe/snippet/docshots-temp.tex" "_docshots-xe/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.tex") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: rendering at line no. 32
+docshots: rendering at line no. 30
 runsystem((cd "_docshots-xe/snippet" && "pdflatex" -interaction=errorstopmode -halt-on-error -shell-escape C0BDB1F9A833386F0C21ACFD59F1B7AE.tex) > _docshots-xe/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.stdout 2>&1; /bin/echo -n $?% >_docshots-xe/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.ret)...executed.
 runsystem(("pdfcrop" --gscmd "gs" --margins 0 "_docshots-xe/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.pdf" "_docshots-xe/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf") > iexec.tmp 2>&1; /bin/echo -n $?% >iexec.ret)...executed.
 runsystem(rm iexec.tmp)...executed.
 runsystem(rm iexec.ret)...executed.
-docshots: the PDF is ready from line no. 32
+docshots: the PDF is ready from line no. 30
 File: _docshots-xe/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf Graphic file (type pdf)
 <use _docshots-xe/snippet/C0BDB1F9A833386F0C21ACFD59F1B7AE.crop.pdf>
 [1
