@@ -621,11 +621,15 @@ Hello, world!
   {\docshots@tmpdir/\jobname/docshots-temp.tex}}
 {\end{VerbatimOut}%
 %    \end{macrocode}
-% If we are in |dtx| mode, leading percent characters must be removed:
+% If we are in |dtx| mode, leading percent characters must be removed. The
+% substitution stays line-oriented and anchored with |\A|, since the whole-file
+% form needed the caret and vertical-bar metacharacters that |cmd.exe| reads as
+% an escape and a pipe, mangling the command on Windows:
 % \changes{0.3.1}{2022/11/20}{A bug fixed, now handling of leading percentage symbols is done right.}
+% \changes{0.5.1}{2026/07/16}{Leading percent stripping avoids the "^" and "|" metacharacters, which cmd.exe mangled on Windows.}
 %    \begin{macrocode}
   \ifdefined\docshots@dtx%
-    \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25}\\s?/\\1/g"
+    \iexec[null]{perl -i -pe "s/\\A\\x{25} ?//"
       \docshots@tmpdir/\jobname/docshots-temp.tex}%
   \fi%
 %    \end{macrocode}
