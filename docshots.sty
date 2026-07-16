@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2026-07-16 10.01.27 TeX Samples Next to Their PDF Snapshots in DTX]
+[2026-07-16 13.08.44 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -163,7 +163,7 @@
   {\docshots@tmpdir/\jobname/docshots-temp.tex}}
 {\end{VerbatimOut}%
   \ifdefined\docshots@dtx%
-    \iexec[null]{perl -i -0777pe "s/(\\n|^)\\x{25}\\s?/\\1/g"
+    \iexec[null]{perl -i -pe "s/\\A\\x{25} ?//"
       \docshots@tmpdir/\jobname/docshots-temp.tex}%
   \fi%
   \def\hash{\docshots@mdfive{\docshots@tmpdir/\jobname/docshots-temp.tex}}%
