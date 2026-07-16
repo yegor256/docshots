@@ -31,8 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2026-07-16 14.24.49 TeX Samples Next to Their PDF Snapshots in DTX]
-
+[2026-07-16 15.02.41 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -165,9 +164,36 @@
 \makeatother
 
 \makeatletter
-\newenvironment{docshot}
-{\VerbatimEnvironment\begin{VerbatimOut}
+\newcommand\docshots@prereq[1]{%
+  \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
+    "#1" "\docshots@tmpdir/\jobname/#1"}%
+  \message{docshots: File '#1' copied to
+    '\docshots@tmpdir/\jobname/#1'^^J}%
+}
+
+\pgfkeys{
+  /docshots/shot/.cd,
+  snippet/.store in=\docshots@thissnippet,
+  options/.store in=\docshots@opts,
+  after/.code=\edef\docshots@after{\detokenize{#1}},
+  prerequisite/.code=\docshots@prereq{#1},
+}
+
+\def\docshots@shot{%
+  \catcode`\^^M=\active%
+  \@ifnextchar[%]
+    {\catcode`\^^M=5 \docshots@grab}%
+    {\catcode`\^^M=5 \docshots@begin}}
+\def\docshots@grab[#1]{\pgfkeys{/docshots/shot/.cd,#1}\docshots@begin}
+\def\docshots@begin{\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/docshots-temp.tex}}
+\makeatother
+
+\makeatletter
+\newenvironment{docshot}
+{\let\docshots@thissnippet\docshots@snippet%
+ \def\docshots@opts{}%
+ \docshots@shot}
 {\end{VerbatimOut}%
   \ifdefined\docshots@dtx%
     \iexec[null]{perl -i -pe "s/\\A\\x{25} ?//"
@@ -196,7 +222,6 @@
             \docshots@aftersh}%
         \endgroup%
       \fi}}%
-  \global\let\docshots@after\@undefined%
   \IfFileExists{\docshots@tmpdir/\jobname/\hash.crop.pdf}
     {\message{docshots: Won't pdfcrop,
       the PDF '\docshots@tmpdir/\jobname/\hash.crop.pdf'
@@ -215,9 +240,6 @@
   \message{docshots: the PDF is ready from line no. \the\inputlineno^^J}%
   \begingroup%
   \par%
-  \ifdefined\docshots@thissnippet\else%
-    \let\docshots@thissnippet\docshots@snippet%
-  \fi%
   \def\docshots@image{\tikz[baseline=(a.north)]
     \node (a) [draw=gray,inner sep=\docshots@margin,
       line width=.2pt]
@@ -265,37 +287,6 @@
   \fi\fi\fi%
   \par%
   \endgroup%
-  \global\let\docshots@thissnippet\@undefined%
-  \docshotOptions{}%
-}
-\makeatother
-
-\makeatletter
-\newcommand\docshotPrerequisite[1]{
-  \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
-    "#1" "\docshots@tmpdir/\jobname/#1"}%
-  \message{docshots: File '#1' copied to
-    '\docshots@tmpdir/\jobname/#1'^^J}%
-}
-\makeatother
-
-\makeatletter
-\newcommand\docshotAfter[1]{
-  \xdef\docshots@after{\detokenize{#1}}%
-  \message{docshots: post-processing command '\docshots@after' registered^^J}%
-}
-\makeatother
-
-\makeatletter
-\newcommand\docshotSnippet[1]{%
-  \gdef\docshots@thissnippet{#1}%
-}
-\makeatother
-
-\makeatletter
-\gdef\docshots@opts{}
-\newcommand\docshotOptions[1]{%
-  \gdef\docshots@opts{#1}%
 }
 \makeatother
 
