@@ -817,6 +817,7 @@ Hello, world!
       \ifdefined\docshots@opts%
         \expandafter\fvset\expandafter{\docshots@opts}%
       \fi%
+      \hfuzz=\maxdimen%
       \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
