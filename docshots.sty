@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2026-08-08 16.47.24 TeX Samples Next to Their PDF Snapshots in DTX]
+[2026-10-08 10.40.02 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -271,6 +271,7 @@
       \ifdefined\docshots@opts%
         \expandafter\fvset\expandafter{\docshots@opts}%
       \fi%
+      \edef\FancyVerbHFuzz{\number\maxdimen sp}%
       \VerbatimInput{\docshots@tmpdir/\jobname/\hash.tex}%
     \fi\fi%
     \vspace{0pt}%
