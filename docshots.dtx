@@ -645,9 +645,7 @@
 % the help of \href{https://ctan.org/pkg/pdftexcmds}{pdftexcmds}:
 %    \begin{macrocode}
 \RequirePackage{pdftexcmds}
-\makeatletter
 \newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}
-\makeatother
 %    \end{macrocode}
 % \end{macro}
 
@@ -657,7 +655,6 @@
 % current directory into the temporary one, so that |pdflatex| finds it during
 % rendering:
 %    \begin{macrocode}
-\makeatletter
 \newcommand\docshots@prereq[1]{%
   \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
     "#1" "\docshots@tmpdir/\jobname/#1"}%
@@ -694,7 +691,6 @@
 \def\docshots@grab[#1]{\pgfkeys{/docshots/shot/.cd,#1}\docshots@begin}
 \def\docshots@begin{\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/docshots-temp.tex}}
-\makeatother
 %    \end{macrocode}
 
 % \begin{macro}{docshot}
@@ -705,7 +701,6 @@
 % The defaults are set locally, so that each docshot starts afresh and no
 % setting leaks into the next:
 %    \begin{macrocode}
-\makeatletter
 \newenvironment{docshot}
 {\let\docshots@thissnippet\docshots@snippet%
  \def\docshots@opts{}%
@@ -841,7 +836,6 @@
   \par%
   \endgroup%
 }
-\makeatother
 %    \end{macrocode}
 % \end{macro}
 
