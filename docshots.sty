@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{docshots}
-[2026-10-15 16.36.08 TeX Samples Next to Their PDF Snapshots in DTX]
+[2026-10-15 16.42.44 TeX Samples Next to Their PDF Snapshots in DTX]
 
 
 
@@ -159,11 +159,8 @@
   "\docshots@tmpdir/\jobname"}%
 
 \RequirePackage{pdftexcmds}
-\makeatletter
 \newcommand\docshots@mdfive[1]{\pdf@filemdfivesum{#1}}
-\makeatother
 
-\makeatletter
 \newcommand\docshots@prereq[1]{%
   \iexec[\docshots@log,quiet]{perl -MFile::Copy -e "copy(shift,shift) or die q(cannot copy)"
     "#1" "\docshots@tmpdir/\jobname/#1"}%
@@ -187,9 +184,7 @@
 \def\docshots@grab[#1]{\pgfkeys{/docshots/shot/.cd,#1}\docshots@begin}
 \def\docshots@begin{\VerbatimEnvironment\begin{VerbatimOut}
   {\docshots@tmpdir/\jobname/docshots-temp.tex}}
-\makeatother
 
-\makeatletter
 \newenvironment{docshot}
 {\let\docshots@thissnippet\docshots@snippet%
  \def\docshots@opts{}%
@@ -289,7 +284,6 @@
   \par%
   \endgroup%
 }
-\makeatother
 
 \endinput
 %%
