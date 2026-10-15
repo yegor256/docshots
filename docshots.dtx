@@ -73,7 +73,8 @@
 % and \href{https://ctan.org/pkg/pdfcrop}{pdfcrop}.
 % The |--shell-escape| option is required because the package launches these
 % external programs from within the \TeX{} run in order to compile and crop each snippet.
-% The package operates on Windows as well as on Unix, provided these tools are on the |PATH|.
+% The package operates on Windows as well as on Unix, provided these tools are on the |PATH|;
+% on Windows, version 0.16.1 or newer of \href{https://ctan.org/pkg/iexec}{iexec} is required as well.
 
 % \section{Introduction}
 %
@@ -555,23 +556,22 @@
   \def\docshots@sep{/}%
 \fi
 %    \end{macrocode}
-% On Unix we render inside the temporary directory. On Windows we cannot, since
-% |cmd.exe| keeps a |cd| in effect after the parentheses close, which would send
-% iexec's exit-code file to the wrong place; instead we stay put and point
-% |pdflatex| at the directory with |-output-directory|. The |pdflatex| arguments
-% keep forward slashes, since \TeX{} reads a backslash as an escape character:
+% We render inside the temporary directory, so that |pdflatex| finds the
+% prerequisites there and leaves its output next to the snippet. On Windows this
+% relies on iexec 0.16.1 or newer, which runs the command in a |cmd /c| subshell;
+% with an older iexec the |cd| would outlive the parentheses, the exit-code file
+% would land in the wrong directory, and the run would stall, so we stop early:
+% \changes{0.6.1}{2026/10/15}{Windows renders inside the temporary directory again, exactly like Unix, which requires iexec 0.16.1 or newer there.}
 %    \begin{macrocode}
 \ifdocshots@windows
-  \def\docshots@render{"\docshots@pdflatex"
-    -interaction=errorstopmode -halt-on-error -shell-escape
-    -output-directory="\docshots@tmpdir/\jobname"
-    "\docshots@tmpdir/\jobname/\hash.tex"}%
-\else
-  \def\docshots@render{cd "\docshots@tmpdir/\jobname" &&
-    "\docshots@pdflatex"
-    -interaction=errorstopmode -halt-on-error -shell-escape
-    \hash.tex}%
+  \@ifpackagelater{iexec}{2026/07/13}{}{%
+    \PackageError{docshots}{iexec 0.16.1 or newer is required on Windows}
+      {Older versions of iexec misplace the exit-code file after a cd}}%
 \fi
+\def\docshots@render{cd "\docshots@tmpdir\docshots@sep\jobname" &&
+  "\docshots@pdflatex"
+  -interaction=errorstopmode -halt-on-error -shell-escape
+  \hash.tex}%
 \def\docshots@log{}
 \pgfkeys{
   /docshots/.cd,
