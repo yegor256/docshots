@@ -59,7 +59,7 @@
 %</driver>
 % \fi
 
-% \title{|docshots|: \LaTeX{} Package that Renders \\ \TeX{} Samples Next to Their \\ PDF Snapshots\thanks{The sources are in GitHub at \href{https://github.com/yegor256/docshots}{yegor256/docshots}}}
+% \title{|docshots|: \LaTeX{} Package that Renders \\ \TeX{} Samples Next to Their \\ PDF Snapshots\thanks{The sources are on GitHub at \href{https://github.com/yegor256/docshots}{yegor256/docshots}}}
 % \author{Yegor Bugayenko \\ \texttt{yegor256@gmail.com}}
 % \date{\filedate, \fileversion}
 %
@@ -175,7 +175,7 @@
 \usepackage[pdflatex=/usr/local/bin/pdflatex]{docshots}
 \begin{document}
 \begin{docshot}
-Hello, world!
+...
 \end{docshot}
 \end{document}
 \end{verbatim}
@@ -212,8 +212,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{margin}
-% When the rendered PDF is cropped, a margin is preserved around the content. The
-% default value may be modified by the |margin| package option:
+% A margin is kept between the snapshot and the gray frame drawn around it. The
+% default value of 5 points may be modified by means of the |margin| package option:
 %\iffalse
 %<*verb>
 %\fi
@@ -292,7 +292,8 @@ Hello, world!
 %\fi
 
 % \DescribeMacro{tmpdir}
-% The default location for temporary files is |_docshots|. This may be altered by means of the |tmpdir| option:
+% The default location for temporary files is |_docshots| (|_docshots-xe| under XeTeX
+% and |_docshots-lua| under LuaTeX). This may be altered by means of the |tmpdir| option:
 %\iffalse
 %<*verb>
 %\fi
@@ -416,7 +417,8 @@ Hello, world!
 % \DescribeMacro{options}
 % By default, the verbatim text is rendered by means of the |\VerbatimInput|
 % command with no options. Additional options may be supplied through the
-% |options| key:
+% |options| key; they are passed to |\lstset| or to |\inputminted| instead, when
+% the |lstinputlisting| or |inputminted| package option is in effect:
 %\iffalse
 %<*verb>
 %\fi
@@ -462,7 +464,7 @@ Hello, world!
 %\fi
 \begin{verbatim}
 \begin{docshot}[prerequisite=main.bib, after={biber $2}]
-  \documentclass{acmart}
+  \documentclass{article}
   \usepackage[natbib=true]{biblatex}
   \addbibresource{main.bib}
   \pagestyle{empty}
@@ -520,7 +522,7 @@ Hello, world!
 
 % Then, we process package options with the help of \href{https://ctan.org/pkg/pgfopts}{pgfopts}:
 % \changes{0.0.4}{2022/10/18}{Package options "lstinputlisting" and "inputminted" introduced to enable printing of verbatim text via either the listings or the minted package.}
-% \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via exec. By default, there is no logging at all.}
+% \changes{0.0.5}{2022/10/24}{Package option "log" added, which enables detailed logging via iexec. By default, there is no logging at all.}
 % \changes{0.2.0}{2022/10/26}{New package option "nocrop" added to allow disabling of "pdfcrop" execution.}
 % \changes{0.6.0}{2026/07/16}{Package option "snippet" added, with values "left", "right", and "none", to place the verbatim source on either side of the snapshot or to omit it entirely.}
 % We also detect Windows, in order to pick the right default for Ghostscript,
@@ -848,9 +850,3 @@ Hello, world!
 %    \end{macrocode}
 
 % \Finale
-
-%\clearpage
-
-%\PrintChanges
-%\clearpage
-%\PrintIndex
