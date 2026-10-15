@@ -9,7 +9,7 @@
 \START
 
 \begin{docshot}[prerequisite=main.bib, after={biber --quiet $2}, options={firstline=2,lastline=8}]
-  \documentclass[natbib=false]{article}
+  \documentclass{article}
   \usepackage[natbib=true]{biblatex}
   \addbibresource{main.bib}
   \pagestyle{empty}
