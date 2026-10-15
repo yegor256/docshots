@@ -4,14 +4,13 @@
 \input{regression-test.tex}
 \documentclass{article}
 \usepackage[cache=false]{minted}
-\makeatletter\def\minted@pygmentize{\def\PYG##1{}}\makeatother % to disable highlighting
-\setminted[text]{frame=lines,framesep=2mm}
+\renewcommand\inputminted[3][]{\typeout{inputminted: [#1]{#2}{#3}}}
 \usepackage[inputminted=text]{docshots}
 \begin{document}
 
 \START
 
-\begin{docshot}
+\begin{docshot}[options={linenos}]
 \documentclass{article}
 \usepackage{xcolor}
 \begin{document}
